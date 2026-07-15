@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amq7.xyz/sitemap.xml

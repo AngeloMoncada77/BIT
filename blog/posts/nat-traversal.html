@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAT Traversal en videojuegos - AMQ7 Blog</title>
+  <meta name="description" content="Explicación de NAT traversal, STUN, TURN e ICE: los protocolos que hacen posible el gaming online peer-to-peer." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>NAT traversal: el problema que todo desarrollador multiplayer debe entender</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Redes</p>
+
+    <p>Has creado un juego multiplayer. En tu casa, con dos ventanas del navegador abiertas, funciona perfecto. Pero cuando tu amigo intenta conectarse desde su casa, no pasa nada. El culpable más probable es el NAT.</p>
+
+    <h2>¿Qué es NAT?</h2>
+    <p>NAT (Network Address Translation) es el mecanismo que permite que múltiples dispositivos en tu casa compartan una sola dirección IP pública. Tu router asigna direcciones IP privadas (como <code>192.168.1.x</code>) a cada dispositivo, y cuando estos se conectan a Internet, el router traduce las direcciones privadas a la IP pública.</p>
+    <p>El problema: cuando otro dispositivo en Internet intenta iniciar una conexión con tu computadora, el router no sabe a cuál de tus dispositivos internos enviar el paquete. Es como tener un edificio con un portero que solo deja salir, pero no entra nada que no haya sido solicitado.</p>
+
+    <h2>Los tres protocolos que resuelven el problema</h2>
+
+    <h3>STUN (Session Traversal Utilities for NAT)</h3>
+    <p>STUN es un servidor público que hace una tarea simple: cuando un cliente le envía un paquete, STUN responde diciéndole "esta es tu IP pública y este es tu puerto". El cliente descubre así su dirección reflexiva (la que el NAT expuso para esa sesión).</p>
+    <p>STUN es barato y eficiente. Un solo servidor puede manejar decenas de miles de clientes. Pero no siempre funciona: cuando ambos clientes están detrás de NATs simétricos (como los de redes móviles), STUN falla.</p>
+
+    <h3>TURN (Traversal Using Relays around NAT)</h3>
+    <p>Cuando STUN no es suficiente, entra TURN. TURN es un relay: ambos clientes envían su tráfico a un servidor TURN, y este reenvía los paquetes al destino. Es más caro (pagas por cada byte) y añade latencia, pero siempre funciona.</p>
+    <p>Entre el 8% y el 15% de las conexiones de consumidores necesitan TURN en la práctica.</p>
+
+    <h3>ICE (Interactive Connectivity Establishment)</h3>
+    <p>ICE es el protocolo que orquesta todo. Cada cliente recolecta candidatos de conexión:</p>
+    <ul>
+      <li><strong>Host</strong> — la IP local (LAN)</li>
+      <li><strong>Server Reflexive</strong> — la IP pública descubierta via STUN</li>
+      <li><strong>Relayed</strong> — la dirección del relay TURN</li>
+    </ul>
+    <p>Los candidatos se intercambian a través de un canal de señalización (normalmente un WebSocket). Luego, cada par prueba las combinaciones en orden de prioridad: primero directo (host-host), luego reflexivo-reflexivo, y como último recurso, relay.</p>
+
+    <h2>Keepalives: el detalle que muchos olvidan</h2>
+    <p>Los NATs tienen memoria: mantienen una tabla de traducción solo mientras hay tráfico activo. Si un cliente queda inactivo por 30 segundos, la tabla expira y los paquetes entrantes se pierden. La solución es enviar un keepalive (un paquete minúsculo) cada 15-20 segundos en cada sesión activa.</p>
+
+    <h2>Implementación práctica para tu juego</h2>
+    <p>Si estás desarrollando un juego multiplayer en JavaScript, la forma más directa de implementar todo esto es usar WebRTC, que incluye STUN, TURN e ICE de forma nativa:</p>
+    <pre><code>const config = {
+  iceServers: [
+    { urls: 'stun:stun.l.google.com:19302' },
+    { urls: 'turn:tu-servidor.com:3478',
+      username: 'user',
+      credential: 'pass' }
+  ]
+};
+const peerConnection = new RTCPeerConnection(config);</code></pre>
+
+    <h2>Resumen</h2>
+    <ul>
+      <li>NAT permite compartir IPs pero bloquea conexiones entrantes</li>
+      <li>STUN descubre tu IP pública</li>
+      <li>TURN actúa como relay cuando STUN no basta</li>
+      <li>ICE orquesta la mejor ruta posible</li>
+      <li>Siempre implementa keepalives para mantener la sesión activa</li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

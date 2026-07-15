@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Cómo funciona Internet? - AMQ7 Blog</title>
+  <meta name="description" content="Explicación visual y clara de cómo funciona Internet: DNS, servidores, routing y protocolos." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>¿Cómo funciona Internet? Explicación visual para principiantes</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Redes</p>
+
+    <p>Cuando abres un navegador, escribes una URL y la página aparece en pantalla, parece magia. Pero detrás hay un proceso fascinante que involucra múltiples sistemas coordinados. Vamos a desglosarlo paso a paso.</p>
+
+    <h2>1. El DNS: la guía telefónica de Internet</h2>
+    <p>Todo comienza cuando escribes <code>amq7.xyz</code> en tu navegador. Tu computadora no entiende nombres de dominio; entiende direcciones IP (como <code>192.168.1.1</code>). El DNS (Domain Name System) es el sistema que traduce nombres legibles para humanos en direcciones que las máquinas entienden.</p>
+    <p>Tu router contacta a un servidor DNS (generalmente el de tu ISP o uno público como 8.8.8.8 de Google) y pregunta: "¿Cuál es la IP de <code>amq7.xyz</code>?" El servidor responde con la dirección IP, y tu navegador ya sabe a dónde conectarse.</p>
+
+    <h2>2. La conexión TCP/IP</h2>
+    <p>Con la IP en mano, tu navegador inicia una conexión TCP (Transmission Control Protocol). Piensa en TCP como una llamada telefónica confirmada: ambas partes confirman que están listas y los datos llegan en orden. Si un paquete se pierde, se reenvía.</p>
+    <p>El modelo TCP/IP tiene cuatro capas:</p>
+    <ul>
+      <li><strong>Capa de aplicación</strong> — HTTP, HTTPS, FTP (lo que el usuario ve)</li>
+      <li><strong>Capa de transporte</strong> — TCP o UDP (cómo viajan los datos)</li>
+      <li><strong>Capa de red</strong> — IP (la dirección de destino)</li>
+      <li><strong>Capa de enlace</strong> — Ethernet, WiFi (el medio físico)</li>
+    </ul>
+
+    <h2>3. El routing: cómo encuentra el camino</h2>
+    <p>Tu solicitud no viaja directo al servidor. Pasa por múltiples routers intermedios (llamados saltos). Cada router examina la dirección IP de destino y decide cuál es el mejor camino. Es como un sistema de carreteras: no hay una ruta fija, sino que cada router elige dinámicamente basado en tráfico y disponibilidad.</p>
+    <p>Puedes ver esta ruta tú mismo con el comando <code>traceroute</code> en tu terminal:</p>
+    <pre><code>traceroute amq7.xyz</code></pre>
+
+    <h2>4. El servidor web y HTTP</h2>
+    <p>Cuando el paquete llega al servidor (la computadora que aloja el sitio), un programa como Nginx o Apache lo recibe. El servidor entiende el protocolo HTTP. Tu navegador envió algo como:</p>
+    <pre><code>GET / HTTP/1.1
+Host: amq7.xyz</code></pre>
+    <p>El servidor busca el archivo <code>index.html</code>, lo lee, y lo devuelve como respuesta HTTP junto con otros recursos (CSS, JS, imágenes).</p>
+
+    <h2>5. El renderizado en el navegador</h2>
+    <p>Tu navegador recibe el HTML y comienza a procesarlo:</p>
+    <ul>
+      <li>Construye el DOM (Document Object Model) a partir del HTML</li>
+      <li>Construye el CSSOM a partir de los estilos</li>
+      <li>Combina ambos en el árbol de renderizado</li>
+      <li>Calcula la posición de cada elemento (layout)</li>
+      <li>Pinta los píxeles en pantalla</li>
+    </ul>
+    <p>Todo esto ocurre en milisegundos. Las páginas modernas cargan recursos adicionales (imágenes, fuentes, scripts) mientras el contenido principal ya se está mostrando.</p>
+
+    <h2>Conceptos clave para recordar</h2>
+    <ul>
+      <li><strong>DNS</strong> — traduce nombres a IPs</li>
+      <li><strong>TCP</strong> — conexión confiable y ordenada</li>
+      <li><strong>IP</strong> — la dirección única de cada dispositivo en la red</li>
+      <li><strong>HTTP</strong> — el protocolo que navegadores y servidores usan para comunicarse</li>
+      <li><strong>Routing</strong> — cómo los paquetes encuentran su camino a través de la red</li>
+    </ul>
+
+    <p>Internet no es una nube mágica. Es una infraestructura física y lógica enorme, compuesta por cables submarinos, routers, servidores y protocolos estandarizados que permiten que miles de millones de dispositivos se comuniquen entre sí.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pomodoro Timer - AMQ7 Tools</title>
+  <meta name="description" content="Temporizador Pomodoro para estudiar con intervalos de trabajo y descanso." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/tools/" class="back-link" style="display:inline-block;margin-bottom:1rem;color:#94a3b8;">← Volver a herramientas</a>
+    <h1>Pomodoro Timer</h1>
+    <p class="page__desc">Mantén tu productividad con la técnica Pomodoro: 25 minutos de trabajo, 5 de descanso.</p>
+
+    <div class="tool-container pomodoro-timer">
+      <p class="pomodoro-timer__phase" id="pomodoro-phase">Tiempo de trabajo</p>
+      <div class="pomodoro-timer__display" id="pomodoro-display">25:00</div>
+      <div class="pomodoro-timer__controls">
+        <button class="btn btn--primary" id="pomodoro-start" onclick="startPomodoro()">Iniciar</button>
+        <button class="btn btn--outline" onclick="resetPomodoro()">Reiniciar</button>
+      </div>
+      <p style="margin-top:1.5rem;color:#64748b;font-size:0.85rem;" id="pomodoro-sessions">Ciclos completados: 0</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/pomodoro.js"></script>
+</body>
+</html>

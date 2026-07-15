@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcard Generator - AMQ7 Tools</title>
+  <meta name="description" content="Genera flashcards de estudio automáticamente desde tus apuntes." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/tools/" class="back-link" style="display:inline-block;margin-bottom:1rem;color:#94a3b8;">← Volver a herramientas</a>
+    <h1>Flashcard Generator</h1>
+    <p class="page__desc">Pega tus apuntes o un texto de estudio y genera flashcards automáticamente. Haz clic en cada tarjeta para ver la respuesta.</p>
+
+    <div class="tool-container">
+      <label for="flashcard-input">Pega tu texto aquí</label>
+      <textarea id="flashcard-input" placeholder="Ej: JavaScript es un lenguaje de programación interpretado. Se usa principalmente en el navegador. CSS es un lenguaje de estilos para diseñar páginas web. El DOM es la representación en memoria de la estructura de un documento HTML."></textarea>
+      <button class="btn btn--primary" onclick="generateFlashcards()">Generar Flashcards</button>
+    </div>
+
+    <div id="flashcard-area" class="tool-container" style="display:none;margin-top:1.5rem;">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div id="flashcard-content">
+          <p class="flashcard__question" id="question-text">Pregunta</p>
+        </div>
+      </div>
+      <p class="flashcard__hint" id="card-hint">Haz clic en la tarjeta para ver la respuesta</p>
+      <div style="display:flex;gap:1rem;justify-content:center;margin-top:1rem;flex-wrap:wrap;">
+        <button class="btn btn--outline" onclick="prevCard()">← Anterior</button>
+        <span id="card-counter" style="color:#94a3b8;align-self:center;">1 / 1</span>
+        <button class="btn btn--outline" onclick="nextCard()">Siguiente →</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/flashcard.js"></script>
+</body>
+</html>

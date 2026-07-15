@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade Calculator - AMQ7 Tools</title>
+  <meta name="description" content="Calcula la nota que necesitas en tu examen final para aprobar o alcanzar tu meta." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/tools/" class="back-link" style="display:inline-block;margin-bottom:1rem;color:#94a3b8;">← Volver a herramientas</a>
+    <h1>Grade Calculator</h1>
+    <p class="page__desc">Calcula qué nota necesitas en tu examen final para alcanzar la calificación que deseas. Funciona con el sistema de porcentajes.</p>
+
+    <div class="tool-container">
+      <label for="current-grade">Nota actual (0-100)</label>
+      <input type="number" id="current-grade" min="0" max="100" placeholder="Ej: 72" />
+
+      <label for="desired-grade">Nota que deseas obtener (0-100)</label>
+      <input type="number" id="desired-grade" min="0" max="100" placeholder="Ej: 85" />
+
+      <label for="exam-weight">Peso del examen final (%)</label>
+      <input type="number" id="exam-weight" min="1" max="100" placeholder="Ej: 30" />
+
+      <button class="btn btn--primary" onclick="calculateGrade()">Calcular</button>
+
+      <div id="grade-result" style="display:none;" class="grade-result">
+        <div class="grade-result__number" id="grade-needed">0</div>
+        <div class="grade-result__label">Nota necesaria en el examen final</div>
+        <div id="grade-verdict" style="margin-top:0.75rem;font-weight:600;"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/gradecalc.js"></script>
+</body>
+</html>

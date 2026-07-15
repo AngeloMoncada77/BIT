@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-cheat en juegos online - AMQ7 Blog</title>
+  <meta name="description" content="Cómo funcionan los sistemas anti-cheat en videojuegos: validación en servidor, agentes en cliente y ban waves." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>¿Cómo funciona el anti-cheat en los juegos online?</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Gaming</p>
+
+    <p>En un juego online, cada jugador es un adversario potencial con meses de tiempo libre y dinero para gastar en trampas. El anti-cheat no es una característica opcional: es el sistema que mantiene vivo un juego competitivo. Cuando falla, el juego muere (pregúntale a cualquier título que perdió su comunidad por cheating masivo).</p>
+
+    <p>Los sistemas anti-cheat modernos funcionan en cuatro capas:</p>
+
+    <h2>Capa 1: Validación en servidor (la más importante)</h2>
+    <p>Esta capa es gratuita (ya ejecutas la simulación) y atrapa a los tramposos más básicos. El servidor ejecuta su propia simulación del juego y rechaza cualquier input imposible:</p>
+    <ul>
+      <li>¿El jugador se movió más rápido que la velocidad máxima del personaje? → Rechazado.</li>
+      <li>¿Disparó más veces de las que permite el arma? → Rechazado.</li>
+      <li>¿Su puntero giró 180 grados en 10ms (un humano no puede)? → Marcado.</li>
+    </ul>
+    <p>Esta capa solo funciona si tienes un servidor autoritativo. En juegos P2P, el host es quien valida, y si el host es el tramposo, no hay quién lo detenga.</p>
+
+    <h2>Capa 2: Agente en cliente</h2>
+    <p>Un programa que se ejecuta en la máquina del jugador y escanea en busca de trampas conocidas. Hay dos tipos:</p>
+    <ul>
+      <li><strong>User-mode</strong> (como VAC de Valve): corre como un programa normal, escanea procesos y memoria. Menos invasivo, pero más fácil de evadir.</li>
+      <li><strong>Kernel-mode</strong> (como Vanguard de Riot, Easy Anti-Cheat de Epic): corre a nivel de kernel, con privilegios máximos. Puede detectar cheats que se esconden en el sistema operativo. Más efectivo, pero también más controvertido (un bug puede ser un CVE de seguridad).</li>
+    </ul>
+
+    <h2>Capa 3: Detección por comportamiento</h2>
+    <p>Esta capa usa análisis estadístico sobre los datos de la partida para detectar patrones anómalos:</p>
+    <ul>
+      <li><strong>Aimbot:</strong> un jugador cuya mira se fija en los enemigos con una aceleración perfecta (los humanos siempre tienen micro-correcciones).</li>
+      <li><strong>Wallhack:</strong> un jugador que consistentemente "mira" a enemigos a través de paredes antes de verlos.</li>
+      <li><strong>Scripting:</strong> combinaciones de teclas ejecutadas con precisión perfecta en el frame exacto.</li>
+    </ul>
+    <p>Aquí el Machine Learning hace un trabajo excelente. Se entrena un modelo con datos de partidas legítimas y se marcan las desviaciones significativas. El resultado no es una certeza, sino un puntaje de sospecha.</p>
+
+    <h2>Capa 4: Ban management</h2>
+    <p>Las detecciones de las capas anteriores no se traducen en baneos instantáneos. Eso le daría demasiada información a los creadores de cheats sobre qué los delató. En su lugar, los estudios usan:</p>
+    <ul>
+      <li><strong>Ban waves:</strong> acumulan cuentas sospechosas durante semanas y las banean todas a la vez. Así los cheat developers no saben qué firma los descubrió.</li>
+      <li><strong>Baneos escalonados:</strong> HWID (hardware ID), dirección IP, método de pago. Hacen que crear una cuenta nueva sea costoso.</li>
+      <li><strong>Cola de revisión:</strong> las sospechas alimentan una cola que un equipo humano revisa antes de banear permanentemente.</li>
+    </ul>
+    <p>Los falsos positivos en esta capa matan la reputación de un juego. Por eso el umbral para un baneo automático es muy alto.</p>
+
+    <h2>La realidad del desarrollo indie</h2>
+    <p>Si eres un desarrollador independiente, no puedes implementar las 4 capas. No tienes los recursos. Pero puedes hacer esto:</p>
+    <ul>
+      <li>Capa 1 obligatoria: siempre valida en servidor. Es gratis y atrapa el 90% de los cheats casuales.</li>
+      <li>Capa 3 accesible: logs de partidas con detección de anomalías simples (rata de aciertos anómala, velocidad de movimiento imposible).</li>
+      <li>Capa 4 básica: revisión manual de reportes de jugadores.</li>
+    </ul>
+    <p>Los juegos indie suelen tener menos problemas de cheating porque no son objetivos tan atractivos. Pero si tu juego crece, necesitarás escalar estas defensas.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

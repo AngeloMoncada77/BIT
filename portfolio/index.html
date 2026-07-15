@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio - AMQ7</title>
+  <meta name="description" content="Proyectos de desarrollo web de AMQ7: herramientas interactivas, dashboards y aplicaciones JavaScript." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link nav__link--active">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <h1>Portafolio</h1>
+    <p class="page__desc">Proyectos que resuelven problemas reales con JavaScript, HTML y CSS puro.</p>
+
+    <div class="project-grid">
+      <article class="project-card">
+        <div class="card__tags">
+          <span class="tag tag--primary">JavaScript</span>
+          <span class="tag tag--secondary">Educación</span>
+        </div>
+        <h2>AI Study Buddy</h2>
+        <p>Generador de flashcards inteligentes. Pega tus apuntes o textos y la herramienta extrae automáticamente conceptos clave, generando tarjetas de preguntas y respuestas para estudiar de forma interactiva. Ideal para estudiantes que quieren repasar rápido antes de un examen.</p>
+        <p>Procesa el texto ingresado, identifica términos importantes usando palabras clave y patrones, y los convierte en un mazo de flashcards navegables. Incluye control de progreso y modo aleatorio.</p>
+        <div class="project-card__links">
+          <a href="/tools/flashcard.html" class="btn btn--primary">Demo</a>
+          <a href="#" class="btn btn--outline">GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="card__tags">
+          <span class="tag tag--primary">JavaScript</span>
+          <span class="tag tag--secondary">Productividad</span>
+        </div>
+        <h2>Dev Task Dashboard</h2>
+        <p>Tablero de tareas estilo Kanban para gestionar proyectos personales. Organiza tus pendientes en columnas de "Por hacer", "En progreso" y "Completado" con arrastrar y soltar nativo.</p>
+        <p>Los datos se guardan automáticamente en LocalStorage, por lo que el estado persiste incluso después de cerrar el navegador. Incluye búsqueda de tareas y contador de progreso visual.</p>
+        <div class="project-card__links">
+          <a href="#" class="btn btn--primary">Demo</a>
+          <a href="#" class="btn btn--outline">GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="card__tags">
+          <span class="tag tag--primary">JavaScript</span>
+          <span class="tag tag--secondary">Utilidad</span>
+        </div>
+        <h2>Markdown Editor</h2>
+        <p>Editor de Markdown en vivo con vista previa instantánea y exportación a HTML. Escribe en el panel izquierdo y ve el resultado renderizado en tiempo real en el panel derecho.</p>
+        <p>Soporta encabezados, listas, enlaces, imágenes, código, tablas y más. Incluye botón de copia del HTML generado para usar en blogs o plataformas educativas.</p>
+        <div class="project-card__links">
+          <a href="#" class="btn btn--primary">Demo</a>
+          <a href="#" class="btn btn--outline">GitHub</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

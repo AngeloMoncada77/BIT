@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 proyectos con JavaScript puro - AMQ7 Blog</title>
+  <meta name="description" content="5 proyectos con JavaScript vanilla para tu portafolio que demuestran habilidades reales." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>5 proyectos con JavaScript puro para tu portafolio en 2026</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Programación</p>
+
+    <p>En 2026, los reclutadores han visto demasiados "TODO apps" y "clones de Netflix". Para destacar, necesitas proyectos que resuelvan problemas reales y demuestren comprensión profunda de JavaScript, no solo capacidad de seguir tutoriales.</p>
+    <p>Aquí tienes 5 proyectos con JS vanilla (sin frameworks) que realmente llaman la atención:</p>
+
+    <h2>1. Flashcards Generator</h2>
+    <p>Una herramienta que toma texto y genera automáticamente tarjetas de estudio. El usuario pega sus apuntes y la app identifica conceptos clave para crear pares de pregunta-respuesta.</p>
+    <p><strong>Habilidades que demuestra:</strong> manipulación del DOM, procesamiento de texto, lógica de estado (navegación entre tarjetas), persistencia de sesión, diseño UX (feedback visual al hacer clic).</p>
+    <p><strong>Extra:</strong> añade modo de arrastrar y soltar para organizar las tarjetas por prioridad.</p>
+
+    <h2>2. Grade Calculator</h2>
+    <p>Una calculadora que responde a la pregunta "¿qué nota necesito en el final para obtener X?" El estudiante ingresa su nota actual, la nota deseada y el peso del examen, y la app calcula el resultado.</p>
+    <p><strong>Habilidades que demuestra:</strong> manejo de formularios, validación de entrada, lógica matemática, renderizado condicional (resultados positivos vs negativos con colores distintos).</p>
+
+    <h2>3. Dashboard con datos de APIs públicas</h2>
+    <p>Construye un tablero que muestre datos en vivo de una o más APIs públicas. Ejemplos: clima, precios de criptomonedas, actividades de GitHub, estado del mercado de valores.</p>
+    <p><strong>Habilidades que demuestra:</strong> fetch asíncrono, manejo de promesas y errores, renderizado de datos dinámicos, diseño de grids responsivos, auto-refresh periódico.</p>
+    <pre><code>async function fetchData(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Error ' + res.status);
+    return await res.json();
+  } catch (err) {
+    showError(err.message);
+  }
+}</code></pre>
+
+    <h2>4. Pomodoro Timer con notificaciones</h2>
+    <p>Un temporizador Pomodoro completo: 25 minutos de trabajo, 5 de descanso, con ciclo automático. Incluye notificaciones visuales y sonoras al cambiar de fase, y contador de ciclos completados.</p>
+    <p><strong>Habilidades que demuestra:</strong> setInterval/setTimeout, manejo de estado de juego (corriendo, pausado, reinicio), eventos de teclado (espacio para pausar/reanudar), Notification API del navegador.</p>
+
+    <h2>5. Markdown Editor en vivo</h2>
+    <p>Un editor dividido en dos paneles: a la izquierda se escribe Markdown, a la derecha se ve el HTML renderizado en tiempo real. Incluye exportación a HTML y copia al portapapeles.</p>
+    <p><strong>Habilidades que demuestra:</strong> parseo de texto, renderizado en tiempo real (input → output), separación de responsabilidades, uso de contentEditable, Clipboard API.</p>
+    <p>Puedes escribir tu propio parser Markdown simple (encabezados con <code>#</code>, listas con <code>-</code>, negritas con <code>**</code>) o usar una librería como marked.js.</p>
+
+    <h2>Cómo presentar estos proyectos</h2>
+    <p>No basta con construirlos. La presentación importa tanto como el código:</p>
+    <ul>
+      <li><strong>Demo en vivo:</strong> desplegado en Netlify, Vercel o GitHub Pages</li>
+      <li><strong>README sólido:</strong> qué problema resuelve, stack, cómo ejecutarlo localmente</li>
+      <li><strong>Código limpio:</strong> funciones pequeñas, nombres descriptivos, sin comentarios redundantes</li>
+      <li><strong>Captura o GIF:</strong> muestra la app funcionando en el README</li>
+    </ul>
+
+    <p>Construye 3 de estos proyectos, preséntalos bien, y tendrás un portafolio que dice mucho más que cualquier certificado.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

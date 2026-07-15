@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML semántico: SEO y accesibilidad - AMQ7 Blog</title>
+  <meta name="description" content="Por qué el HTML semántico es la base del SEO, la accesibilidad y el mantenimiento del código." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>HTML semántico: la base del SEO y la accesibilidad</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Programación</p>
+
+    <p>Escribe HTML como si Google y una persona con discapacidad visual fueran a leerlo. Porque lo harán. El HTML semántico no es una moda ni una buena práctica abstracta: es lo que determina si tu sitio aparece en los resultados de búsqueda y si es utilizable por todos.</p>
+
+    <h2>¿Qué es HTML semántico?</h2>
+    <p>HTML semántico significa usar etiquetas que describen el significado del contenido, no solo su apariencia. En lugar de llenar todo con <code>&lt;div&gt;</code> y <code>&lt;span&gt;</code>, usas etiquetas como <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code> y <code>&lt;footer&gt;</code>.</p>
+
+    <p>Compara estos dos ejemplos:</p>
+    <pre><code>&lt;!-- No semántico --&gt;
+&lt;div class="header"&gt;
+  &lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="main"&gt;
+  &lt;div class="article"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Semántico --&gt;
+&lt;header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;...&lt;/article&gt;
+&lt;/main&gt;</code></pre>
+    <p>Ambos se ven idénticos visualmente. Pero el segundo le dice al navegador, al lector de pantalla y al motor de búsqueda exactamente qué es cada cosa.</p>
+
+    <h2>Beneficio 1: SEO</h2>
+    <p>Google usa la estructura HTML para entender tu contenido. Cuando usas <code>&lt;h1&gt;</code> para el título principal, <code>&lt;h2&gt;</code> para subtítulos, y <code>&lt;article&gt;</code> para contenido independiente, estás ayudando al algoritmo a indexar tu página correctamente.</p>
+    <p>Los rich snippets (resultados enriquecidos que aparecen en Google) dependen de datos estructurados, pero una base de HTML semántico es el primer paso para que Google entienda la jerarquía de tu página.</p>
+    <p>Reglas de oro:</p>
+    <ul>
+      <li>Un solo <code>&lt;h1&gt;</code> por página</li>
+      <li>Los encabezados siguen jerarquía: h1 → h2 → h3 (no saltos)</li>
+      <li>Cada <code>&lt;article&gt;</code> puede tener su propia jerarquía de encabezados</li>
+      <li><code>&lt;nav&gt;</code> debe contener solo enlaces de navegación principales</li>
+    </ul>
+
+    <h2>Beneficio 2: Accesibilidad</h2>
+    <p>Las personas que usan lectores de pantalla navegan por puntos de referencia (landmarks). Un <code>&lt;header&gt;</code> es un landmark. Un <code>&lt;div class="header"&gt;</code> no lo es. La diferencia es invisible en pantalla, pero crítica para quien usa un screen reader.</p>
+    <p>Además, HTML semántico ayuda con:</p>
+    <ul>
+      <li><strong>Navegación por teclado:</strong> los elementos interactivos semánticos (<code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>) son accesibles por Tab por defecto</li>
+      <li><strong>Textos alternativos:</strong> <code>&lt;img alt="descripción"&gt;</code> es obligatorio para lectores de pantalla</li>
+      <li><strong>Formularios:</strong> usar <code>&lt;label for="id"&gt;</code> en lugar de solo <code>&lt;input placeholder&gt;</code></li>
+    </ul>
+
+    <h2>Beneficio 3: Mantenibilidad</h2>
+    <p>Cuando vuelves a tu código 6 meses después, <code>&lt;article&gt;</code> te dice inmediatamente que ese bloque es contenido independiente. <code>&lt;aside&gt;</code> te dice que es contenido relacionado pero no central. No necesitas leer todo el CSS para entender la estructura.</p>
+
+    <h2>Las etiquetas semánticas esenciales</h2>
+    <ul>
+      <li><code>&lt;header&gt;</code> — Introducción o navegación de una sección</li>
+      <li><code>&lt;nav&gt;</code> — Bloque de navegación principal</li>
+      <li><code>&lt;main&gt;</code> — Contenido principal (único por página)</li>
+      <li><code>&lt;article&gt;</code> — Contenido independiente y reutilizable</li>
+      <li><code>&lt;section&gt;</code> — Agrupación temática de contenido</li>
+      <li><code>&lt;aside&gt;</code> — Contenido complementario (sidebar)</li>
+      <li><code>&lt;footer&gt;</code> — Pie de página de una sección o del documento</li>
+      <li><code>&lt;figure&gt;</code> / <code>&lt;figcaption&gt;</code> — Imagen o ilustración con leyenda</li>
+      <li><code>&lt;time&gt;</code> — Fechas y horas (legible por máquinas)</li>
+    </ul>
+
+    <p>El HTML semántico no cuesta nada, no ralentiza tu página y no requiere librerías externas. Es simplemente elegir la etiqueta correcta para el trabajo correcto. Hazlo desde el día uno y tu yo del futuro (y Google) te lo agradecerán.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

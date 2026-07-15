@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arquitectura multiplayer: servidor autoritativo vs P2P - AMQ7 Blog</title>
+  <meta name="description" content="Comparativa entre servidor autoritativo y peer-to-peer en videojuegos online, con ejemplos reales." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>Arquitectura de videojuegos multiplayer: servidor autoritativo vs P2P</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Gaming</p>
+
+    <p>Una de las primeras decisiones técnicas al desarrollar un juego online define casi todo lo demás: la arquitectura de red. ¿Usas un servidor central que decide todo? ¿O dejas que los jugadores se conecten directamente entre sí? La respuesta cambia tu latencia, tus costos, tu seguridad y tu escalabilidad.</p>
+
+    <h2>Modelo Cliente-Servidor (Servidor Autoritativo)</h2>
+    <p>En este modelo, el servidor es la fuente de verdad. Los jugadores envían su input al servidor, el servidor ejecuta la simulación del juego, y envía los resultados a todos los clientes. El cliente nunca decide si un disparo acertó o no; solo informa que disparó.</p>
+
+    <p><strong>Ventajas:</strong></p>
+    <ul>
+      <li><strong>Seguridad:</strong> el servidor valida todo. Un cheat que modifique la velocidad del jugador local será ignorado porque el servidor tiene su propia copia de la posición.</li>
+      <li><strong>Consistencia:</strong> todos los jugadores ven el mismo estado del mundo (con pequeñas diferencias por latencia).</li>
+      <li><strong>Control total:</strong> puedes implementar matchmaking, guardar partidas, y escalar horizontalmente añadiendo más servidores.</li>
+    </ul>
+
+    <p><strong>Desventajas:</strong></p>
+    <ul>
+      <li><strong>Costo:</strong> necesitas mantener servidores. Más jugadores = más servidores.</li>
+      <li><strong>Latencia:</strong> cada acción del jugador viaja al servidor y vuelve. A 150ms de ping, la experiencia puede sentirse "gomosa".</li>
+      <li><strong>Complejidad:</strong> necesitas implementar predicción del cliente (client-side prediction) y reconciliación con el servidor para que el juego se sienta responsive.</li>
+    </ul>
+
+    <p><strong>Ejemplos reales:</strong> Valorant, Counter-Strike 2, League of Legends, Fortnite, Overwatch.</p>
+
+    <h2>Modelo Peer-to-Peer (P2P)</h2>
+    <p>En P2P, los jugadores se conectan directamente entre sí. No hay un servidor central. Uno de los jugadores (o el juego) actúa como host, y los demás se sincronizan con él.</p>
+
+    <p><strong>Ventajas:</strong></p>
+    <ul>
+      <li><strong>Costo cero:</strong> no necesitas infraestructura de servidores. Ideal para indies sin presupuesto.</li>
+      <li><strong>Latencia:</strong> la conexión directa suele ser más rápida que pasar por un servidor intermedio.</li>
+      <li><strong>Simplicidad inicial:</strong> el prototipo funciona rápido porque no hay backend que configurar.</li>
+    </ul>
+
+    <p><strong>Desventajas:</strong></p>
+    <ul>
+      <li><strong>Vulnerable a cheats:</strong> el host tiene autoridad. Un host malicioso puede modificar su estado local y afectar a todos.</li>
+      <li><strong>Problemas de NAT:</strong> muchos jugadores no pueden conectarse directamente por culpa del NAT (requiere STUN/TURN, como vimos en el artículo anterior).</li>
+      <li><strong>Sin persistencia:</strong> si el host se desconecta, la partida termina. No hay progreso guardado en el servidor.</li>
+      <li><strong>Escalabilidad limitada:</strong> con 8+ jugadores, la carga de sincronización crece cuadráticamente.</li>
+    </ul>
+
+    <p><strong>Ejemplos reales:</strong> Among Us (P2P con hosting por jugador), Super Smash Bros. Ultimate (P2P), muchos juegos de lucha y party games.</p>
+
+    <h2>Comparativa directa</h2>
+    <ul>
+      <li><strong>Seguridad:</strong> Servidor ✅ | P2P ❌</li>
+      <li><strong>Costo:</strong> Servidor ❌ | P2P ✅</li>
+      <li><strong>Latencia:</strong> Servidor ⚠️ (depende) | P2P ✅ (menor)</li>
+      <li><strong>Escalabilidad:</strong> Servidor ✅ | P2P ❌</li>
+      <li><strong>Persistencia:</strong> Servidor ✅ | P2P ❌</li>
+      <li><strong>Complejidad técnica:</strong> Servidor Alta | P2P Media</li>
+    </ul>
+
+    <h2>Modelo híbrido (el más común)</h2>
+    <p>Muchos juegos modernos usan un enfoque mixto: usan servidores dedicados para la lógica competitiva (ranked), y permiten partidas P2P para modo casual o cooperativo local. Otros usan servidores "listen" donde la máquina de un jugador hace de servidor pero reporta estadísticas a un backend central.</p>
+
+    <h2>Recomendación para desarrolladores indies</h2>
+    <p>Si estás prototipando un juego pequeño (2-4 jugadores), empieza con P2P. Es más rápido de implementar y te permite probar la jugabilidad sin invertir en infraestructura. Si el juego despega y necesitas anti-cheat, persistencia y matchmaking, migrar a servidor autoritativo es el camino correcto. Herramientas como Photon, PlayFab y AWS GameLift facilitan esta transición.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>

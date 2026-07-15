@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herramientas - AMQ7</title>
+  <meta name="description" content="Herramientas web gratuitas para estudiantes: flashcards, calculadora de notas y temporizador de estudio." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <h1>Herramientas</h1>
+    <p class="page__desc">Utilidades web gratuitas para estudiantes. Elige una herramienta y empieza a usarla al instante.</p>
+
+    <div class="tools-grid">
+      <a href="/tools/flashcard.html" class="tool-card">
+        <div class="tool-card__icon">📇</div>
+        <h2>Flashcard Generator</h2>
+        <p>Pega tus apuntes y genera flashcards automáticamente para estudiar de forma interactiva.</p>
+        <span class="card__link">Usar herramienta →</span>
+      </a>
+
+      <a href="/tools/gradecalc.html" class="tool-card">
+        <div class="tool-card__icon">📊</div>
+        <h2>Grade Calculator</h2>
+        <p>Calcula qué nota necesitas en tu examen final para alcanzar la calificación que deseas.</p>
+        <span class="card__link">Usar herramienta →</span>
+      </a>
+
+      <a href="/tools/pomodoro.html" class="tool-card">
+        <div class="tool-card__icon">⏱️</div>
+        <h2>Pomodoro Timer</h2>
+        <p>Temporizador de estudio con ciclos de trabajo y descanso para mantener la productividad.</p>
+        <span class="card__link">Usar herramienta →</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+</body>
+</html>
