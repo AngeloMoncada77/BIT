@@ -62,11 +62,24 @@
 
   document.getElementById('cookie-accept').addEventListener('click', function() {
     setCookie(COOKIE_NAME, 'all', 365);
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
     banner.remove();
   });
 
   document.getElementById('cookie-necessary').addEventListener('click', function() {
     setCookie(COOKIE_NAME, 'necessary', 365);
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+    }
     banner.remove();
   });
 })();
