@@ -8,9 +8,12 @@
 - Dominio: amq7.xyz
 - Hosting: Netlify (mikel-platypus-bb3d70.netlify.app)
 - DNS: Cloudflare (nameservers: princess.ns.cloudflare.com / rodrigo.ns.cloudflare.com)
+- Proxy Cloudflare: Activado (orange cloud) con SSL/TLS en Full (strict)
 - Repositorio: https://github.com/AngeloMoncada77/BIT
 - Email contacto: mikel3132056411@gmail.com
 - Git user: AngeloMoncada77
+- Google Analytics: G-KT5FVDZVXT (consent mode integrado con cookie banner)
+- Google Search Console: https://amq7.xyz verificado (meta tag + DNS TXT)
 
 ---
 
@@ -30,8 +33,8 @@ bit/
 ├── blog/
 │   ├── index.html                ← Lista de 8 artículos
 │   └── posts/
-│       ├── extensiones-vscode.html           ← nuevo
-│       ├── guia-primer-sitio-web.html        ← nuevo
+│       ├── extensiones-vscode.html
+│       ├── guia-primer-sitio-web.html
 │       ├── como-funciona-internet.html
 │       ├── nat-traversal.html
 │       ├── 5-proyectos-javascript.html
@@ -54,7 +57,7 @@ bit/
     ├── pomodoro.js               ← Lógica temporizador
     ├── dashboard.js              ← Lógica Kanban (LocalStorage)
     ├── markdown.js               ← Parser Markdown + preview
-    └── cookie-consent.js         ← Banner cookies GDPR
+    └── cookie-consent.js         ← Banner cookies GDPR + integración gtag consent
 ```
 
 ---
@@ -84,11 +87,20 @@ bit/
 
 ---
 
+## HISTORIAL DE CAMBIOS
+
+- [x] Verificar dominio amq7.xyz en Netlify + DNS propagado a Cloudflare
+- [x] Cloudflare proxy activado con SSL Full (strict)
+- [x] Google Search Console verificado (meta tag)
+- [x] Google Analytics G-KT5FVDZVXT instalado en las 20 páginas
+- [x] Consent Mode configurado (denegado por defecto, se activa al aceptar cookies)
+- [x] Cookie banner actualizado para integrarse con gtag consent
+- [x] Sitemap enviado a Google Search Console
+
+---
+
 ## PENDIENTE
 
-- [ ] DNS Cloudflare propagándose (nameservers cambiados en Hostinger)
-- [ ] Verificar Google Search Console con meta tag (ya está en index.html)
-- [ ] Conectar Google Analytics
 - [ ] Escribir más artículos (1 por semana recomendado)
 - [ ] Crear perfiles en X/Twitter o LinkedIn para promocionar
 - [ ] Solicitar Google AdSense cuando haya tráfico
