@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - AMQ7</title>
+  <meta name="description" content="Ponte en contacto con AMQ7 para colaboraciones, preguntas o sugerencias." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link nav__link--active">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <h1>Contacto</h1>
+    <p class="page__desc">¿Tienes un proyecto, una idea o solo quieres decir hola? Escríbeme y te responderé lo antes posible.</p>
+
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+      </div>
+      <div class="form-group">
+        <label for="subject">Asunto</label>
+        <input type="text" id="subject" name="subject" placeholder="¿Sobre qué quieres hablar?" />
+      </div>
+      <div class="form-group">
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+      <p id="form-status" style="text-align:center;margin-top:1rem;color:#94a3b8;"></p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+      </div>
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      status.textContent = 'Gracias por tu mensaje. Te responderé pronto.';
+      this.reset();
+    });
+  </script>
+</body>
+</html>

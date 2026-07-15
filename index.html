@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMQ7 - Portafolio, Blog Técnico y Herramientas</title>
-  <meta name="description" content="Portafolio profesional, artículos técnicos sobre redes, programación y gaming, y herramientas web para estudiantes." />
+  <title>AMQ7 - Desarrollo Web, Blog Técnico & Herramientas</title>
+  <meta name="description" content="Portafolio profesional de desarrollo web, artículos técnicos sobre redes, programación y gaming, y herramientas gratuitas para estudiantes." />
   <meta name="author" content="AMQ7" />
   <link rel="canonical" href="https://amq7.xyz/" />
-  <meta property="og:title" content="AMQ7 - Portafolio y Blog Técnico" />
-  <meta property="og:description" content="Explora herramientas, artículos técnicos y proyectos." />
+  <meta property="og:title" content="AMQ7 - Desarrollo Web, Blog Técnico y Herramientas" />
+  <meta property="og:description" content="Explora herramientas interactivas, artículos técnicos y proyectos de desarrollo web." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amq7.xyz/" />
   <link rel="stylesheet" href="css/style.css" />
@@ -24,6 +24,8 @@
           <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
           <li><a href="/blog/" class="nav__link">Blog</a></li>
           <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Menú">
@@ -33,36 +35,96 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero__inner">
+    <section class="hero hero--enhanced">
+      <div class="container">
         <h1 class="hero__title">Hola, soy <span class="accent">AMQ7</span></h1>
         <p class="hero__subtitle">
-          Desarrollador · Blog técnico · Herramientas para estudiantes
+          Desarrollador web · Creador de herramientas · Blog técnico
         </p>
         <div class="hero__actions">
-          <a href="/portfolio/" class="btn btn--primary">Ver portafolio</a>
-          <a href="/blog/" class="btn btn--outline">Leer blog</a>
+          <a href="/portfolio/" class="btn btn--primary">Ver proyectos</a>
+          <a href="/about.html" class="btn btn--outline">Conoce más</a>
         </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat-item">
+            <div class="stat-item__number">3</div>
+            <div class="stat-item__label">Proyectos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">6</div>
+            <div class="stat-item__label">Artículos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">3</div>
+            <div class="stat-item__label">Herramientas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__number">100%</div>
+            <div class="stat-item__label">JavaScript</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-content">
+      <div class="container">
+        <h2 class="section-title">Lo que <span>encontrarás</span> aquí</h2>
+
+        <article class="featured-card">
+          <div class="featured-card__image" style="background-image: url('https://picsum.photos/seed/projects/600/400');"></div>
+          <div class="featured-card__content">
+            <h2>Portafolio de proyectos</h2>
+            <p>Aplicaciones web funcionales construidas con JavaScript, HTML y CSS puro. Desde herramientas educativas hasta dashboards de productividad, cada proyecto resuelve un problema real y está disponible para probar en vivo.</p>
+            <a href="/portfolio/" class="btn btn--primary">Ver portafolio →</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-card__image" style="background-image: url('https://picsum.photos/seed/blogimg/600/400');"></div>
+          <div class="featured-card__content">
+            <h2>Blog técnico</h2>
+            <p>Artículos sobre redes, programación y gaming explicados de forma clara y profunda. Desde cómo funciona Internet hasta la arquitectura de videojuegos multiplayer y sistemas anti-cheat.</p>
+            <a href="/blog/" class="btn btn--primary">Leer artículos →</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-card__image" style="background-image: url('https://picsum.photos/seed/toolsimg/600/400');"></div>
+          <div class="featured-card__content">
+            <h2>Herramientas para estudiantes</h2>
+            <p>Utilidades web gratuitas diseñadas para facilitar el estudio: generador de flashcards, calculadora de notas y temporizador Pomodoro. Todo funciona directamente en el navegador, sin registro ni instalación.</p>
+            <a href="/tools/" class="btn btn--primary">Usar herramientas →</a>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="previews">
       <div class="container">
+        <h2 class="section-title">Acceso <span>rápido</span></h2>
         <div class="previews__grid">
           <article class="card">
-            <h2>Portafolio</h2>
-            <p>Proyectos de desarrollo web, redes y más.</p>
-            <a href="/portfolio/" class="card__link">Explorar →</a>
+            <div style="font-size:2.5rem;margin-bottom:1rem;">📇</div>
+            <h2>Flashcard Generator</h2>
+            <p>Convierte tus apuntes en tarjetas de estudio interactivas al instante.</p>
+            <a href="/tools/flashcard.html" class="card__link">Usar →</a>
           </article>
           <article class="card">
-            <h2>Blog</h2>
-            <p>Redes, programación, gaming — artículos técnicos.</p>
-            <a href="/blog/" class="card__link">Leer artículos →</a>
+            <div style="font-size:2.5rem;margin-bottom:1rem;">📊</div>
+            <h2>Grade Calculator</h2>
+            <p>Calcula la nota que necesitas en tu examen final para alcanzar tu meta.</p>
+            <a href="/tools/gradecalc.html" class="card__link">Calcular →</a>
           </article>
           <article class="card">
-            <h2>Herramientas</h2>
-            <p>Utilidades web gratuitas para estudiantes.</p>
-            <a href="/tools/" class="card__link">Ver herramientas →</a>
+            <div style="font-size:2.5rem;margin-bottom:1rem;">⏱️</div>
+            <h2>Pomodoro Timer</h2>
+            <p>Mantén el enfoque con ciclos de trabajo y descanso programados.</p>
+            <a href="/tools/pomodoro.html" class="card__link">Iniciar →</a>
           </article>
         </div>
       </div>
@@ -70,7 +132,11 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+      </div>
       <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
     </div>
   </footer>

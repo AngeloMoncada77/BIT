@@ -17,6 +17,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://amq7.xyz/about.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/contact.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/tools/dashboard.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/tools/markdown-editor.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://amq7.xyz/tools/flashcard.html</loc>
     <priority>0.7</priority>
   </url>
