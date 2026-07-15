@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Dashboard - AMQ7 Tools</title>
+  <meta name="description" content="Tablero Kanban para gestionar tareas con persistencia en LocalStorage." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .kanban {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .kanban-column {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.25rem;
+      min-height: 300px;
+    }
+    .kanban-column__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #334155;
+    }
+    .kanban-column__header h2 { font-size: 1rem; margin: 0; }
+    .kanban-column__count {
+      background: #334155;
+      color: #94a3b8;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+    .kanban-column--todo .kanban-column__header { border-color: #38bdf8; }
+    .kanban-column--progress .kanban-column__header { border-color: #fbbf24; }
+    .kanban-column--done .kanban-column__header { border-color: #4ade80; }
+
+    .kanban-task {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s;
+    }
+    .kanban-task:hover { border-color: #38bdf8; }
+    .kanban-task__title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .kanban-task__desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    .kanban-task__actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+    }
+    .kanban-task__actions button {
+      background: none;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .kanban-task__actions button:hover { border-color: #38bdf8; color: #38bdf8; }
+    .kanban-task__actions button.danger:hover { border-color: #f87171; color: #f87171; }
+
+    .add-task-form {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+    }
+    .add-task-form .field {
+      flex: 1;
+      min-width: 150px;
+    }
+    .add-task-form label {
+      display: block;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 0.3rem;
+    }
+    .add-task-form input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+    .add-task-form input:focus { outline: none; border-color: #38bdf8; }
+    .add-task-form .btn { padding: 0.6rem 1.5rem; white-space: nowrap; }
+    .kanban-empty {
+      text-align: center;
+      color: #64748b;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .kanban { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link nav__link--active">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/portfolio/" class="back-link" style="display:inline-block;margin-bottom:1rem;color:#94a3b8;">← Volver al portafolio</a>
+    <h1>Dev Task Dashboard</h1>
+    <p class="page__desc">Organiza tus tareas en columnas. Se guarda automáticamente en tu navegador.</p>
+
+    <div class="add-task-form">
+      <div class="field">
+        <label>Título</label>
+        <input type="text" id="task-title" placeholder="Nombre de la tarea" />
+      </div>
+      <div class="field">
+        <label>Descripción</label>
+        <input type="text" id="task-desc" placeholder="Descripción breve" />
+      </div>
+      <button class="btn btn--primary" onclick="addTask()">Añadir tarea</button>
+    </div>
+
+    <div class="kanban" id="kanban-board">
+      <div class="kanban-column kanban-column--todo" data-column="todo">
+        <div class="kanban-column__header">
+          <h2>📋 Por hacer</h2>
+          <span class="kanban-column__count" id="count-todo">0</span>
+        </div>
+        <div id="column-todo"></div>
+      </div>
+      <div class="kanban-column kanban-column--progress" data-column="progress">
+        <div class="kanban-column__header">
+          <h2>⚡ En progreso</h2>
+          <span class="kanban-column__count" id="count-progress">0</span>
+        </div>
+        <div id="column-progress"></div>
+      </div>
+      <div class="kanban-column kanban-column--done" data-column="done">
+        <div class="kanban-column__header">
+          <h2>✅ Completado</h2>
+          <span class="kanban-column__count" id="count-done">0</span>
+        </div>
+        <div id="column-done"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

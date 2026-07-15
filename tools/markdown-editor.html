@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markdown Editor - AMQ7 Tools</title>
+  <meta name="description" content="Editor Markdown con vista previa en vivo y exportación a HTML." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 2rem;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .editor-pane, .preview-pane {
+      padding: 1.5rem;
+      min-height: 400px;
+    }
+    .editor-pane {
+      background: #0f172a;
+      border-right: 1px solid #334155;
+    }
+    .editor-pane textarea {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      resize: none;
+      outline: none;
+    }
+    .preview-pane {
+      background: #1e293b;
+      overflow-y: auto;
+    }
+    .preview-pane h1 { font-size: 1.8rem; margin-bottom: 0.75rem; color: #38bdf8; }
+    .preview-pane h2 { font-size: 1.4rem; margin: 1.5rem 0 0.5rem; color: #a78bfa; }
+    .preview-pane h3 { font-size: 1.2rem; margin: 1rem 0 0.5rem; color: #e2e8f0; }
+    .preview-pane p { margin-bottom: 0.75rem; line-height: 1.7; }
+    .preview-pane ul, .preview-pane ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+    .preview-pane li { margin-bottom: 0.3rem; }
+    .preview-pane code {
+      background: #0f172a;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #f472b6;
+    }
+    .preview-pane pre {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+      border: 1px solid #334155;
+    }
+    .preview-pane pre code { background: none; padding: 0; }
+    .preview-pane a { color: #38bdf8; }
+    .preview-pane strong { color: #fbbf24; }
+    .preview-pane em { color: #94a3b8; }
+    .editor-toolbar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .editor-toolbar .btn { padding: 0.4rem 0.9rem; font-size: 0.85rem; }
+    .editor-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 768px) {
+      .editor-layout { grid-template-columns: 1fr; }
+      .editor-pane { border-right: none; border-bottom: 1px solid #334155; }
+      .editor-pane textarea { min-height: 250px; }
+      .preview-pane { min-height: 250px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link nav__link--active">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/portfolio/" class="back-link" style="display:inline-block;margin-bottom:1rem;color:#94a3b8;">← Volver al portafolio</a>
+    <h1>Markdown Editor</h1>
+    <p class="page__desc">Escribe Markdown a la izquierda, ve el resultado renderizado en vivo a la derecha. Exporta a HTML con un clic.</p>
+
+    <div class="editor-toolbar">
+      <button class="btn btn--outline" onclick="insertMarkdown('**', '**')"><strong>B</strong></button>
+      <button class="btn btn--outline" onclick="insertMarkdown('*', '*')"><em>I</em></button>
+      <button class="btn btn--outline" onclick="insertMarkdown('# ', '')">H1</button>
+      <button class="btn btn--outline" onclick="insertMarkdown('## ', '')">H2</button>
+      <button class="btn btn--outline" onclick="insertMarkdown('- ', '')">Lista</button>
+      <button class="btn btn--outline" onclick="insertMarkdown('[', '](url)')">Link</button>
+      <button class="btn btn--outline" onclick="insertMarkdown('```\n', '\n```')">Código</button>
+      <button class="btn btn--primary" onclick="copyHTML()">Copiar HTML</button>
+      <button class="btn btn--outline" onclick="clearEditor()">Limpiar</button>
+    </div>
+
+    <div class="editor-layout">
+      <div class="editor-pane">
+        <div class="editor-label">
+          <span>Markdown</span>
+          <span id="word-count">0 palabras</span>
+        </div>
+        <textarea id="markdown-input" placeholder="# Escribe aquí&#10;&#10;Usa **negritas**, *cursivas*, listas, etc."># ¡Hola! 👋
+
+Soy **AMQ7**. Este es un editor Markdown en vivo.
+
+## Características
+
+- Vista previa en **tiempo real**
+- Botones de formato rápido
+- Exportación a HTML
+- Diseño responsive
+
+## Código
+
+```js
+function saludar(nombre) {
+  return `Hola ${nombre}`;
+}
+```
+
+> La mejor manera de aprender es haciendo.</textarea>
+      </div>
+      <div class="preview-pane" id="preview"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/markdown.js"></script>
+</body>
+</html>
