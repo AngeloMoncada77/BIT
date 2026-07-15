@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Las mejores extensiones de VS Code 2026 - AMQ7 Blog</title>
+  <meta name="description" content="Las extensiones de VS Code esenciales para desarrollo web en 2026: autocompletado, snippets, live preview y más." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>Las mejores extensiones de VS Code para desarrollo web en 2026</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Programación</p>
+
+    <p>Visual Studio Code sigue siendo el editor más usado por desarrolladores web en 2026, y gran parte de su poder está en las extensiones. La extensión correcta puede ahorrarte horas de trabajo repetitivo y ayudarte a escribir código más limpio y rápido.</p>
+    <p>Aquí tienes las extensiones que considero esenciales después de haberlas probado todas mientras construía este mismo sitio.</p>
+
+    <h2>1. Live Server</h2>
+    <p><strong>Autor:</strong> Ritwick Dey</p>
+    <p>La extensión más básica y poderosa para desarrollo web. Con un clic derecho en tu <code>index.html</code> puedes abrir tu proyecto en un servidor local que se recarga automáticamente cada vez que guardas un archivo. Imprescindible para cualquier proyecto de frontend.</p>
+    <p>Además del recargado automático, muestra la URL local y de red, lo que permite probar tu sitio en otros dispositivos de la misma red.</p>
+
+    <h2>2. Prettier</h2>
+    <p><strong>Autor:</strong> Prettier</p>
+    <p>Un formateador de código automático que soporta HTML, CSS, JavaScript, TypeScript, JSON y muchos más. Configuras una tecla (o que formatee al guardar) y se encarga de indentar, poner espacios y comillas de forma consistente.</p>
+    <p>Lo mejor es que elimina las discusiones de equipo sobre estilo de código. Todos usan el mismo formato porque lo decide Prettier.</p>
+
+    <h2>3. ESLint</h2>
+    <p><strong>Autor:</strong> Microsoft</p>
+    <p>Analiza tu código JavaScript en busca de errores, malas prácticas y problemas de sintaxis. Te marca en rojo los problemas mientras escribes, con sugerencias de cómo solucionarlos. Es como tener un revisor de código en tiempo real.</p>
+    <p>En 2026, TypeScript ha ganado mucho terreno, pero ESLint sigue siendo esencial incluso en proyectos con TypeScript.</p>
+
+    <h2>4. Auto Rename Tag</h2>
+    <p><strong>Autor:</strong> Jun Han</p>
+    <p>Pequeña pero increíblemente útil. Cuando cambias el nombre de una etiqueta HTML de apertura, automáticamente renombra la de cierre. Olvídate de buscar la etiqueta de cierre cada vez que cambias un <code>&lt;div&gt;</code> por un <code>&lt;section&gt;</code>.</p>
+
+    <h2>5. Path Intellisense</h2>
+    <p><strong>Autor:</strong> Christian Kohler</p>
+    <p>Autocompleta las rutas de tus archivos cuando escribes <code>src=""</code> o <code>href=""</code>. En lugar de escribir la ruta completa manualmente, empiezas a escribir y te muestra sugerencias. Ahorra muchísimo tiempo y evita errores de ruta.</p>
+
+    <h2>6. HTML CSS Support</h2>
+    <p><strong>Autor:</strong> ecmel</p>
+    <p>Autocompleta las clases CSS directamente en tu HTML. Cuando escribes <code>class=""</code> en un archivo HTML, te muestra las clases definidas en tus archivos CSS. También autocompleta IDs.</p>
+
+    <h2>7. Color Highlight</h2>
+    <p><strong>Autor:</strong> Sergii N</p>
+    <p>Muestra el color real como fondo del código CSS. Cuando escribes <code>#38bdf8</code>, ves ese color como fondo del texto. Muy útil para elegir y ajustar colores sin tener que cambiar al navegador.</p>
+
+    <h2>8. JavaScript (ES6) Code Snippets</h2>
+    <p><strong>Autor:</strong> xabikos</p>
+    <p>Añade cientos de snippets (plantillas) para JavaScript moderno. Escribes <code>clg</code> y obtienes <code>console.log()</code>. Escribes <code>imp</code> y obtienes <code>import module from 'module'</code>. Acelera enormemente la escritura de código repetitivo.</p>
+
+    <h2>Cómo instalarlas todas de una sola vez</h2>
+    <p>Abre la terminal en VS Code (Ctrl+Ñ) y pega este comando:</p>
+    <pre><code>code --install-extension ritwickdey.LiveServer \
+  --install-extension esbenp.prettier-vscode \
+  --install-extension dbaeumer.vscode-eslint \
+  --install-extension formulahendry.auto-rename-tag \
+  --install-extension christian-kohler.path-intellisense \
+  --install-extension ecmel.vscode-html-css \
+  --install-extension naumovs.color-highlight \
+  --install-extension xabikos.JavaScriptSnippets</code></pre>
+
+    <h2>Bonus: Recomendación personal</h2>
+    <p>Si trabajas con Git, también recomiendo <strong>GitLens</strong>. Te muestra quién escribió cada línea de código, el historial de cambios y mucho más. Es especialmente útil cuando trabajas en equipo o quieres entender por qué se hizo un cambio.</p>
+
+    <p>No instales extensiones solo porque están de moda. Empieza con estas 8 y añade más solo cuando necesites algo específico. Un VS Code sobrecargado de extensiones innecesarias puede volverse lento y contraproducente.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

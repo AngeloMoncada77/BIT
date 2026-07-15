@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía para crear tu primer sitio web gratis - AMQ7 Blog</title>
+  <meta name="description" content="Guía paso a paso para crear y desplegar tu primer sitio web completamente gratis: HTML, CSS, GitHub y Netlify." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">AMQ7</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <h1>Guía para principiantes: cómo crear y desplegar tu primer sitio web gratis</h1>
+    <p style="color:#64748b;margin-bottom:2rem;">Julio 2026 · Programación</p>
+
+    <p>Crear un sitio web desde cero puede parecer abrumador cuando no sabes por dónde empezar. Pero la realidad es que hoy puedes tener tu propio sitio en Internet completamente gratis en menos de una hora. Esta guía te lleva paso a paso sin asumir ningún conocimiento previo.</p>
+
+    <h2>Paso 1: Prepara tu entorno de trabajo</h2>
+    <p>Necesitas dos herramientas básicas:</p>
+    <ul>
+      <li><strong>Visual Studio Code</strong> — editor de código gratuito. Descárgalo de <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></li>
+      <li><strong>Live Server</strong> — extensión de VS Code que te permite ver los cambios en tiempo real. Se instala desde la pestaña de extensiones (Ctrl+Shift+X).</li>
+    </ul>
+    <p>Una vez instalado VS Code, crea una carpeta en tu computadora llamada <code>mi-sitio</code> y ábrela con VS Code (Archivo → Abrir carpeta).</p>
+
+    <h2>Paso 2: Crea tu primer archivo HTML</h2>
+    <p>Dentro de VS Code, crea un archivo llamado <code>index.html</code> y escribe esto:</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Mi primera página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;¡Hola, mundo!&lt;/h1&gt;
+  &lt;p&gt;Esta es mi primera página web.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p>Haz clic derecho sobre el archivo y selecciona <strong>"Open with Live Server"</strong>. Se abrirá tu navegador mostrando tu página. Cambia el texto y guarda — verás cómo se actualiza automáticamente.</p>
+
+    <h2>Paso 3: Agrega CSS para dar estilo</h2>
+    <p>Crea una carpeta llamada <code>css</code> y dentro un archivo <code>style.css</code>:</p>
+    <pre><code>body {
+  font-family: system-ui, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+h1 { color: #38bdf8; }</code></pre>
+    <p>Enlázalo desde tu HTML añadiendo esta línea dentro de <code>&lt;head&gt;</code>:</p>
+    <pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre>
+
+    <h2>Paso 4: Agrega JavaScript para interactividad</h2>
+    <p>Crea una carpeta <code>js</code> y dentro un archivo <code>script.js</code>:</p>
+    <pre><code>document.querySelector('h1').addEventListener('click', () => {
+  alert('¡Hiciste clic en el título!');
+});</code></pre>
+    <p>Enlázalo antes del cierre de <code>&lt;/body&gt;</code>:</p>
+    <pre><code>&lt;script src="js/script.js"&gt;&lt;/script&gt;</code></pre>
+
+    <h2>Paso 5: Sube tu código a GitHub</h2>
+    <p>GitHub es donde guardarás tu código en la nube. Crea una cuenta gratuita en <a href="https://github.com" target="_blank">github.com</a>.</p>
+    <ol>
+      <li>En GitHub, haz clic en el icono + → <strong>New repository</strong></li>
+      <li>Nómbralo <code>mi-sitio</code> y haz clic en <strong>Create repository</strong></li>
+      <li>En tu terminal de VS Code (Ctrl+Ñ), ejecuta:
+        <pre><code>git init
+git add -A
+git commit -m "Primer commit"
+git branch -M main
+git remote add origin https://github.com/tu-usuario/mi-sitio.git
+git push -u origin main</code></pre>
+      </li>
+    </ol>
+
+    <h2>Paso 6: Despliega tu sitio en Netlify (gratis)</h2>
+    <ol>
+      <li>Crea una cuenta en <a href="https://netlify.com" target="_blank">netlify.com</a> (puedes usar tu cuenta de GitHub)</li>
+      <li>Haz clic en <strong>Sites → Import from Git → GitHub</strong></li>
+      <li>Selecciona tu repositorio <code>mi-sitio</code> y haz clic en <strong>Deploy</strong></li>
+    </ol>
+    <p>En menos de un minuto, Netlify te dará una URL pública como <code>mi-sitio.netlify.app</code>. ¡Tu sitio ya está en Internet!</p>
+
+    <h2>Paso 7: Conecta un dominio personalizado</h2>
+    <p>Puedes comprar un dominio como <code>tunombre.xyz</code> por unos 2-3 dólares al año. En Netlify ve a <strong>Site settings → Domain management → Add custom domain</strong> y sigue las instrucciones para configurar los DNS.</p>
+
+    <h2>Conclusión</h2>
+    <p>En menos de una hora has creado un sitio web, lo has subido a GitHub y lo has desplegado en Internet completamente gratis. A partir de aquí, puedes añadir más páginas, mejorar los estilos y agregar funcionalidades con JavaScript.</p>
+    <p>El truco está en empezar simple. No intentes construir el sitio perfecto de golpe. Crea algo pequeño, publícalo, y luego mejóralo. Cada sitio web profesional que ves empezó exactamente así.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 AMQ7. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

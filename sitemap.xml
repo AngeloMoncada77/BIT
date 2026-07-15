@@ -49,6 +49,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://amq7.xyz/blog/posts/extensiones-vscode.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/guia-primer-sitio-web.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://amq7.xyz/blog/posts/como-funciona-internet.html</loc>
     <priority>0.6</priority>
   </url>
