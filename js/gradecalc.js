@@ -13,11 +13,11 @@ function setScale(scale) {
     currentInput.min = 1.0;
     currentInput.max = 5.0;
     currentInput.step = 0.1;
-    currentInput.placeholder = 'Ej: 3.5';
+    currentInput.placeholder = 'Ej: 3.2';
     desiredInput.min = 1.0;
     desiredInput.max = 5.0;
     desiredInput.step = 0.1;
-    desiredInput.placeholder = 'Ej: 4.0';
+    desiredInput.placeholder = 'Ej: 3.8';
     document.getElementById('grade-needed-label').textContent = 'Nota necesaria en el examen final (1.0 - 5.0)';
     passingNote.innerHTML = 'Nota mínima para pasar: <strong style="color:#fbbf24;">3.0</strong>';
   } else {
@@ -84,20 +84,22 @@ function calculateGrade() {
 
   const neededPercent = (desired - current * (1 - weightDecimal)) / weightDecimal;
   const needed = fromPercent(neededPercent);
+  const maxScale = currentScale === 'co' ? 5.0 : 100;
 
   const resultDiv = document.getElementById('grade-result');
-  document.getElementById('grade-needed').textContent = needed;
-
   const verdict = document.getElementById('grade-verdict');
 
   if (neededPercent <= 0) {
+    document.getElementById('grade-needed').textContent = '—';
     verdict.textContent = 'Ya tienes la nota asegurada. ¡Ve al examen tranquilo!';
     verdict.style.color = '#4ade80';
   } else if (neededPercent <= 100) {
-    verdict.textContent = `Necesitas sacar al menos ${needed} en tu examen final. ¡Tú puedes!`;
+    document.getElementById('grade-needed').textContent = needed.toFixed(1);
+    verdict.textContent = `Necesitas sacar al menos ${needed.toFixed(1)} en tu examen final. ¡Tú puedes!`;
     verdict.style.color = '#38bdf8';
   } else {
-    verdict.textContent = `Necesitas ${needed}, que está por encima del máximo posible. Revisa tus metas o pesos.`;
+    document.getElementById('grade-needed').textContent = `> ${maxScale.toFixed(1)}`;
+    verdict.textContent = `Es imposible alcanzar esa nota. Necesitarías ${needed.toFixed(1)} pero el máximo es ${maxScale.toFixed(1)}. Baja tu meta o aumenta el peso del examen.`;
     verdict.style.color = '#f87171';
   }
 
