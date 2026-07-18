@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake Game - CódigoBinario</title>
+  <meta name="description" content="Juego Snake clásico directamente en tu navegador. Gratis, sin registro, con puntuación alta guardada." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .snake-wrapper {
+      max-width: 500px;
+      margin: 2rem auto 0;
+      text-align: center;
+    }
+    .snake-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px 12px 0 0;
+    }
+    .snake-header div {
+      text-align: center;
+    }
+    .snake-header span {
+      display: block;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .snake-header strong {
+      font-size: 1.3rem;
+      color: #e2e8f0;
+    }
+    .snake-header .score strong { color: #38bdf8; }
+    .snake-header .high-score strong { color: #fbbf24; }
+
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      width: 100%;
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+
+    .snake-controls {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .snake-controls .btn { padding: 0.5rem 1.25rem; font-size: 0.9rem; }
+
+    .dpad {
+      display: grid;
+      grid-template-columns: 64px 64px 64px;
+      grid-template-rows: 64px 64px 64px;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .dpad button {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      color: #e2e8f0;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    .dpad button:active { background: #334155; transform: scale(0.95); }
+    .dpad .up { grid-column: 2; grid-row: 1; }
+    .dpad .down { grid-column: 2; grid-row: 3; }
+    .dpad .left { grid-column: 1; grid-row: 2; }
+    .dpad .right { grid-column: 3; grid-row: 2; }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      border-radius: 0 0 12px 12px;
+    }
+    .overlay h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .overlay p { color: #94a3b8; margin-bottom: 1.5rem; }
+    .canvas-wrap {
+      position: relative;
+    }
+
+    .mobile-warning {
+      display: none;
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+
+    @media (pointer: coarse) {
+      .mobile-warning { display: block; }
+    }
+    @media (max-width: 520px) {
+      .snake-header { padding: 0.5rem 0.75rem; }
+      .snake-header strong { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/tools/" class="back-link">← Volver a herramientas</a>
+    <h1>🐍 Snake Game</h1>
+    <p class="page__desc">El clásico juego de la serpiente. Come la mayor cantidad de comida posible sin chocar contra las paredes ni contra ti mismo.</p>
+
+    <div class="snake-wrapper">
+      <div class="snake-header">
+        <div class="score">
+          <span>Puntuación</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="high-score">
+          <span>Récord</span>
+          <strong id="high-score">0</strong>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="game-canvas" width="400" height="400"></canvas>
+        <div class="overlay" id="overlay">
+          <h2>🐍 Snake</h2>
+          <p>Usa las flechas o la cruceta para moverte</p>
+          <button class="btn btn--primary" id="start-btn">Jugar</button>
+        </div>
+      </div>
+
+      <div class="snake-controls">
+        <button class="btn btn--outline" id="pause-btn" disabled>Pausa</button>
+      </div>
+
+      <div class="dpad" id="dpad">
+        <button class="up" data-dir="up">▲</button>
+        <button class="left" data-dir="left">◀</button>
+        <button class="right" data-dir="right">▶</button>
+        <button class="down" data-dir="down">▼</button>
+      </div>
+      <p class="mobile-warning">También puedes deslizar el dedo sobre el tablero</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/snake.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
