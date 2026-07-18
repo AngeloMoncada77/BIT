@@ -1,4 +1,4 @@
-# SESION AMQ7 - Resumen completo
+# SESION - Resumen completo
 ## Última actualización: Julio 2026
 
 ---
@@ -6,6 +6,7 @@
 ## DATOS DEL PROYECTO
 
 - Dominio: amq7.xyz
+- Marca: **CódigoBinario**
 - Hosting: Netlify (mikel-platypus-bb3d70.netlify.app)
 - DNS: Cloudflare (nameservers: princess.ns.cloudflare.com / rodrigo.ns.cloudflare.com)
 - Proxy Cloudflare: Activado (orange cloud) con SSL/TLS en Full (strict)
@@ -22,17 +23,20 @@
 ```
 bit/
 ├── index.html                    ← Homepage con hero, stats animados, featured cards
-├── about.html                    ← Sobre mí (bio, skills, avatar)
+├── about.html                    ← Sobre CódigoBinario (bio, skills, filosofía)
 ├── contact.html                  ← Formulario de contacto + email directo
 ├── privacy.html                  ← Política de Privacidad (GDPR)
 ├── robots.txt                    ← SEO
-├── sitemap.xml                   ← SEO (16 URLs)
+├── sitemap.xml                   ← SEO (23 URLs)
 ├── google5b76da4bc65d00f4.html   ← Verificación Google Search Console
 ├── portfolio/
 │   └── index.html                ← 3 proyectos con demos funcionales
 ├── blog/
-│   ├── index.html                ← Lista de 8 artículos
+│   ├── index.html                ← Lista de 11 artículos
 │   └── posts/
+│       ├── instalar-node-js.html       ← [NUEVO] Guía instalación Node.js
+│       ├── mejores-hosting-gratis.html ← [NUEVO] Comparativa hosting gratuito
+│       ├── errores-comunes-git.html    ← [NUEVO] Solución errores Git
 │       ├── extensiones-vscode.html
 │       ├── guia-primer-sitio-web.html
 │       ├── como-funciona-internet.html
@@ -42,16 +46,18 @@ bit/
 │       ├── arquitectura-multiplayer.html
 │       └── anti-cheat.html
 ├── tools/
-│   ├── index.html                ← Landing de 5 herramientas
+│   ├── index.html                ← Landing de 6 herramientas
+│   ├── password-generator.html   ← [NUEVO] Generador de contraseñas seguras
 │   ├── flashcard.html            ← Generador de flashcards funcional
 │   ├── gradecalc.html            ← Calculadora de notas funcional
 │   ├── pomodoro.html             ← Temporizador Pomodoro funcional
 │   ├── dashboard.html            ← Kanban task dashboard funcional
 │   └── markdown-editor.html      ← Editor Markdown en vivo funcional
 ├── css/
-│   └── style.css                 ← Estilos completos (responsive, dark theme)
+│   └── style.css                 ← Estilos completos (responsive, dark theme, logo gradient)
 └── js/
     ├── script.js                 ← Menú hamburguesa + animación contadores
+    ├── password-generator.js     ← [NUEVO] Lógica generador contraseñas
     ├── flashcard.js              ← Lógica flashcards
     ├── gradecalc.js              ← Lógica calculadora notas
     ├── pomodoro.js               ← Lógica temporizador
@@ -70,6 +76,7 @@ bit/
 - Acento primario: #38bdf8 (sky-400)
 - Acento secundario: #a78bfa (violet-400)
 - Bordes: #334155 (slate-700)
+- Logo: Gradient sky → violet
 
 ---
 
@@ -89,22 +96,26 @@ bit/
 
 ## HISTORIAL DE CAMBIOS
 
-- [x] Verificar dominio amq7.xyz en Netlify + DNS propagado a Cloudflare
-- [x] Cloudflare proxy activado con SSL Full (strict)
-- [x] Google Search Console verificado (meta tag)
-- [x] Google Analytics G-KT5FVDZVXT instalado en las 20 páginas
-- [x] Consent Mode configurado (denegado por defecto, se activa al aceptar cookies)
-- [x] Cookie banner actualizado para integrarse con gtag consent
-- [x] Sitemap enviado a Google Search Console
+- [x] Rebranding completo de AMQ7 a **CódigoBinario**
+- [x] Logo con gradient sky→violet en todas las páginas
+- [x] Nuevo hero más profesional y orientado a contenido
+- [x] Hero con efecto visual de glow background
+- [x] 3 nuevos artículos de alto tráfico (Node.js, hosting gratis, errores Git)
+- [x] Nueva herramienta: Generador de Contraseñas Seguras
+- [x] Sitemap actualizado con 23 URLs
+- [x] Meta descriptions optimizadas para SEO
+- [x] Estadísticas actualizadas (11 artículos, 6 herramientas)
+- [x] Blog reordenado con contenido fresco arriba
 
 ---
 
 ## PENDIENTE
 
 - [ ] Escribir más artículos (1 por semana recomendado)
+- [ ] Añadir más herramientas (JSON formatter, QR generator)
 - [ ] Crear perfiles en X/Twitter o LinkedIn para promocionar
 - [ ] Solicitar Google AdSense cuando haya tráfico
-- [ ] Añadir más herramientas / funcionalidades
+- [ ] Compartir artículos en foros (r/Programacion, Stack Overflow ES)
 
 ---
 

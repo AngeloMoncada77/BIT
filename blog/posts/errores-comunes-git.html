@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Errores comunes de Git y cómo solucionarlos - Guía 2026</title>
+  <meta name="description" content="Soluciones a los errores más frecuentes de Git: failed to push, merge conflicts, detached HEAD, y más. Tutorial práctico con comandos." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/errores-comunes-git.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Julio 2026 · Programación</p>
+      <h1>Errores comunes de Git y cómo solucionarlos</h1>
+
+      <p>Git es una herramienta increíble, pero sus mensajes de error pueden ser crípticos. Aquí tienes los errores más frecuentes y cómo resolverlos paso a paso.</p>
+
+      <h2>1. "failed to push some refs to"</h2>
+      <p>Este error ocurre cuando tu repositorio local está detrás del remoto. La solución es traer los cambios del remoto primero:</p>
+      <pre><code>git pull origin main --rebase
+git push origin main</code></pre>
+      <p>Si usas <code>main</code> o <code>master</code>, ajusta según el nombre de tu rama principal.</p>
+
+      <h2>2. Merge conflicts</h2>
+      <p>Ocurren cuando dos personas modifican la misma parte de un archivo. Git marca las secciones conflictivas así:</p>
+      <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+tu código
+=======
+código del otro
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nombre-rama</code></pre>
+      <p>Para resolverlo:</p>
+      <ul>
+        <li>Edita el archivo y decide qué versión conservar</li>
+        <li>Elimina los marcadores <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> y <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></li>
+        <li>Guarda el archivo y ejecuta:</li>
+      </ul>
+      <pre><code>git add archivo-resuelto
+git commit</code></pre>
+
+      <h2>3. "detached HEAD"</h2>
+      <p>Significa que no estás en ninguna rama, sino en un commit específico. Para solucionarlo:</p>
+      <pre><code>git branch nueva-rama
+git checkout nueva-rama</code></pre>
+      <p>O si quieres volver a una rama existente sin conservar cambios:</p>
+      <pre><code>git checkout main</code></pre>
+
+      <h2>4. "fatal: not a git repository"</h2>
+      <p>Estás en una carpeta que no tiene un repositorio Git. Inicialízalo con:</p>
+      <pre><code>git init</code></pre>
+      <p>O muévete a la carpeta correcta que contiene la carpeta <code>.git</code>.</p>
+
+      <h2>5. "Changes not staged for commit"</h2>
+      <p>Modificaste archivos pero no los agregaste al área de staging. Solución:</p>
+      <pre><code>git add .           # Agrega todo
+git add archivo.js  # Agrega un archivo específico
+git commit -m "mensaje"</code></pre>
+
+      <h2>6. "fatal: remote origin already exists"</h2>
+      <p>Ya existe un remoto configurado. Puedes actualizarlo en lugar de crearlo:</p>
+      <pre><code>git remote set-url origin https://github.com/usuario/repo.git</code></pre>
+
+      <h2>7. Cómo deshacer un commit</h2>
+      <p>Si hiciste un commit y quieres deshacerlo:</p>
+      <pre><code>git reset --soft HEAD~1   # Quita el commit pero mantiene los cambios
+git reset --hard HEAD~1   # Quita el commit y los cambios (¡cuidado!)</code></pre>
+
+      <h2>8. "Your branch is ahead of origin/main"</h2>
+      <p>Tienes commits locales que no están en el remoto. Solo haz push:</p>
+      <pre><code>git push origin main</code></pre>
+
+      <h2>Consejo final</h2>
+      <p>Si alguna vez te sientes perdido, <code>git status</code> y <code>git log --oneline</code> son tus mejores amigos. Muestran exactamente en qué estado está tu repositorio.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

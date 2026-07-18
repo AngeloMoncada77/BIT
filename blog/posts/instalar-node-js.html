@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo instalar Node.js en Windows, Linux y Mac - Guía 2026</title>
+  <meta name="description" content="Guía paso a paso para instalar Node.js en Windows, Linux y macOS. Incluye instalación con nvm, npm y verificación. Tutorial actualizado 2026." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/instalar-node-js.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Julio 2026 · Programación</p>
+      <h1>Cómo instalar Node.js en Windows, Linux y Mac — Guía completa 2026</h1>
+
+      <p>Node.js se ha convertido en una herramienta esencial para cualquier desarrollador web. Si estás empezando o cambiaste de equipo, aquí tienes una guía paso a paso para instalarlo en los tres sistemas operativos principales.</p>
+
+      <h2>¿Qué es Node.js?</h2>
+      <p>Node.js es un entorno de ejecución para JavaScript fuera del navegador. Te permite usar JS para crear servidores, automatizar tareas, construir herramientas de línea de comandos y mucho más. Viene acompañado de <strong>npm</strong> (Node Package Manager), el gestor de paquetes más grande del mundo.</p>
+
+      <h2>Método recomendado: instalar con nvm</h2>
+      <p>La forma más flexible de instalar Node.js es usando <strong>nvm</strong> (Node Version Manager). Esto te permite instalar y cambiar entre múltiples versiones de Node fácilmente.</p>
+
+      <h3>En Linux / macOS</h3>
+      <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash</code></pre>
+      <p>Después de la instalación, cierra y vuelve a abrir la terminal, o ejecuta:</p>
+      <pre><code>source ~/.bashrc</code></pre>
+      <p>Luego instala la versión más reciente de Node.js:</p>
+      <pre><code>nvm install node  # Última versión
+nvm install 20     # Versión específica (LTS)</code></pre>
+
+      <h3>En Windows</h3>
+      <p>En Windows puedes usar <strong>nvm-windows</strong>. Descárgalo desde <a href="https://github.com/coreybutler/nvm-windows/releases" target="_blank">nvm-windows releases</a> e instala el archivo <code>nvm-setup.exe</code>. Luego abre una terminal como administrador:</p>
+      <pre><code>nvm install latest
+nvm use latest</code></pre>
+
+      <h2>Instalación directa desde nodejs.org</h2>
+      <p>Si prefieres no usar nvm, ve a <a href="https://nodejs.org" target="_blank">nodejs.org</a> y descarga el instalador de tu sistema operativo:</p>
+      <ul>
+        <li><strong>Windows:</strong> Descarga el archivo <code>.msi</code> y ejecútalo. Marca la opción "Add to PATH".</li>
+        <li><strong>macOS:</strong> Descarga el archivo <code>.pkg</code> e instálalo.</li>
+        <li><strong>Linux:</strong> Usa el gestor de paquetes de tu distribución o los binarios precompilados.</li>
+      </ul>
+
+      <h3>Instalación en Ubuntu/Debian</h3>
+      <pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs</code></pre>
+
+      <h2>Verificar la instalación</h2>
+      <p>Abra una terminal y ejecuta:</p>
+      <pre><code>node --version
+npm --version</code></pre>
+      <p>Si ves los números de versión, todo está funcionando correctamente.</p>
+
+      <h2>Primeros pasos con Node.js</h2>
+      <p>Crea un archivo <code>hola.js</code> y escribe:</p>
+      <pre><code>console.log("¡Hola, Node.js!");</code></pre>
+      <p>Ejecútalo:</p>
+      <pre><code>node hola.js</code></pre>
+      <p>Si ves el mensaje, Node.js funciona correctamente.</p>
+
+      <h2>Solución de problemas comunes</h2>
+      <ul>
+        <li><strong>"node no se reconoce como comando":</strong> No agregaste Node al PATH. Reinstala marcando la opción o agrega la ruta manualmente.</li>
+        <li><strong>Error de permisos en Linux/macOS:</strong> Usa <code>sudo</code> para la instalación global o mejor usa nvm.</li>
+        <li><strong>nvm command not found:</strong> Asegúrate de haber reiniciado la terminal o ejecutado <code>source ~/.bashrc</code>.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Node.js es una herramienta fundamental y su instalación es sencilla. Usa nvm si quieres flexibilidad o el instalador directo si prefieres la simplicidad. Con Node funcionando ya estás listo para empezar a construir.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
