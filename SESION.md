@@ -32,11 +32,14 @@ bit/
 ├── portfolio/
 │   └── index.html                ← 3 proyectos con demos funcionales
 ├── blog/
-│   ├── index.html                ← Lista de 11 artículos
+│   ├── index.html                ← Lista de 14 artículos
 │   └── posts/
-│       ├── instalar-node-js.html       ← [NUEVO] Guía instalación Node.js
-│       ├── mejores-hosting-gratis.html ← [NUEVO] Comparativa hosting gratuito
-│       ├── errores-comunes-git.html    ← [NUEVO] Solución errores Git
+│       ├── css-grid-guia-completa.html ← [NUEVO] CSS Grid guía completa
+│       ├── python-desde-cero.html      ← [NUEVO] Python desde cero
+│       ├── api-rest-guia-completa.html ← [NUEVO] APIs REST guía completa
+│       ├── instalar-node-js.html       ← Guía instalación Node.js
+│       ├── mejores-hosting-gratis.html ← Comparativa hosting gratuito
+│       ├── errores-comunes-git.html    ← Solución errores Git
 │       ├── extensiones-vscode.html
 │       ├── guia-primer-sitio-web.html
 │       ├── como-funciona-internet.html
@@ -46,8 +49,9 @@ bit/
 │       ├── arquitectura-multiplayer.html
 │       └── anti-cheat.html
 ├── tools/
-│   ├── index.html                ← Landing de 6 herramientas
-│   ├── password-generator.html   ← [NUEVO] Generador de contraseñas seguras
+│   ├── index.html                ← Landing de 8 herramientas
+│   ├── qr-generator.html         ← [NUEVO] Generador de códigos QR
+│   ├── password-generator.html   ← Generador de contraseñas seguras
 │   ├── flashcard.html            ← Generador de flashcards funcional
 │   ├── gradecalc.html            ← Calculadora de notas funcional
 │   ├── pomodoro.html             ← Temporizador Pomodoro funcional
@@ -57,12 +61,14 @@ bit/
 │   └── style.css                 ← Estilos completos (responsive, dark theme, logo gradient)
 └── js/
     ├── script.js                 ← Menú hamburguesa + animación contadores
-    ├── password-generator.js     ← [NUEVO] Lógica generador contraseñas
+    ├── qr-generator.js           ← [NUEVO] Lógica generador QR
+    ├── password-generator.js     ← Lógica generador contraseñas
     ├── flashcard.js              ← Lógica flashcards
     ├── gradecalc.js              ← Lógica calculadora notas
     ├── pomodoro.js               ← Lógica temporizador
     ├── dashboard.js              ← Lógica Kanban (LocalStorage)
     ├── markdown.js               ← Parser Markdown + preview
+    ├── snake.js                  ← Snake con leaderboard top 10
     └── cookie-consent.js         ← Banner cookies GDPR + integración gtag consent
 ```
 
@@ -106,13 +112,19 @@ bit/
 - [x] Meta descriptions optimizadas para SEO
 - [x] Estadísticas actualizadas (11 artículos, 6 herramientas)
 - [x] Blog reordenado con contenido fresco arriba
+- [x] Snake Game: leaderboard con top 10, nombre y fecha (localStorage)
+- [x] 3 nuevos artículos: CSS Grid, Python desde cero, APIs REST
+- [x] Nueva herramienta: Generador de QR
+- [x] Sitemap actualizado con 28 URLs
+- [x] Estadísticas actualizadas (14 artículos, 8 herramientas)
+- [x] Index.html: hero, stats, previews actualizados
 
 ---
 
 ## PENDIENTE
 
 - [ ] Escribir más artículos (1 por semana recomendado)
-- [ ] Añadir más herramientas (JSON formatter, QR generator)
+- [ ] Añadir más herramientas (JSON formatter)
 - [ ] Crear perfiles en X/Twitter o LinkedIn para promocionar
 - [ ] Solicitar Google AdSense cuando haya tráfico
 - [ ] Compartir artículos en foros (r/Programacion, Stack Overflow ES)

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Grid: Guía Completa - CódigoBinario Blog</title>
+  <meta name="description" content="Aprende CSS Grid desde cero con ejemplos prácticos. Guía completa con propiedades del contenedor, items, layouts responsivos y diferencias con Flexbox." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/css-grid-guia-completa.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Julio 2026 · Programación</p>
+      <h1>CSS Grid: La guía completa para maquetar con cuadrícula</h1>
+
+      <p>Si alguna vez has tenido que maquetar una página completa con header, sidebar y footer, sabes que Flexbox se queda corto. CSS Grid Layout llegó para revolucionar la maquetación web, permitiéndonos crear layouts en dos dimensiones (filas y columnas) de forma sencilla y predecible. En esta guía veremos desde los conceptos básicos hasta ejemplos prácticos que puedes usar hoy mismo.</p>
+
+      <h2>¿Qué es CSS Grid?</h2>
+      <p>CSS Grid es un sistema de maquetación bidimensional nativo del navegador. A diferencia de Flexbox, que trabaja en una sola dimensión (horizontal o vertical), Grid te permite controlar filas y columnas al mismo tiempo. Piensa en una hoja de cálculo: puedes colocar elementos en celdas específicas, hacer que ocupen varias celdas o incluso superponerlos.</p>
+
+      <h2>¿Por qué es mejor que Flexbox para layouts 2D?</h2>
+      <p>Flexbox es excelente para distribuir elementos en una línea (como una barra de navegación o una fila de tarjetas), pero cuando necesitas alinear elementos en ambas direcciones simultáneamente, Grid es la herramienta correcta. Con Grid defines la estructura general de la página mientras que Flexbox se encarga de los detalles dentro de cada celda. Se complementan, no compiten.</p>
+
+      <h2>Conceptos clave</h2>
+      <p>Antes de escribir código, familiaricémonos con la terminología de CSS Grid:</p>
+      <ul>
+        <li><strong>Grid Container:</strong> El elemento padre al que se le aplica <code>display: grid</code>. Es el que define la cuadrícula.</li>
+        <li><strong>Grid Items:</strong> Los hijos directos del contenedor. Se colocan automáticamente en las celdas de la cuadrícula.</li>
+        <li><strong>Grid Lines:</strong> Las líneas divisorias entre filas y columnas. Se numeran empezando desde 1.</li>
+        <li><strong>Grid Tracks:</strong> El espacio entre dos líneas consecutivas, es decir, una fila o una columna.</li>
+        <li><strong>Grid Cells:</strong> La intersección de una fila y una columna. Es la unidad más pequeña de la cuadrícula.</li>
+        <li><strong>Grid Areas:</strong> Una región rectangular formada por una o más celdas. Se definen con <code>grid-template-areas</code>.</li>
+      </ul>
+
+      <h2>Propiedades del contenedor</h2>
+      <p>Estas propiedades se aplican al elemento que funciona como grid container:</p>
+
+      <h3><code>display: grid</code></h3>
+      <p>Convierte un elemento en un contenedor de cuadrícula. Sus hijos pasan a ser grid items.</p>
+
+      <h3><code>grid-template-columns</code> y <code>grid-template-rows</code></h3>
+      <p>Definen el tamaño y la cantidad de columnas y filas. Puedes usar cualquier unidad: px, %, fr, auto, minmax(), etc.</p>
+      <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
+}</code></pre>
+      <p>La unidad <code>fr</code> reparte el espacio disponible de forma proporcional. En este ejemplo, la columna central ocupará el doble que las laterales.</p>
+
+      <h3><code>gap</code></h3>
+      <p>Define el espacio entre filas y columnas. Es la forma moderna de separar elementos sin necesidad de márgenes.</p>
+      <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}</code></pre>
+
+      <h3><code>grid-template-areas</code></h3>
+      <p>Te permite asignar nombres a las áreas de tu cuadrícula para colocar los items de forma visual.</p>
+      <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+}</code></pre>
+
+      <h3><code>justify-items</code> y <code>align-items</code></h3>
+      <p>Controlan la alineación de los items dentro de sus celdas en el eje horizontal y vertical respectivamente. Aceptan valores como <code>start</code>, <code>end</code>, <code>center</code> y <code>stretch</code> (valor por defecto).</p>
+
+      <h2>Propiedades de los items</h2>
+      <p>Se aplican a los hijos directos del grid container (los grid items):</p>
+
+      <h3><code>grid-column</code> y <code>grid-row</code></h3>
+      <p>Permiten que un item ocupe múltiples columnas o filas especificando las líneas de inicio y fin.</p>
+      <pre><code>.item {
+  grid-column: 1 / 3; /* de línea 1 a línea 3 */
+  grid-row: 1 / 2;
+}
+
+/* También puedes usar "span" */
+.item {
+  grid-column: span 2; /* ocupa 2 columnas */
+}</code></pre>
+
+      <h3><code>grid-area</code></h3>
+      <p>Asigna un item a un área nombrada definida con <code>grid-template-areas</code>, o como atajo de <code>grid-row-start / grid-column-start / grid-row-end / grid-column-end</code>.</p>
+      <pre><code>.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }</code></pre>
+
+      <h3><code>justify-self</code> y <code>align-self</code></h3>
+      <p>Sobrescriben <code>justify-items</code> y <code>align-items</code> para un item concreto.</p>
+
+      <h2>Ejemplo 1: Grid básico de 3 columnas responsivo</h2>
+      <p>Usando <code>auto-fit</code> y <code>minmax()</code> conseguimos un grid que se adapta automáticamente al ancho disponible sin media queries:</p>
+      <pre><code>.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}</code></pre>
+      <p>Cada tarjeta tendrá un mínimo de 250 px y, si hay espacio, se estirará. Cuando no quepan más en una fila, pasan a la siguiente. Es ideal para galerías o listas de productos.</p>
+
+      <h3>HTML de ejemplo</h3>
+      <pre><code>&lt;div class="grid-auto"&gt;
+  &lt;div class="card"&gt;Tarjeta 1&lt;/div&gt;
+  &lt;div class="card"&gt;Tarjeta 2&lt;/div&gt;
+  &lt;div class="card"&gt;Tarjeta 3&lt;/div&gt;
+  &lt;div class="card"&gt;Tarjeta 4&lt;/div&gt;
+  &lt;div class="card"&gt;Tarjeta 5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <h2>Ejemplo 2: Layout de página completo</h2>
+      <p>Este es el uso más potente de Grid: definir la estructura completa de una página usando <code>grid-template-areas</code>:</p>
+      <pre><code>.page-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header  header"
+    "sidebar main"
+    "footer  footer";
+  min-height: 100vh;
+  gap: 0;
+}
+
+.page-header  { grid-area: header;  background: #1e293b; color: #fff; padding: 1rem 2rem; }
+.page-sidebar { grid-area: sidebar; background: #f1f5f9; padding: 1.5rem; }
+.page-main    { grid-area: main;    padding: 1.5rem; }
+.page-footer  { grid-area: footer;  background: #1e293b; color: #fff; padding: 1rem 2rem; text-align: center; }</code></pre>
+      <p>Con este enfoque, el orden de los elementos en el HTML no importa. El navegador los coloca según el área asignada. Además, para hacerlo responsivo solo necesitas redefinir <code>grid-template-areas</code>:</p>
+      <pre><code>@media (max-width: 768px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+}</code></pre>
+
+      <h2>Ejemplo 3: Galería de imágenes con grid automático</h2>
+      <p>Combinando <code>grid-auto-flow: dense</code> con <code>span</code> podemos crear una galería tipo masonry sin JavaScript:</p>
+      <pre><code>.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-flow: dense;
+  gap: 0.5rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery img.wide { grid-column: span 2; }
+.gallery img.tall { grid-row: span 2; }
+.gallery img.big  { grid-column: span 2; grid-row: span 2; }</code></pre>
+      <p>La propiedad <code>grid-auto-flow: dense</code> hace que los items ocupen los huecos que dejan los elementos más grandes, optimizando el espacio disponible.</p>
+
+      <h2>Diferencia con Flexbox: ¿cuándo usar cada uno?</h2>
+      <p>Una de las dudas más comunes entre quienes empiezan es saber cuándo usar Grid y cuándo Flexbox. Aquí tienes una guía rápida:</p>
+      <ul>
+        <li><strong>Usa Flexbox</strong> cuando necesites distribuir elementos en una sola dirección: una barra de navegación, una fila de botones, centrar un elemento vertical y horizontalmente.</li>
+        <li><strong>Usa Grid</strong> cuando necesites controlar filas y columnas al mismo tiempo: el layout general de una página, una galería de imágenes, un dashboard con paneles.</li>
+        <li><strong>Usa ambos</strong> en el mismo proyecto. Grid para el layout macro de la página y Flexbox para los componentes dentro de cada celda del grid.</li>
+      </ul>
+      <p>No hay una regla estricta. Si tu layout se siente forzado con uno, prueba con el otro. La práctica te dará el criterio.</p>
+
+      <h2>Conclusión</h2>
+      <p>CSS Grid ha cambiado la forma en que maquetamos para la web. Con unas pocas líneas de CSS puedes crear layouts complejos que antes requerían floats, clearfixes y frameworks enteros. Lo mejor de todo es que Grid es nativo del navegador, no necesitas librerías externas, y funciona en todos los navegadores modernos.</p>
+      <p>Empieza usándolo en proyectos pequeños: una galería, un layout de blog, un dashboard. Una vez que te acostumbres a pensar en términos de filas y columnas, no querrás volver atrás.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

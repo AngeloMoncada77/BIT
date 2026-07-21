@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de QR - CódigoBinario Tools</title>
+  <meta name="description" content="Genera códigos QR personalizados gratis. Convierte URLs, textos y más en códigos QR descargables. Sin registro, sin límites." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .qr-input {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .qr-input input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #e2e8f0;
+      font-size: 1rem;
+      outline: none;
+    }
+    .qr-input input:focus {
+      border-color: #38bdf8;
+    }
+    .qr-result {
+      text-align: center;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      display: inline-block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 300px;
+    }
+    .qr-result #qrcode {
+      display: inline-block;
+    }
+    .qr-result #qrcode img, .qr-result #qrcode canvas {
+      max-width: 100%;
+      height: auto;
+    }
+    .qr-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .qr-placeholder {
+      color: #64748b;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .qr-placeholder p { margin: 0; }
+    .qr-placeholder .qr-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+    .tool-container { text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/tools/" class="back-link">← Volver a herramientas</a>
+    <h1>📱 Generador de QR</h1>
+    <p class="page__desc">Convierte cualquier texto o URL en un código QR listo para descargar. Ideal para compartir enlaces, tarjetas digitales y más.</p>
+
+    <div class="tool-container">
+      <div class="qr-input">
+        <input type="text" id="qr-text" placeholder="Escribe un texto o URL aquí..." />
+        <button class="btn btn--primary" id="generate-btn">Generar QR</button>
+      </div>
+
+      <div id="qr-result-area">
+        <div class="qr-placeholder" id="qr-placeholder">
+          <div class="qr-icon">📷</div>
+          <p>Tu código QR aparecerá aquí</p>
+        </div>
+        <div class="qr-result" id="qr-result" style="display:none;">
+          <div id="qrcode"></div>
+        </div>
+      </div>
+
+      <div class="qr-actions" id="qr-actions" style="display:none;">
+        <button class="btn btn--outline" id="download-btn">Descargar PNG</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="/js/qr-generator.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

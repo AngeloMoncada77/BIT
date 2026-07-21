@@ -15,13 +15,64 @@ const highScoreEl = document.getElementById('high-score');
 const overlay = document.getElementById('overlay');
 const startBtn = document.getElementById('start-btn');
 const pauseBtn = document.getElementById('pause-btn');
+const leaderboardEl = document.getElementById('leaderboard');
+const leaderboardBody = document.getElementById('leaderboard-body');
+const closeLbBtn = document.getElementById('close-lb');
+const openLbBtn = document.getElementById('open-lb');
+const nameInput = document.getElementById('name-input');
+const submitScoreBtn = document.getElementById('submit-score');
+const lbEntry = document.getElementById('lb-entry');
 
 const GRID = 20;
 const TILE = canvas.width / GRID;
+const LB_KEY = 'snake-leaderboard';
+const MAX_LB = 10;
 
 let snake, direction, nextDirection, food, score, highScore;
 let gameLoop, running, paused;
 let pendingDir = null;
+
+function getLeaderboard() {
+  try {
+    return JSON.parse(localStorage.getItem(LB_KEY)) || [];
+  } catch { return []; }
+}
+
+function saveLeaderboard(lb) {
+  localStorage.setItem(LB_KEY, JSON.stringify(lb));
+}
+
+function updateHighScore() {
+  const lb = getLeaderboard();
+  highScore = lb.length > 0 ? lb[0].score : 0;
+  highScoreEl.textContent = highScore;
+}
+
+function renderLeaderboard() {
+  const lb = getLeaderboard();
+  leaderboardBody.innerHTML = '';
+  if (lb.length === 0) {
+    leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#64748b;padding:2rem;">Aún no hay puntuaciones. ¡Sé el primero!</td></tr>';
+    return;
+  }
+  lb.forEach((entry, i) => {
+    const tr = document.createElement('tr');
+    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+    tr.innerHTML = `
+      <td style="font-size:1.1rem;">${medal}</td>
+      <td style="font-weight:600;">${escapeHtml(entry.name)}</td>
+      <td style="color:#38bdf8;font-weight:700;">${entry.score}</td>
+      <td style="color:#64748b;font-size:0.85rem;">${entry.date}</td>
+    `;
+    leaderboardBody.appendChild(tr);
+  });
+}
+
+function escapeHtml(text) {
+  const d = document.createElement('div');
+  d.textContent = text;
+  return d.innerHTML;
+}
 
 function init() {
   const mid = Math.floor(GRID / 2);
@@ -36,8 +87,7 @@ function init() {
   running = false;
   paused = false;
   pendingDir = null;
-  highScore = parseInt(localStorage.getItem('snake-hs') || '0');
-  highScoreEl.textContent = highScore;
+  updateHighScore();
   scoreEl.textContent = '0';
   spawnFood();
   draw();
@@ -143,24 +193,59 @@ function update() {
   draw();
 }
 
+function addScoreToLeaderboard(playerName) {
+  const lb = getLeaderboard();
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+  lb.push({ name: playerName.trim() || 'Anónimo', score, date: dateStr });
+  lb.sort((a, b) => b.score - a.score);
+  if (lb.length > MAX_LB) lb.length = MAX_LB;
+  saveLeaderboard(lb);
+  updateHighScore();
+}
+
 function gameOver() {
   running = false;
   clearInterval(gameLoop);
-  const isNewRecord = score > highScore;
-  if (isNewRecord) {
-    highScore = score;
-    localStorage.setItem('snake-hs', highScore.toString());
-    highScoreEl.textContent = highScore;
-  }
+  const lb = getLeaderboard();
+  const isTopScore = lb.length < MAX_LB || score > lb[lb.length - 1].score;
+
   overlay.innerHTML = `
     <h2 style="color:#f87171;margin-top:0;">Game Over</h2>
-    ${isNewRecord ? '<p style="color:#fbbf24;font-weight:600;font-size:1.1rem;">🏆 ¡Nuevo récord!</p>' : ''}
     <p style="margin-bottom:0.5rem;">Puntuación: <strong style="color:#38bdf8;font-size:1.5rem;">${score}</strong></p>
-    <button class="btn btn--primary" id="restart-btn" style="min-width:160px;">Jugar de nuevo</button>
+    ${isTopScore && score > 0 ? `
+      <div style="margin-bottom:1rem;">
+        <p style="color:#fbbf24;font-weight:600;font-size:1rem;margin-bottom:0.5rem;">🏆 Entraste al top ${MAX_LB}!</p>
+        <input type="text" id="name-input" maxlength="20" placeholder="Tu nombre" style="padding:0.5rem 1rem;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;font-size:1rem;text-align:center;outline:none;width:200px;" />
+        <button class="btn btn--primary" id="submit-score" style="margin-top:0.5rem;display:block;margin-left:auto;margin-right:auto;">Guardar puntuación</button>
+      </div>
+    ` : ''}
+    <button class="btn btn--outline" id="restart-btn" style="min-width:160px;">Jugar de nuevo</button>
   `;
   overlay.style.display = 'flex';
-  document.getElementById('restart-btn').addEventListener('click', startGame);
   pauseBtn.disabled = true;
+
+  const restartBtn = document.getElementById('restart-btn');
+  if (restartBtn) restartBtn.addEventListener('click', startGame);
+
+  const submitBtn = document.getElementById('submit-score');
+  const input = document.getElementById('name-input');
+  if (submitBtn && input) {
+    const saveScore = () => {
+      addScoreToLeaderboard(input.value);
+      overlay.innerHTML = `
+        <h2 style="color:#38bdf8;margin-top:0;">¡Puntuación guardada!</h2>
+        <p style="margin-bottom:1rem;">Has conseguido <strong style="font-size:1.5rem;">${score}</strong> puntos</p>
+        <button class="btn btn--primary" id="restart-btn">Jugar de nuevo</button>
+      `;
+      document.getElementById('restart-btn').addEventListener('click', startGame);
+      renderLeaderboard();
+    };
+    submitBtn.addEventListener('click', saveScore);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') saveScore(); });
+    setTimeout(() => input.focus(), 100);
+  }
+
   if (navigator.vibrate) navigator.vibrate(100);
 }
 
@@ -262,4 +347,18 @@ canvas.addEventListener('click', () => {
 startBtn.addEventListener('click', startGame);
 pauseBtn.addEventListener('click', togglePause);
 
+openLbBtn.addEventListener('click', () => {
+  renderLeaderboard();
+  leaderboardEl.style.display = 'block';
+});
+
+closeLbBtn.addEventListener('click', () => {
+  leaderboardEl.style.display = 'none';
+});
+
+window.addEventListener('click', e => {
+  if (e.target === leaderboardEl) leaderboardEl.style.display = 'none';
+});
+
+renderLeaderboard();
 init();

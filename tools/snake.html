@@ -121,6 +121,64 @@
     @media (pointer: coarse) {
       .mobile-warning { display: block; }
     }
+    .leaderboard {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .leaderboard__content {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .leaderboard__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .leaderboard__close {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 0 0.25rem;
+      line-height: 1;
+    }
+    .leaderboard__close:hover { color: #e2e8f0; }
+    .leaderboard__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .leaderboard__table th {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #334155;
+    }
+    .leaderboard__table td {
+      padding: 0.6rem 0.75rem;
+      color: #e2e8f0;
+      border-bottom: 1px solid #1e293b;
+    }
+    .leaderboard__table tbody tr:hover {
+      background: rgba(56, 189, 248, 0.05);
+    }
     @media (max-width: 520px) {
       .snake-header { padding: 0.5rem 0.75rem; }
       .snake-header strong { font-size: 1.1rem; }
@@ -174,6 +232,7 @@
 
       <div class="snake-controls">
         <button class="btn btn--outline" id="pause-btn" disabled>Pausa</button>
+        <button class="btn btn--outline" id="open-lb">🏆 Top 10</button>
       </div>
 
       <div class="dpad" id="dpad">
@@ -183,6 +242,26 @@
         <button class="down" data-dir="down">▼</button>
       </div>
       <p class="mobile-warning">También puedes deslizar el dedo sobre el tablero</p>
+    </div>
+
+    <div class="leaderboard" id="leaderboard">
+      <div class="leaderboard__content">
+        <div class="leaderboard__header">
+          <h2 style="margin:0;font-size:1.5rem;">🏆 Top 10</h2>
+          <button class="leaderboard__close" id="close-lb">&times;</button>
+        </div>
+        <table class="leaderboard__table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Puntos</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body"></tbody>
+        </table>
+      </div>
     </div>
   </main>
 

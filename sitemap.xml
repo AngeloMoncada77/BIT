@@ -100,4 +100,20 @@
     <loc>https://amq7.xyz/blog/posts/anti-cheat.html</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/css-grid-guia-completa.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/python-desde-cero.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/api-rest-guia-completa.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/tools/qr-generator.html</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>

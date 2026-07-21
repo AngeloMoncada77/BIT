@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python desde Cero - Guía para Principiantes - CódigoBinario Blog</title>
+  <meta name="description" content="Aprende Python desde cero en 2026. Guía completa con instalación, variables, listas, condicionales, bucles y funciones. Empieza tu camino en programación." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/python-desde-cero.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Julio 2026 · Programación</p>
+      <h1>Python desde cero: Todo lo que necesitas saber para empezar en 2026</h1>
+
+      <p>Python es el lenguaje de programación que más ha crecido en los últimos años, y en 2026 sigue siendo la puerta de entrada ideal para quienes quieren iniciarse en el mundo del desarrollo. Desde inteligencia artificial y ciencia de datos hasta automatización de tareas y desarrollo web, Python está en todas partes. En esta guía recorreremos desde la instalación hasta tus primeras funciones, sin asumir ningún conocimiento previo.</p>
+
+      <h2>¿Por qué Python en 2026?</h2>
+      <p>Python se ha consolidado como el lenguaje favorito en áreas clave de la tecnología:</p>
+      <ul>
+        <li><strong>Inteligencia Artificial y Machine Learning:</strong> Frameworks como TensorFlow, PyTorch y scikit-learn tienen a Python como su interfaz principal.</li>
+        <li><strong>Ciencia de Datos:</strong> Con librerías como pandas, NumPy y Matplotlib, Python es la herramienta estándar para análisis de datos.</li>
+        <li><strong>Desarrollo Web:</strong> Django y Flask permiten crear aplicaciones web robustas y escalables.</li>
+        <li><strong>Automatización y Scripting:</strong> Python es perfecto para automatizar tareas repetitivas, procesar archivos y trabajar con APIs.</li>
+        <li><strong>Comunidad y aprendizaje:</strong> Su sintaxis clara y legible lo convierte en el mejor lenguaje para aprender a programar.</li>
+      </ul>
+
+      <h2>Instalación de Python</h2>
+      <p>Antes de escribir código, necesitas tener Python instalado en tu equipo. Sigue los pasos según tu sistema operativo.</p>
+
+      <h3>En Windows</h3>
+      <p>Ve a <a href="https://python.org" target="_blank">python.org</a>, descarga la última versión estable (Python 3.13 o superior) y ejecuta el instalador. <strong>Importante:</strong> marca la casilla "Add Python to PATH" antes de hacer clic en "Install Now".</p>
+
+      <h3>En macOS</h3>
+      <p>Descarga el instalador desde <a href="https://python.org" target="_blank">python.org</a> o instálalo con Homebrew:</p>
+      <pre><code>brew install python3</code></pre>
+
+      <h3>En Linux (Ubuntu/Debian)</h3>
+      <p>Python suele venir preinstalado, pero puedes asegurarte de tener la versión más reciente:</p>
+      <pre><code>sudo apt update
+sudo apt install python3 python3-pip</code></pre>
+
+      <h3>Verificar la instalación</h3>
+      <p>Abre una terminal o consola y ejecuta:</p>
+      <pre><code>python --version
+pip --version</code></pre>
+      <p>Si ves los números de versión (por ejemplo <code>Python 3.13.2</code>), todo está listo.</p>
+
+      <h2>Tu primer programa: Hola Mundo</h2>
+      <p>Crea un archivo llamado <code>hola.py</code> y escribe lo siguiente:</p>
+      <pre><code>print("¡Hola, Mundo!")</code></pre>
+      <p>Guarda el archivo y ejecútalo desde la terminal:</p>
+      <pre><code>python hola.py</code></pre>
+      <p>Deberías ver el mensaje <code>¡Hola, Mundo!</code> en pantalla.</p>
+
+      <h3>Explicación línea por línea</h3>
+      <p><code>print()</code> es una función incorporada de Python que muestra texto en la consola. Todo lo que va entre paréntesis se evalúa y se imprime. Las comillas dobles <code>" "</code> indican que el contenido es una cadena de texto (string).</p>
+
+      <h2>Variables y tipos de datos</h2>
+      <p>En Python no necesitas declarar el tipo de una variable; el intérprete lo infiere automáticamente.</p>
+      <pre><code>nombre = "Ana"
+edad = 25
+altura = 1.68
+es_estudiante = True
+
+print(type(nombre))   # &lt;class 'str'&gt;
+print(type(edad))     # &lt;class 'int'&gt;
+print(type(altura))   # &lt;class 'float'&gt;
+print(type(es_estudiante))  # &lt;class 'bool'&gt;</code></pre>
+      <p>Los tipos básicos en Python son:</p>
+      <ul>
+        <li><code>int</code>: números enteros (ej: <code>25</code>, <code>-3</code>, <code>0</code>)</li>
+        <li><code>float</code>: números decimales (ej: <code>3.14</code>, <code>1.68</code>)</li>
+        <li><code>str</code>: cadenas de texto (ej: <code>"Hola"</code>, <code>'Python'</code>)</li>
+        <li><code>bool</code>: valores booleanos (<code>True</code> o <code>False</code>)</li>
+      </ul>
+      <p>Usa la función <code>type()</code> para conocer el tipo de cualquier variable.</p>
+
+      <h2>Strings</h2>
+      <p>Las cadenas de texto son uno de los tipos más usados. Python ofrece múltiples formas de trabajar con ellas.</p>
+
+      <h3>Concatenación</h3>
+      <pre><code>saludo = "Hola, " + "mundo"
+print(saludo)  # Hola, mundo</code></pre>
+
+      <h3>f-strings (recomendado)</h3>
+      <pre><code>nombre = "Carlos"
+edad = 30
+mensaje = f"Me llamo {nombre} y tengo {edad} años."
+print(mensaje)  # Me llamo Carlos y tengo 30 años.</code></pre>
+
+      <h3>Métodos básicos</h3>
+      <pre><code>texto = "  Python es INCREÍBLE  "
+
+print(texto.upper())       # "  PYTHON ES INCREÍBLE  "
+print(texto.lower())       # "  python es increíble  "
+print(texto.strip())       # "Python es INCREÍBLE"
+print(texto.split())       # ['Python', 'es', 'INCREÍBLE']</code></pre>
+
+      <h2>Listas y diccionarios</h2>
+
+      <h3>Listas</h3>
+      <p>Una lista es una colección ordenada y mutable de elementos.</p>
+      <pre><code>frutas = ["manzana", "banana", "cereza"]
+print(frutas[0])      # manzana
+
+frutas.append("durazno")
+print(frutas)         # ['manzana', 'banana', 'cereza', 'durazno']
+
+frutas.pop()          # Elimina el último elemento
+print(frutas)         # ['manzana', 'banana', 'cereza']</code></pre>
+
+      <h3>Diccionarios</h3>
+      <p>Un diccionario almacena pares clave-valor.</p>
+      <pre><code>persona = {
+    "nombre": "Lucía",
+    "edad": 28,
+    "ciudad": "Bogotá"
+}
+
+print(persona["nombre"])       # Lucía
+print(persona.keys())          # dict_keys(['nombre', 'edad', 'ciudad'])
+print(persona.values())        # dict_values(['Lucía', 28, 'Bogotá'])</code></pre>
+
+      <h2>Condicionales</h2>
+      <p>Los condicionales permiten ejecutar código según una condición.</p>
+      <pre><code>edad = 18
+
+if edad >= 18:
+    print("Eres mayor de edad")
+elif edad >= 13:
+    print("Eres adolescente")
+else:
+    print("Eres menor de edad")</code></pre>
+      <p>Presta atención a los <code>:</code> al final de cada condición y a la <strong>indentación</strong> (4 espacios). En Python, la indentación es obligatoria y define los bloques de código.</p>
+
+      <h2>Bucles</h2>
+
+      <h3>Bucle <code>for</code></h3>
+      <pre><code># Iterar sobre una lista
+colores = ["rojo", "verde", "azul"]
+for color in colores:
+    print(color)
+
+# Usar range()
+for i in range(5):
+    print(i)  # 0, 1, 2, 3, 4
+
+for i in range(2, 8, 2):
+    print(i)  # 2, 4, 6</code></pre>
+
+      <h3>Bucle <code>while</code></h3>
+      <pre><code>contador = 0
+while contador < 5:
+    print(f"Vuelta {contador}")
+    contador += 1</code></pre>
+
+      <h2>Funciones</h2>
+      <p>Las funciones permiten reutilizar bloques de código. Se definen con <code>def</code>.</p>
+      <pre><code>def saludar(nombre):
+    return f"¡Hola, {nombre}!"
+
+mensaje = saludar("María")
+print(mensaje)  # ¡Hola, María!</code></pre>
+
+      <h3>Función con varios parámetros</h3>
+      <pre><code>def sumar(a, b):
+    return a + b
+
+resultado = sumar(10, 5)
+print(resultado)  # 15</code></pre>
+      <p>La palabra clave <code>return</code> devuelve un valor desde la función. Si no usas <code>return</code>, la función devuelve <code>None</code>.</p>
+
+      <h2>Próximos pasos</h2>
+      <p>Has cubierto los fundamentos de Python. Ahora te recomendamos:</p>
+      <ul>
+        <li><strong>Practicar con proyectos pequeños:</strong> Calculadora, generador de contraseñas, juego de adivinanzas.</li>
+        <li><strong>Explorar librerías:</strong> <code>random</code>, <code>datetime</code>, <code>os</code> para empezar.</li>
+        <li><strong>Apuntar a un área específica:</strong> Si te gusta la web, prueba Flask. Si te atrae la ciencia de datos, aprende pandas.</li>
+        <li><strong>Usar plataformas interactivas:</strong> LeetCode, Exercism o Project Euler para resolver ejercicios.</li>
+        <li><strong>Leer documentación oficial:</strong> <a href="https://docs.python.org/3/" target="_blank">docs.python.org</a> es tu mejor aliada.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Python es un lenguaje accesible, versátil y con una comunidad enorme. En esta guía viste desde la instalación hasta funciones, pasando por variables, strings, listas, diccionarios, condicionales y bucles. La clave ahora es la práctica constante. Escribe código todos los días, aunque sean solo unos minutos, y verás cómo tu comprensión crece rápidamente. ¡El momento de empezar es ahora!</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
