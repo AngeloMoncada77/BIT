@@ -91,3 +91,68 @@ window.addEventListener('scroll', () => {
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// === Theme Toggle ===
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    themeToggle.textContent = '☀️';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    themeToggle.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+}
+
+// === Reading Progress Bar ===
+const articleDetail = document.querySelector('.article-detail');
+if (articleDetail) {
+  const bar = document.createElement('div');
+  bar.className = 'progress-bar';
+  document.body.prepend(bar);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = articleDetail.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const progress = Math.min((scrollTop / docHeight) * 100, 100);
+      bar.style.width = progress + '%';
+    }
+  });
+}
+
+// === Typing Animation ===
+const typingEl = document.querySelector('.typing-text');
+if (typingEl) {
+  const html = typingEl.innerHTML;
+  typingEl.innerHTML = '';
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor';
+  typingEl.after(cursor);
+
+  const type = () => {
+    if (i < html.length) {
+      let chunk = html[i];
+      if (html[i] === '<') {
+        const end = html.indexOf('>', i);
+        chunk = html.slice(i, end + 1);
+        i = end + 1;
+        typingEl.innerHTML += chunk;
+        requestAnimationFrame(type);
+        return;
+      }
+      typingEl.innerHTML += chunk;
+      i++;
+      setTimeout(type, 40 + Math.random() * 30);
+    } else {
+      cursor.remove();
+    }
+  };
+  setTimeout(type, 500);
+}

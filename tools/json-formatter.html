@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Formatter y Validador - CódigoBinario</title>
+  <meta name="description" content="Formatea, valida y embellece JSON online. Pega tu código JSON y obtén una versión formateada con sintaxis coloreada. Gratis y sin registro." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link">Blog</a></li>
+          <li><a href="/tools/" class="nav__link nav__link--active">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+          <li><a href="/blog/feed.xml" class="nav__link" title="RSS Feed">📡</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container page">
+    <a href="/tools/" class="back-link">← Volver a herramientas</a>
+    <h1>JSON Formatter y Validador</h1>
+    <p class="page__desc">Pega tu JSON, formatéalo y valídalo al instante. Resalta la sintaxis para facilitar la lectura.</p>
+
+    <div class="tool-container">
+      <label for="json-input">JSON de entrada</label>
+      <textarea id="json-input" class="json-input-area" placeholder='{"nombre": "CódigoBinario", "año": 2026}'></textarea>
+      <div style="display:flex;gap:0.75rem;">
+        <button class="btn btn--primary" onclick="formatJSON()" style="flex:1;">Formatear</button>
+        <button class="btn btn--outline" onclick="minifyJSON()" style="flex:1;">Minificar</button>
+        <button class="btn btn--outline" onclick="clearJSON()" style="flex:0.5;">Limpiar</button>
+      </div>
+      <div id="json-error" class="json-error"></div>
+      <label for="json-output" style="margin-top:1rem;">Salida formateada</label>
+      <div id="json-output" class="json-output"></div>
+      <button class="btn btn--outline" onclick="copyJSON()" style="margin-top:0.5rem;">Copiar resultado</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script>
+    function formatJSON() {
+      const input = document.getElementById('json-input');
+      const output = document.getElementById('json-output');
+      const error = document.getElementById('json-error');
+      error.textContent = '';
+      try {
+        const parsed = JSON.parse(input.value);
+        const formatted = JSON.stringify(parsed, null, 2);
+        output.innerHTML = syntaxHighlight(formatted);
+      } catch (e) {
+        error.textContent = 'Error: ' + e.message;
+        output.innerHTML = '';
+      }
+    }
+
+    function minifyJSON() {
+      const input = document.getElementById('json-input');
+      const output = document.getElementById('json-output');
+      const error = document.getElementById('json-error');
+      error.textContent = '';
+      try {
+        const parsed = JSON.parse(input.value);
+        output.textContent = JSON.stringify(parsed);
+      } catch (e) {
+        error.textContent = 'Error: ' + e.message;
+        output.innerHTML = '';
+      }
+    }
+
+    function clearJSON() {
+      document.getElementById('json-input').value = '';
+      document.getElementById('json-output').innerHTML = '';
+      document.getElementById('json-error').textContent = '';
+    }
+
+    function syntaxHighlight(json) {
+      json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return json.replace(
+        /("(?:[^"\\]|\\.)*")(\s*:)?|\b(true|false|null)\b|(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)/g,
+        function(match, key, colon, bool, num) {
+          if (key) {
+            return colon
+              ? '<span class="json-key">' + key + '</span>' + colon
+              : '<span class="json-string">' + key + '</span>';
+          }
+          if (bool) return '<span class="json-boolean">' + bool + '</span>';
+          if (num) return '<span class="json-number">' + num + '</span>';
+          return match;
+        }
+      );
+    }
+
+    function copyJSON() {
+      const output = document.getElementById('json-output');
+      if (!output.textContent) return;
+      navigator.clipboard.writeText(output.textContent).then(() => {
+        const btn = document.querySelector('button[onclick="copyJSON()"]');
+        btn.textContent = '¡Copiado!';
+        setTimeout(() => btn.textContent = 'Copiar resultado', 2000);
+      });
+    }
+  </script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
