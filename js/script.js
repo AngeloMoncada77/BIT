@@ -44,6 +44,35 @@ if (statsSection) {
   observer.observe(statsSection);
 }
 
+// Copy code blocks
+document.querySelectorAll('.article-detail pre').forEach(pre => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'code-wrapper';
+  pre.parentNode.insertBefore(wrapper, pre);
+  wrapper.appendChild(pre);
+
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.textContent = 'Copiar';
+  wrapper.appendChild(btn);
+
+  btn.addEventListener('click', () => {
+    const code = pre.querySelector('code');
+    const text = code ? code.textContent : pre.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '¡Copiado!';
+      btn.classList.add('copy-btn--copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copy-btn--copied');
+      }, 2000);
+    }).catch(() => {
+      btn.textContent = 'Error';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+  });
+});
+
 // Back to top button
 const backToTop = document.createElement('button');
 backToTop.className = 'back-to-top';

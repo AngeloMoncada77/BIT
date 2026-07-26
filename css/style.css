@@ -553,6 +553,42 @@ ul { list-style: none; }
   color: #64748b;
 }
 
+.code-wrapper {
+  position: relative;
+  margin: 1rem 0;
+}
+.code-wrapper .copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #334155;
+  border: 1px solid #475569;
+  color: #94a3b8;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.code-wrapper:hover .copy-btn {
+  opacity: 1;
+}
+.copy-btn:hover {
+  background: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+}
+.copy-btn--copied {
+  background: #22c55e !important;
+  color: #fff !important;
+  border-color: #22c55e !important;
+}
+.article-detail pre {
+  margin: 0;
+}
+
 .back-to-top {
   position: fixed;
   bottom: 2rem;
