@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeScript desde cero: Tipos, interfaces y primeros pasos - CódigoBinario Blog</title>
+  <meta name="description" content="Aprende TypeScript desde cero: qué es, cómo instalarlo, tipos básicos, interfaces, funciones tipadas y genéricos. Guía completa para principiantes 2026." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/typescript-desde-cero.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <meta property="og:image" content="https://picsum.photos/seed/typescript-desde-cero/1200/630" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Julio 2026 · Programación</p>
+      <h1>TypeScript desde cero: Tipos, interfaces y primeros pasos</h1>
+
+      <p>Si ya sabes JavaScript y quieres dar el siguiente paso, TypeScript es el camino. En 2026, es prácticamente obligatorio en proyectos profesionales: React, Angular, Next.js, NestJS y Node.js lo usan de forma nativa. En esta guía aprenderás TypeScript desde cero, en español y con ejemplos prácticos que puedes probar hoy mismo.</p>
+
+      <h2>¿Qué es TypeScript y por qué usarlo?</h2>
+      <p>TypeScript es un superconjunto (superset) de JavaScript desarrollado por Microsoft que añade <strong>tipado estático</strong> al lenguaje. Esto significa que puedes declarar el tipo de cada variable, parámetro y valor de retorno, y el compilador detectará errores antes de que el código se ejecute.</p>
+      <p>Ventajas principales:</p>
+      <ul>
+        <li><strong>Detección de errores en tiempo de compilación:</strong> los errores de tipo se encuentran antes de llegar a producción.</li>
+        <li><strong>Mejor autocompletado:</strong> VS Code y otros editores entienden TypeScript y te sugieren propiedades y métodos exactos.</li>
+        <li><strong>Código más legible:</strong> los tipos funcionan como documentación viva. Sabes exactamente qué espera una función sin tener que leer su implementación.</li>
+        <li><strong>Refactorización segura:</strong> cambiar el nombre de una propiedad o función actualiza todas las referencias sin romper nada.</li>
+        <li><strong>Escalabilidad:</strong> en proyectos grandes, TypeScript evita una cantidad enorme de bugs que en JavaScript puro solo aparecerían en ejecución.</li>
+      </ul>
+
+      <h2>Instalación y configuración</h2>
+      <p>Lo primero es instalar TypeScript de forma global:</p>
+      <pre><code>npm install -g typescript</code></pre>
+      <p>Verifica la instalación:</p>
+      <pre><code>tsc --version</code></pre>
+      <p>Para iniciar un proyecto, crea un archivo de configuración:</p>
+      <pre><code>tsc --init</code></pre>
+      <p>Esto genera un <code>tsconfig.json</code>. Una configuración básica recomendada:</p>
+      <pre><code>{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}</code></pre>
+      <p>Ahora crea un archivo <code>src/index.ts</code>:</p>
+      <pre><code>const mensaje: string = "¡Hola TypeScript!";
+console.log(mensaje);</code></pre>
+      <p>Compílalo:</p>
+      <pre><code>tsc</code></pre>
+      <p>Verás que se genera <code>dist/index.js</code> con el código JavaScript equivalente. TypeScript desaparece en la compilación y solo queda JS puro.</p>
+
+      <h2>Tipos básicos</h2>
+      <p>TypeScript tiene varios tipos primitivos que ya conocerás de JavaScript, pero ahora los declaras explícitamente:</p>
+      <pre><code>let nombre: string = "Ana";
+let edad: number = 30;
+let activo: boolean = true;
+let indefinido: undefined = undefined;
+let nulo: null = null;
+
+// Arrays
+let numeros: number[] = [1, 2, 3];
+let nombres: Array&lt;string&gt; = ["Ana", "Luis"];
+
+// Tuplas (arrays con longitud y tipos fijos)
+let coordenada: [number, number] = [40.4168, -3.7038];
+
+// Enum
+enum Rol {
+  Admin = "ADMIN",
+  Editor = "EDITOR",
+  Lector = "LECTOR"
+}
+let miRol: Rol = Rol.Admin;</code></pre>
+
+      <h3>Any, Unknown y Never</h3>
+      <p><code>any</code> desactiva el tipado para esa variable. Úsalo solo cuando sea estrictamente necesario, porque pierdes todas las ventajas de TypeScript.</p>
+      <p><code>unknown</code> es como any pero más seguro: no puedes hacer nada con un valor unknown sin antes verificarlo.</p>
+      <p><code>never</code> representa valores que nunca ocurren, como una función que siempre lanza un error.</p>
+      <pre><code>let flexible: any = "puede ser cualquier cosa";
+flexible = 42; // válido
+
+let seguro: unknown = "no puedo usarlo sin verificar";
+if (typeof seguro === "string") {
+  console.log(seguro.toUpperCase()); // ahora sí
+}
+
+function error(mensaje: string): never {
+  throw new Error(mensaje);
+}</code></pre>
+
+      <h2>Interfaces y tipos personalizados</h2>
+      <p>Las <strong>interfaces</strong> definen la forma de un objeto. Son la forma más común de tipar objetos en TypeScript:</p>
+      <pre><code>interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+  rol?: Rol;
+  readonly creado: Date;
+}
+
+const usuario: Usuario = {
+  id: 1,
+  nombre: "María",
+  email: "maria@ejemplo.com",
+  creado: new Date()
+};</code></pre>
+      <p>Las propiedades con <code>?</code> son opcionales. Las que tienen <code>readonly</code> no pueden modificarse después de creadas.</p>
+
+      <h3>Type vs Interface</h3>
+      <p>Ambos definen la forma de un objeto, pero tienen diferencias clave:</p>
+      <pre><code>// type puede usar uniones e intersecciones
+type Resultado = "exito" | "error" | "pendiente";
+type ID = number | string;
+
+// interface puede extenderse
+interface Admin extends Usuario {
+  permisos: string[];
+}
+
+// type también puede extenderse, pero con &
+type AdminType = Usuario & { permisos: string[] };</code></pre>
+      <p>Regla práctica: usa <code>interface</code> para objetos y clases, <code>type</code> para uniones, alias y tipos compuestos.</p>
+
+      <h2>Funciones tipadas</h2>
+      <p>En TypeScript puedes tipar tanto los parámetros como el valor de retorno:</p>
+      <pre><code>function sumar(a: number, b: number): number {
+  return a + b;
+}
+
+const multiplicar = (a: number, b: number): number => a * b;
+
+// Parámetros opcionales y por defecto
+function saludar(nombre: string, saludo: string = "Hola"): string {
+  return `${saludo}, ${nombre}!`;
+}
+
+// Parámetros rest
+function sumarTodos(...numeros: number[]): number {
+  return numeros.reduce((acc, n) => acc + n, 0);
+}</code></pre>
+
+      <h2>Genéricos</h2>
+      <p>Los genéricos permiten escribir funciones y componentes que funcionan con cualquier tipo, manteniendo la seguridad:</p>
+      <pre><code>function primero&lt;T&gt;(array: T[]): T | undefined {
+  return array[0];
+}
+
+const num = primero([1, 2, 3]);      // tipo: number
+const str = primero(["a", "b"]);     // tipo: string
+
+// Interfaz genérica
+interface Respuesta&lt;T&gt; {
+  datos: T;
+  exito: boolean;
+  mensaje: string;
+}
+
+const respuesta: Respuesta&lt;Usuario&gt; = {
+  datos: usuario,
+  exito: true,
+  mensaje: "Usuario encontrado"
+};</code></pre>
+
+      <h2>Utility Types</h2>
+      <p>TypeScript incluye tipos utilitarios que facilitan la transformación de tipos existentes:</p>
+      <pre><code>interface Producto {
+  id: number;
+  nombre: string;
+  precio: number;
+  stock: number;
+}
+
+type ProductoParcial = Partial&lt;Producto&gt;;       // todas las propiedades opcionales
+type SoloNombrePrecio = Pick&lt;Producto, "nombre" | "precio"&gt;;  // solo esos campos
+type SinStock = Omit&lt;Producto, "stock"&gt;;         // todos excepto stock
+type ProductosMapa = Record&lt;string, Producto&gt;;    // diccionario tipado</code></pre>
+
+      <h2>Conclusión</h2>
+      <p>TypeScript hace que tu código sea más robusto, legible y mantenible. Una vez que lo adoptas, cuesta trabajo volver a JavaScript puro. No necesitas aprenderlo todo de golpe: empieza añadiendo tipos a funciones y objetos en un proyecto pequeño, y verás cómo mejora tu experiencia de desarrollo.</p>
+      <p>En 2026, saber TypeScript no es un plus, es un requisito en la mayoría de ofertas de desarrollo web. Es la inversión de aprendizaje con mejor retorno para cualquier desarrollador JavaScript.</p>
+
+      <h2>Video tutorial</h2>
+      <p>Si prefieres aprender TypeScript visualmente, aquí tienes un curso completo desde cero:</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/IJ_mpJRaHmc" title="Aprender TypeScript desde cero" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

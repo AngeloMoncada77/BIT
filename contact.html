@@ -19,6 +19,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contacto - CódigoBinario</title>
   <meta name="description" content="Contacta con CódigoBinario para colaboraciones, sugerencias de artículos o preguntas técnicas." />
+  <meta property="og:title" content="Contacto - CódigoBinario" />
+  <meta property="og:description" content="Contacta con CódigoBinario para colaboraciones, sugerencias de artículos o preguntas técnicas." />
+  <meta property="og:image" content="https://picsum.photos/seed/cbcontact/1200/630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://amq7.xyz/contact.html" />
+  <link rel="canonical" href="https://amq7.xyz/contact.html" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -45,7 +51,9 @@
     <h1>Contacto</h1>
     <p class="page__desc">¿Sugerencia para un artículo, encontraste un error o quieres colaborar? Escríbeme y te responderé lo antes posible.</p>
 
-    <form class="contact-form" id="contact-form">
+    <form class="contact-form" id="contact-form" netlify netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display:none;"><label><input name="bot-field" /></label></p>
       <div class="form-group">
         <label for="name">Nombre</label>
         <input type="text" id="name" name="name" placeholder="Tu nombre" required />
@@ -84,12 +92,19 @@
   </footer>
   <script src="/js/script.js"></script>
   <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const status = document.getElementById('form-status');
-      status.textContent = 'Gracias por tu mensaje. Te responderé pronto.';
-      this.reset();
-    });
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        const status = document.getElementById('form-status');
+        if (!this.dataset.netlify) {
+          e.preventDefault();
+          status.textContent = 'Gracias por tu mensaje. Te responderé pronto.';
+          this.reset();
+        } else {
+          status.textContent = 'Enviando...';
+        }
+      });
+    }
   </script>
   <script src="/js/cookie-consent.js"></script>
 </body>

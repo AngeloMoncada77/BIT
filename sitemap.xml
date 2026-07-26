@@ -29,6 +29,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://amq7.xyz/404.html</loc>
+    <priority>0.1</priority>
+  </url>
+  <url>
     <loc>https://amq7.xyz/tools/password-generator.html</loc>
     <priority>0.7</priority>
   </url>
@@ -101,6 +105,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://amq7.xyz/blog/feed.xml</loc>
+    <priority>0.1</priority>
+  </url>
+  <url>
     <loc>https://amq7.xyz/blog/posts/css-grid-guia-completa.html</loc>
     <priority>0.7</priority>
   </url>
@@ -114,6 +122,18 @@
   </url>
   <url>
     <loc>https://amq7.xyz/tools/qr-generator.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/async-await-promesas.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/typescript-desde-cero.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/docker-principiantes.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>

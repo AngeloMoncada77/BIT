@@ -18,7 +18,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog - CódigoBinario | Tutoriales y Artículos Técnicos</title>
-  <meta name="description" content="Tutoriales de programación, guías técnicas y artículos sobre desarrollo web, Node.js, Git, redes, gaming y ciberseguridad en español. 14 artículos y creciendo." />
+  <meta name="description" content="Tutoriales de programación, guías técnicas y artículos sobre desarrollo web, Node.js, Git, redes, gaming y ciberseguridad en español. 17 artículos y creciendo." />
+  <meta property="og:title" content="Blog Técnico - CódigoBinario" />
+  <meta property="og:description" content="Tutoriales de programación, guías técnicas y artículos sobre desarrollo web en español." />
+  <meta property="og:image" content="https://picsum.photos/seed/cbblog/1200/630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://amq7.xyz/blog/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://amq7.xyz/blog/" />
+  <link rel="alternate" type="application/rss+xml" title="CódigoBinario Blog RSS" href="/blog/feed.xml" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -43,9 +51,42 @@
 
   <main class="container page">
     <h1>Blog Técnico</h1>
-    <p class="page__desc">Tutoriales, guías y artículos sobre programación, redes, gaming y tecnología en general. <strong style="color:#38bdf8;">14 artículos</strong> y sumando.</p>
+    <p class="page__desc">Tutoriales, guías y artículos sobre programación, redes, gaming y tecnología en general. <strong style="color:#38bdf8;">17 artículos</strong> y sumando.</p>
 
-    <div class="article-list">
+    <p style="text-align:center;margin-bottom:1.5rem;"><a href="/blog/feed.xml" style="color:#94a3b8;font-size:0.9rem;transition:color 0.2s;" title="Suscribirse al RSS">📡 RSS Feed</a></p>
+
+    <div class="blog-search">
+      <input type="text" id="blog-search" class="blog-search__input" placeholder="Buscar artículos..." aria-label="Buscar artículos" />
+    </div>
+
+    <div class="article-list" id="article-list">
+      <article class="article-item">
+        <div class="article-item__meta">
+          <span class="article-item__date">Julio 2026</span>
+          <span class="article-item__category">Programación</span>
+        </div>
+        <h2><a href="/blog/posts/docker-principiantes.html">Docker para principiantes: Contenedores, imágenes y primeros pasos</a></h2>
+        <p>Guía completa de Docker: qué son los contenedores, cómo se diferencian de las máquinas virtuales, comandos básicos, Dockerfile y Docker Compose. El fin del "en mi máquina funciona".</p>
+      </article>
+
+      <article class="article-item">
+        <div class="article-item__meta">
+          <span class="article-item__date">Julio 2026</span>
+          <span class="article-item__category">Programación</span>
+        </div>
+        <h2><a href="/blog/posts/typescript-desde-cero.html">TypeScript desde cero: Tipos, interfaces y primeros pasos</a></h2>
+        <p>Aprende TypeScript desde cero: qué es, cómo instalarlo, tipos básicos, interfaces, funciones tipadas y genéricos. El superset de JavaScript que todo desarrollador web necesita en 2026.</p>
+      </article>
+
+      <article class="article-item">
+        <div class="article-item__meta">
+          <span class="article-item__date">Julio 2026</span>
+          <span class="article-item__category">Programación</span>
+        </div>
+        <h2><a href="/blog/posts/async-await-promesas.html">Async/Await y Promesas en JavaScript: La guía definitiva</a></h2>
+        <p>Domina la programación asíncrona en JavaScript: callbacks, promesas, async/await, fetch, Promise.all y manejo de errores con ejemplos prácticos.</p>
+      </article>
+
       <article class="article-item">
         <div class="article-item__meta">
           <span class="article-item__date">Julio 2026</span>
@@ -185,6 +226,30 @@
     </div>
   </footer>
   <script src="/js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('blog-search');
+      if (!searchInput) return;
+      const articles = document.querySelectorAll('.article-item');
+
+      searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+
+        articles.forEach(function(article) {
+          const title = article.querySelector('h2')?.textContent?.toLowerCase() || '';
+          const desc = article.querySelector('p')?.textContent?.toLowerCase() || '';
+          const category = article.querySelector('.article-item__category')?.textContent?.toLowerCase() || '';
+          const match = title.includes(query) || desc.includes(query) || category.includes(query);
+
+          if (query === '') {
+            article.style.display = '';
+          } else {
+            article.style.display = match ? '' : 'none';
+          }
+        });
+      });
+    });
+  </script>
   <script src="/js/cookie-consent.js"></script>
 </body>
 </html>

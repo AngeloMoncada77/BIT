@@ -43,3 +43,22 @@ if (statsSection) {
   }, { threshold: 0.5 });
   observer.observe(statsSection);
 }
+
+// Back to top button
+const backToTop = document.createElement('button');
+backToTop.className = 'back-to-top';
+backToTop.setAttribute('aria-label', 'Volver arriba');
+backToTop.innerHTML = '↑';
+document.body.appendChild(backToTop);
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    backToTop.classList.add('back-to-top--visible');
+  } else {
+    backToTop.classList.remove('back-to-top--visible');
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});

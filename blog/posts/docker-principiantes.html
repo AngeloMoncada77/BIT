@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker para principiantes: Contenedores, imágenes y primeros pasos - CódigoBinario Blog</title>
+  <meta name="description" content="Guía completa de Docker para principiantes: qué son los contenedores, cómo se diferencian de las máquinas virtuales, comandos básicos, Dockerfile y Docker Compose." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/docker-principiantes.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <meta property="og:image" content="https://picsum.photos/seed/docker-principiantes/1200/630" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">CódigoBinario</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Julio 2026 · Programación</p>
+      <h1>Docker para principiantes: Contenedores, imágenes y primeros pasos</h1>
+
+      <p>Si alguna vez has escuchado a un desarrollador decir "en mi máquina funciona", sabes exactamente por qué existe Docker. Esa frase es el síntoma de un problema que Docker resuelve de raíz: las diferencias entre entornos de desarrollo, testing y producción. En esta guía vas a aprender qué es Docker, cómo funciona y cómo empezar a usarlo desde cero.</p>
+
+      <h2>¿Qué es Docker?</h2>
+      <p>Docker es una plataforma de código abierto que permite empaquetar aplicaciones y todas sus dependencias en unidades llamadas <strong>contenedores</strong>. Un contenedor es como una caja que incluye tu código, las librerías, las herramientas del sistema y la configuración necesaria para que la aplicación funcione. Esa caja se puede ejecutar en cualquier máquina que tenga Docker instalado, sin importar el sistema operativo ni la configuración del equipo.</p>
+      <p>Según encuestas recientes, más del 70% de las empresas de tecnología usan Docker en producción. En 2026, es una habilidad fundamental para cualquier desarrollador backend, DevOps o full stack.</p>
+
+      <h2>Contenedores vs Máquinas Virtuales</h2>
+      <p>Para entender Docker, primero hay que entender la diferencia entre contenedores y máquinas virtuales (VMs):</p>
+      <ul>
+        <li><strong>Máquinas virtuales:</strong> cada VM incluye un sistema operativo completo, consume gigabytes de espacio y tarda minutos en iniciar. Tienen su propio kernel y virtualizan hardware.</li>
+        <li><strong>Contenedores:</strong> comparten el kernel del sistema operativo anfitrión, ocupan megabytes y se inician en segundos. Solo incluyen la aplicación y sus dependencias, no el sistema operativo completo.</li>
+      </ul>
+      <p>Piensa en una VM como una casa independiente con todos los muebles, y un contenedor como un departamento en un edificio que comparte la infraestructura (agua, electricidad) con los demás departamentos.</p>
+
+      <h2>Conceptos fundamentales</h2>
+      <p>Antes de escribir comandos, necesitas entender estos tres conceptos clave:</p>
+
+      <h3>Imagen (Image)</h3>
+      <p>Una imagen es una plantilla de solo lectura que contiene las instrucciones para crear un contenedor. Es como una receta de cocina o un plano de construcción. Las imágenes se construyen en capas y cada instrucción en el Dockerfile crea una nueva capa.</p>
+
+      <h3>Contenedor (Container)</h3>
+      <p>Un contenedor es una instancia en ejecución de una imagen. Puedes tener varios contenedores ejecutándose a partir de la misma imagen, cada uno aislado de los demás. Los contenedores son efímeros por diseño: cuando los eliminas, los datos dentro se pierden (a menos que uses volúmenes).</p>
+
+      <h3>Docker Hub</h3>
+      <p>Es el registro público de imágenes de Docker. Aquí puedes encontrar imágenes oficiales de Node.js, Python, PostgreSQL, Nginx y miles más. Es como npm o pip, pero para contenedores.</p>
+
+      <h2>Instalación de Docker</h2>
+      <p>Docker está disponible para Windows, macOS y Linux:</p>
+      <ul>
+        <li><strong>Windows / macOS:</strong> descarga <strong>Docker Desktop</strong> desde docker.com. Incluye interfaz gráfica y todo lo necesario.</li>
+        <li><strong>Linux:</strong> usa el gestor de paquetes de tu distribución. En Ubuntu/Debian:</li>
+      </ul>
+      <pre><code>sudo apt update
+sudo apt install docker.io
+sudo systemctl enable --now docker</code></pre>
+      <p>Verifica que Docker se instaló correctamente:</p>
+      <pre><code>docker --version</code></pre>
+
+      <h2>Comandos esenciales</h2>
+
+      <h3>Tu primer contenedor</h3>
+      <pre><code>docker run hello-world</code></pre>
+      <p>Este comando descarga la imagen <code>hello-world</code> desde Docker Hub y ejecuta un contenedor que imprime un mensaje de confirmación y se detiene.</p>
+
+      <h3>Ejecutar un servidor web</h3>
+      <pre><code>docker run -d -p 8080:80 nginx</code></pre>
+      <p>Explicación: <code>-d</code> ejecuta el contenedor en segundo plano (detached), <code>-p 8080:80</code> mapea el puerto 8080 de tu máquina al puerto 80 del contenedor. Si abres http://localhost:8080 verás la página de bienvenida de Nginx.</p>
+
+      <h3>Gestión de contenedores</h3>
+      <pre><code># Listar contenedores en ejecución
+docker ps
+
+# Listar todos los contenedores (incluyendo detenidos)
+docker ps -a
+
+# Detener un contenedor
+docker stop &lt;id_o_nombre&gt;
+
+# Eliminar un contenedor
+docker rm &lt;id_o_nombre&gt;
+
+# Ver logs de un contenedor
+docker logs &lt;id_o_nombre&gt;</code></pre>
+
+      <h3>Gestión de imágenes</h3>
+      <pre><code># Listar imágenes locales
+docker images
+
+# Descargar una imagen
+docker pull node:20-alpine
+
+# Eliminar una imagen
+docker rmi &lt;nombre_imagen&gt;</code></pre>
+
+      <h2>Crear tu propia imagen con un Dockerfile</h2>
+      <p>El <strong>Dockerfile</strong> es un archivo de texto que contiene las instrucciones para construir una imagen personalizada. Aquí tienes un ejemplo para una aplicación Node.js:</p>
+      <pre><code># Dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "index.js"]</code></pre>
+      <p>Cada instrucción crea una capa en la imagen:</p>
+      <ul>
+        <li><code>FROM</code>: define la imagen base (Node.js 20 sobre Alpine Linux, una distribución muy ligera).</li>
+        <li><code>WORKDIR</code>: establece el directorio de trabajo dentro del contenedor.</li>
+        <li><code>COPY</code>: copia archivos del host al contenedor.</li>
+        <li><code>RUN</code>: ejecuta comandos durante la construcción (instalar dependencias).</li>
+        <li><code>EXPOSE</code>: indica el puerto que usará la aplicación (es documentación, no publica el puerto).</li>
+        <li><code>CMD</code>: define el comando que se ejecutará al iniciar el contenedor.</li>
+      </ul>
+      <p>Para construir la imagen:</p>
+      <pre><code>docker build -t mi-app:v1 .</code></pre>
+      <p>Para ejecutarla:</p>
+      <pre><code>docker run -d -p 3000:3000 mi-app:v1</code></pre>
+
+      <h2>Docker Compose: múltiples contenedores</h2>
+      <p>Cuando tu aplicación necesita varios servicios (una API, una base de datos, un caché), Docker Compose te permite definirlos todos en un archivo YAML y levantarlos con un solo comando:</p>
+      <pre><code># docker-compose.yml
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: miapp
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: contraseña
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:</code></pre>
+      <p>Para iniciar todo:</p>
+      <pre><code>docker compose up -d</code></pre>
+      <p>Para detener y eliminar todo:</p>
+      <pre><code>docker compose down</code></pre>
+      <p>Docker Compose es ideal para desarrollo local y entornos de prueba. Te permite replicar la infraestructura de producción en tu máquina con solo un archivo de configuración.</p>
+
+      <h2>Volúmenes: persistencia de datos</h2>
+      <p>Los contenedores son efímeros: cuando los eliminas, los datos desaparecen. Los <strong>volúmenes</strong> permiten persistir datos fuera del contenedor:</p>
+      <pre><code># Crear un volumen
+docker volume create mis_datos
+
+# Montar el volumen en un contenedor
+docker run -v mis_datos:/app/data mysql</code></pre>
+      <p>Los volúmenes se almacenan en el sistema de archivos del host y Docker los gestiona automáticamente. Son la forma correcta de manejar datos persistentes como bases de datos o archivos subidos por usuarios.</p>
+
+      <h2>Buenas prácticas</h2>
+      <ul>
+        <li><strong>Usa imágenes oficiales y ligeras:</strong> prefiere <code>alpine</code> o <code>slim</code> para reducir el tamaño de la imagen.</li>
+        <li><strong>No ejecutes contenedores como root:</strong> crea un usuario dentro del Dockerfile para mayor seguridad.</li>
+        <li><strong>Usa .dockerignore:</strong> como .gitignore, evita copiar archivos innecesarios (node_modules, .git) al contenedor.</li>
+        <li><strong>Una sola responsabilidad por contenedor:</strong> no pongas la base de datos y la API en el mismo contenedor. Cada servicio en su propio contenedor.</li>
+        <li><strong>Versiona tus imágenes:</strong> no uses <code>latest</code> en producción. Usa tags específicos como <code>v1.2.3</code>.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Docker ha revolucionado la forma en que desarrollamos y desplegamos software. Con los conceptos básicos que has aprendido aquí —imágenes, contenedores, Dockerfile y Docker Compose— ya puedes contenerizar aplicaciones y eliminar el "en mi máquina funciona" para siempre.</p>
+      <p>Empieza poco a poco: ejecuta un contenedor simple, luego crea un Dockerfile para un proyecto tuyo, y finalmente prueba Docker Compose para entornos multi-servicio. Es una habilidad que cualquier desarrollador debería tener en 2026.</p>
+
+      <h2>Video tutorial</h2>
+      <p>Si quieres ver estos conceptos en acción, aquí tienes un curso práctico de Docker desde cero:</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/a3yEUXLfuZA" title="Docker explicado desde 0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+      </div>
+      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
