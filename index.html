@@ -10,7 +10,7 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'denied'
+      'analytics_storage': 'granted'
     });
     gtag('js', new Date());
     gtag('config', 'G-KT5FVDZVXT');
@@ -116,7 +116,7 @@
           <div class="featured-card__image" style="background-image: url('https://picsum.photos/seed/cbtuts/600/400');"></div>
           <div class="featured-card__content">
             <h2>Tutoriales prácticos</h2>
-            <p>Guías paso a paso para aprender desarrollo web, resolver errores comunes y dominar herramientas como Git, VS Code y Netlify. Contenido actualizado para 2026, explicado en español y sin rodeos.</p>
+            <p>Guías paso a paso para aprender desarrollo web, resolver errores comunes y dominar herramientas como Git, VS Code y Cloudflare. Contenido actualizado para 2026, explicado en español y sin rodeos.</p>
             <a href="/blog/" class="btn btn--primary">Ver tutoriales →</a>
           </div>
         </article>
@@ -125,7 +125,7 @@
           <div class="featured-card__image" style="background-image: url('https://picsum.photos/seed/cbtools/600/400');"></div>
           <div class="featured-card__content">
             <h2>Herramientas gratuitas</h2>
-            <p>Utilidades web interactivas que funcionan directo en tu navegador: generador de contraseñas, flashcards, editor Markdown, temporizador Pomodoro y más. Sin registro, sin instalación, sin límites.</p>
+            <p>Utilidades web interactivas que funcionan directo en tu navegador: generador de contraseñas, flashcards, editor Markdown, temporizador Pomodoro, JSON formatter y más. Sin registro, sin instalación, sin límites.</p>
             <a href="/tools/" class="btn btn--primary">Usar herramientas →</a>
           </div>
         </article>
@@ -138,6 +138,49 @@
             <a href="/blog/" class="btn btn--primary">Leer artículos →</a>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="latest-posts">
+      <div class="container">
+        <h2 class="section-title">Últimos <span>artículos</span></h2>
+        <div class="latest-posts__grid">
+          <div class="latest-post-card">
+            <div class="latest-post-card__meta">
+              <span class="latest-post-card__category">Programación</span>
+            </div>
+            <h3><a href="/blog/posts/docker-principiantes">Docker para principiantes: Contenedores, imágenes y primeros pasos</a></h3>
+            <p>Guía completa de Docker: qué son los contenedores, Dockerfile, Docker Compose y cómo empezar desde cero.</p>
+          </div>
+          <div class="latest-post-card">
+            <div class="latest-post-card__meta">
+              <span class="latest-post-card__category">Programación</span>
+            </div>
+            <h3><a href="/blog/posts/typescript-desde-cero">TypeScript desde cero: Tipos, interfaces y primeros pasos</a></h3>
+            <p>Aprende TypeScript desde cero: tipos básicos, interfaces, funciones tipadas y genéricos. El superset de JavaScript que todo dev necesita.</p>
+          </div>
+          <div class="latest-post-card">
+            <div class="latest-post-card__meta">
+              <span class="latest-post-card__category">Programación</span>
+            </div>
+            <h3><a href="/blog/posts/async-await-promesas">Async/Await y Promesas en JavaScript: La guía definitiva</a></h3>
+            <p>Domina la programación asíncrona en JavaScript: promesas, async/await, fetch, Promise.all y manejo de errores.</p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:2rem;">
+          <a href="/blog/" class="btn btn--primary">Ver todos los artículos →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="container">
+        <h2 class="newsletter__title">¿No te pierdas ningún artículo?</h2>
+        <p class="newsletter__desc">Cada nuevo tutorial, guía o herramienta llega directo a tu correo. Sin spam, solo contenido útil para developers.</p>
+        <div class="newsletter__actions">
+          <a href="/contact.html" class="btn btn--primary">Suscribirme al newsletter</a>
+          <a href="/blog/feed.xml" class="btn btn--outline">📡 RSS Feed</a>
+        </div>
       </div>
     </section>
 
@@ -176,12 +219,17 @@
 
   <footer class="footer">
     <div class="container">
+      <p class="footer__tagline">CódigoBinario — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
       <div class="footer__social">
         <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
+        <a href="https://linkedin.com/" target="_blank" title="LinkedIn">LinkedIn</a>
+        <a href="https://youtube.com/" target="_blank" title="YouTube">YouTube</a>
         <a href="/contact.html" title="Contacto">Contacto</a>
         <a href="/privacy.html" title="Privacidad">Privacidad</a>
+        <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
       </div>
-      <p>&copy; 2026 CódigoBinario. Todos los derechos reservados. <span style="color:#334155;font-size:0.8rem;">v2.0</span></p>
+      <p class="footer__copy">&copy; 2026 CódigoBinario. Desarrollado con HTML, CSS y JavaScript puro.</p>
     </div>
   </footer>
 
