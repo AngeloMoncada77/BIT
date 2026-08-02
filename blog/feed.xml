@@ -8,6 +8,30 @@
     <lastBuildDate>Sat, 01 Aug 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://amq7.xyz/blog/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Git desde cero: los comandos esenciales del control de versiones</title>
+      <link>https://amq7.xyz/blog/posts/git-comandos-esenciales.html</link>
+      <guid>https://amq7.xyz/blog/posts/git-comandos-esenciales.html</guid>
+      <description>Aprende Git desde cero: qué es un repositorio, cómo funcionan commits y ramas, y los comandos esenciales para el trabajo diario.</description>
+      <category>Programación</category>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>SQL vs NoSQL: cuál base de datos elegir para tu proyecto</title>
+      <link>https://amq7.xyz/blog/posts/sql-vs-nosql.html</link>
+      <guid>https://amq7.xyz/blog/posts/sql-vs-nosql.html</guid>
+      <description>Comparativa entre bases de datos SQL y NoSQL: cuándo usar cada una, características, ejemplos reales y consejos para elegir.</description>
+      <category>Programación</category>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>HTTPS y el cifrado SSL/TLS: cómo se protege tu web</title>
+      <link>https://amq7.xyz/blog/posts/https-ssl-certificados.html</link>
+      <guid>https://amq7.xyz/blog/posts/https-ssl-certificados.html</guid>
+      <description>Cómo funciona HTTPS: certificados SSL/TLS, criptografía asimétrica, el handshake paso a paso, y por qué debes usarlo.</description>
+      <category>Redes</category>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Docker para principiantes: Contenedores, imágenes y primeros pasos</title>
       <link>https://amq7.xyz/blog/posts/docker-principiantes.html</link>
       <guid>https://amq7.xyz/blog/posts/docker-principiantes.html</guid>

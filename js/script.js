@@ -178,6 +178,9 @@ if (relatedGrid) {
     { title: 'HTML semántico: la base del SEO y la accesibilidad', url: '/blog/posts/html-semantico', category: 'Programación' },
     { title: 'Arquitectura de videojuegos multiplayer: servidor autoritativo vs P2P', url: '/blog/posts/arquitectura-multiplayer', category: 'Gaming' },
     { title: '¿Cómo funciona el anti-cheat en los juegos online?', url: '/blog/posts/anti-cheat', category: 'Gaming' },
+    { title: 'Git desde cero: los comandos esenciales del control de versiones', url: '/blog/posts/git-comandos-esenciales', category: 'Programación' },
+    { title: 'SQL vs NoSQL: cuál base de datos elegir para tu proyecto', url: '/blog/posts/sql-vs-nosql', category: 'Programación' },
+    { title: 'HTTPS y el cifrado SSL/TLS: cómo se protege tu web', url: '/blog/posts/https-ssl-certificados', category: 'Redes' },
   ];
 
   const currentUrl = window.location.pathname.replace(/\.html$/, '');

@@ -7,10 +7,10 @@
 
 - Dominio: amq7.xyz
 - Marca: **DevCortex** (antes CódigoBinario/AMQ7)
-- Hosting: Netlify (mikel-platypus-bb3d70.netlify.app)
+- Hosting: Cloudflare Pages (deploy automático desde GitHub)
 - DNS: Cloudflare (nameservers: princess.ns.cloudflare.com / rodrigo.ns.cloudflare.com)
 - Proxy Cloudflare: Activado (orange cloud) con SSL/TLS en Full (strict)
-- Repositorio: https://github.com/AngeloMoncada77/BIT
+- Repositorio: https://github.com/AngeloMoncada77/bitt
 - Email contacto: mikel3132056411@gmail.com
 - Git user: AngeloMoncada77
 - Google Analytics: G-KT5FVDZVXT (consent mode integrado con cookie banner)
@@ -33,9 +33,12 @@ bit/
 ├── portfolio/
 │   └── index.html                ← 3 proyectos con demos funcionales
 ├── blog/
-│   ├── index.html                ← Lista de 17 artículos + buscador
+│   ├── index.html                ← Lista de 20 artículos + buscador
 │   └── posts/
-│       ├── docker-principiantes.html    ← [NUEVO] Docker desde cero
+│       ├── git-comandos-esenciales.html  ← [NUEVO] Git desde cero
+│       ├── sql-vs-nosql.html             ← [NUEVO] SQL vs NoSQL
+│       ├── https-ssl-certificados.html   ← [NUEVO] HTTPS y TLS
+│       ├── docker-principiantes.html    ← Docker desde cero
 │       ├── typescript-desde-cero.html    ← [NUEVO] TypeScript desde cero
 │       ├── async-await-promesas.html     ← [NUEVO] Async/Await y promesas
 │       ├── css-grid-guia-completa.html   ← CSS Grid guía completa
@@ -110,6 +113,7 @@ bit/
 ## HISTORIAL DE CAMBIOS
 
 - [x] Rebranding de CódigoBinario a **DevCortex** (todas las páginas, feed y docs)
+- [x] 3 nuevos artículos: Git desde cero, SQL vs NoSQL, HTTPS y TLS (estadísticas 20 artículos)
 - [x] Favicon SVG propio, site.webmanifest y meta theme-color
 - [x] Formulario de contacto funcional (validación + envío por mailto)
 - [x] Banner de cookies compatible con tema claro/oscuro y GDPR real (analytics denegada por defecto)

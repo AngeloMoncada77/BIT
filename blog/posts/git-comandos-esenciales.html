@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git desde cero: comandos esenciales del control de versiones - DevCortex Blog</title>
+  <meta name="description" content="Aprende Git desde cero: qué es un repositorio, cómo funcionan commits y ramas, y los comandos esenciales que todo desarrollador usa todos los días." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/git-comandos-esenciales.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <meta property="og:image" content="https://picsum.photos/seed/git-comandos-esenciales/1200/630" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">DevCortex</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+          <li><a href="/blog/feed.xml" class="nav__link" title="RSS Feed">📡</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Agosto 2026 · Programación</p>
+      <h1>Git desde cero: los comandos esenciales del control de versiones</h1>
+
+      <p>Git es el sistema de control de versiones más usado del mundo: casi todos los proyectos de software, grandes o pequeños, viven en un repositorio de Git. Si estás aprendiendo a programar o quieres trabajar en equipo, entender Git no es opcional. Esta guía te lleva de cero a dominar el flujo de trabajo diario: inicializar un repo, hacer commits, crear ramas, trabajar con remotos y deshacer errores.</p>
+
+      <h2>¿Qué es Git y por qué usarlo?</h2>
+      <p>Un <strong>sistema de control de versiones</strong> registra cada cambio que haces en tus archivos a lo largo del tiempo. Piensa en él como una máquina del tiempo para tu código: puedes ver quién cambió qué, cuándo y por qué, y volver a cualquier estado anterior si algo se rompe.</p>
+      <p>Git es <strong>distribuido</strong>: cada persona tiene una copia completa del historial en su máquina, no solo un servidor central. Esto significa que puedes trabajar sin conexión, que cada copia es un respaldo y que los equipos pueden colaborar en paralelo sin pisarse.</p>
+
+      <h2>Instalación y configuración inicial</h2>
+      <p>Instala Git en tu sistema:</p>
+      <ul>
+        <li><strong>Windows:</strong> descarga el instalador desde <code>git-scm.com</code>. Incluye una terminal llamada Git Bash.</li>
+        <li><strong>macOS:</strong> <code>brew install git</code> o simplemente instala Xcode Command Line Tools.</li>
+        <li><strong>Linux (Ubuntu/Debian):</strong></li>
+      </ul>
+      <pre><code>sudo apt update
+sudo apt install git -y
+git --version</code></pre>
+      <p>Después de instalar, configura tu identidad. Git la usa para marcar cada cambio con tu nombre y correo:</p>
+      <pre><code>git config --global user.name "Tu Nombre"
+git config --global user.email "tu@correo.com"</code></pre>
+      <p>Verifica tu configuración con <code>git config --list</code>.</p>
+
+      <h2>Empezar un proyecto: git init</h2>
+      <p>Entra en la carpeta de tu proyecto y ejecuta:</p>
+      <pre><code>cd mi-proyecto
+git init</code></pre>
+      <p>Esto crea una carpeta oculta <code>.git</code> que almacena todo el historial. Ahora tu carpeta es un repositorio de Git. <strong>Advertencia:</strong> nunca inicialices Git dentro de otro repositorio, y usa el archivo <code>.gitignore</code> para evitar subir archivos pesados o sensibles como <code>node_modules</code>, claves o archivos de build.</p>
+
+      <h2>El ciclo básico: add y commit</h2>
+      <p>El flujo de trabajo más básico tiene tres pasos: <em>modificar</em> archivos, <em>agregarlos al área de preparación</em> (staging) y <em>guardar un commit</em>.</p>
+      <pre><code># Ver el estado del repositorio
+git status
+
+# Agregar un archivo concreto al staging
+git add index.html
+
+# Agregar todos los archivos modificados
+git add .
+
+# Guardar un commit con un mensaje descriptivo
+git commit -m "Agrega la página de inicio"</code></pre>
+      <p><code>git add</code> lleva los cambios al área de staging, que es como una "caja" donde preparas lo que vas a incluir en el siguiente commit. <code>git commit</code> guarda una captura permanente de esa caja en el historial, con un identificador único (hash), autor, fecha y mensaje.</p>
+
+      <h2>Ver el historial: git log</h2>
+      <pre><code>git log
+git log --oneline
+git log --oneline --graph --all</code></pre>
+      <p><code>git log --oneline</code> te muestra cada commit en una línea con su hash abreviado y su mensaje. Es el resumen diario que todo desarrollo utiliza.</p>
+
+      <h2>Ramas: git branch</h2>
+      <p>Una <strong>rama</strong> es una línea de desarrollo independiente. Te permite experimentar o trabajar en una funcionalidad sin afectar el código principal. La rama principal por defecto es <code>main</code> (antes <code>master</code>).</p>
+      <pre><code># Listar ramas
+git branch
+
+# Crear y moverte a una rama nueva en un solo paso
+git switch -c feature/nuevo-diseño
+
+# Cambiar de rama
+git switch feature/nuevo-diseño</code></pre>
+      <p>Cuando termines el trabajo de tu rama, la <strong>íntegras</strong> (merge) en la principal:</p>
+      <pre><code>git switch main
+git merge feature/nuevo-diseño</code></pre>
+      <p>Git intenta unir los cambios automáticamente. Si dos personas cambiaron la misma línea de código aparece un <strong>conflicto de fusión</strong>: Git marca las zonas conflictivas en los archivos para que decidas manualmente qué versión conservar.</p>
+
+      <h2>Trabajar con un repositorio remoto</h2>
+      <p>El repositorio <strong>remoto</strong> (por ejemplo en GitHub, GitLab o Bitbucket) es la copia compartida en un servidor. Para conectar tu local con un remoto:</p>
+      <pre><code># Clonar un repositorio existente
+git clone https://github.com/usuario/repo.git
+
+# Conectar un proyecto local a un remoto
+git remote add origin https://github.com/usuario/repo.git
+
+# Subir tus commits a la rama main del remoto
+git push origin main
+
+# Descargar los cambios del remoto
+git pull origin main</code></pre>
+      <p>El flujo completo en equipo se resume en: <code>git add</code> → <code>git status</code> → <code>git commit</code> → <code>git push</code> para publicar, y <code>git pull</code> para recibir el trabajo de los demás antes de empezar. Practica siempre <code>git pull</code> antes de codear para evitar conflictos innecesarios.</p>
+
+      <h2>Deshacer cambios</h2>
+      <p>No pasa nada si te equivocas. Git está diseñado para rescatar te:</p>
+      <pre><code># Ver qué cambiaron respecto al último commit
+git diff
+
+# Descartar cambios de un archivo sin preparar
+git restore index.html
+
+# Quitar un archivo del staging (sin perder cambios)
+git restore --staged index.html
+
+# Deshacer el último commit preservando los cambios en el staging
+git reset --soft HEAD~1
+
+# Mover el proyecto a un commit anterior (¡cuidado! afecta al historial)
+git reset --hard &lt;hash&gt;</code></pre>
+      <p><strong>Consejo:</strong> recurren a <code>git reset --hard</code> solo cuando estés seguro, porque descarta los cambios de forma permanente localmente.</p>
+
+      <h2>Buenas prácticas</h2>
+      <ul>
+        <li><strong>Mensajes de commit claros:</strong> comienzan con un verbo en infinitivo o imperativo: "Corrige el bug de autenticación".</li>
+        <li><strong>Commits pequeños y atómicos:</strong> una funcional refactoria por commit. Es más fácil hacer seguimiento y revertir.</li>
+        <li><strong>.gitignore siempre:</strong> evita subir <code>node_modules</code>, <code>.env</code>, <code>dist</code> y archivos de clave.</li>
+        <li><strong>Nunca comits de secretos:</strong> una vez publicado en Git, es casi imposible borrarlo de verdad.</li>
+        <li><strong>Pull antes de push:</strong> actualizar tu local evita la mayoría de los conflictos.</li>
+      </ul>
+
+      <h2>Conclusión</h2>
+      <p>Git es una habilidad diaria, no un lujo. Con <code>init</code>, <code>add</code>, <code>commit</code>, <code>branch</code>, <code>merge</code>, <code>remote</code> y <code>restore</code> ya tienes el 90% de lo que cualquier desarrollador usa. Ahora abre tu terminal, crea un proyecto y repite el ciclo varias veces. La práctica con timer es la única forma de hacerlo natural.</p>
+      <p>Si te tropiezas con errores como <em>push rejected</em> o conflictos, consulta la guía <a href="/blog/posts/errores-comunes-git.html">Errores comunes de Git y cómo solucionarlos</a>.</p>
+    </article>
+
+  <div class="related-articles" id="related-articles">
+    <h3 class="related-articles__title">Artículos relacionados</h3>
+    <div class="related-articles__grid" id="related-grid"></div>
+  </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
+        <a href="https://linkedin.com/" target="_blank" title="LinkedIn">LinkedIn</a>
+        <a href="https://youtube.com/" target="_blank" title="YouTube">YouTube</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+        <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
+      </div>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

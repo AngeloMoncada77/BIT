@@ -140,4 +140,16 @@
     <loc>https://amq7.xyz/blog/posts/docker-principiantes.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/git-comandos-esenciales.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/sql-vs-nosql.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amq7.xyz/blog/posts/https-ssl-certificados.html</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>

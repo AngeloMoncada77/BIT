@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTTPS y el cifrado SSL/TLS: cómo se protege tu tráfico web - DevCortex Blog</title>
+  <meta name="description" content="Cómo funciona HTTPS: certificados SSL/TLS, cifrado, handshake, y por qué debes usar HTTPS en toda tu web. Explicación clara para desarrolladores." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/https-ssl-certificados.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <meta property="og:image" content="https://picsum.photos/seed/https-ssl-certificados/1200/630" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">DevCortex</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+          <li><a href="/blog/feed.xml" class="nav__link" title="RSS Feed">📡</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Agosto 2026 · Redes</p>
+      <h1>HTTPS y el cifrado SSL/TLS: cómo se protege tu web</h1>
+
+      <p>Cada vez que el navegador muestra un candado 🔒 junto a la URL, está usando HTTPS. Pero detrás de ese candado hay una criptografía fascinante: un intercambio de claves, certificados digitales y cifrado que ocurre en milisegundos sin que lo notes. En esta guía vas a entender cómo funciona HTTPS y por qué es imprescindible en cualquier sitio web moderno.</p>
+
+      <h2>HTTP vs HTTPS</h2>
+      <p><strong>HTTP</strong> es el protocolo con el que el navegador pide páginas al servidor. El problema: todo lo que viaja por HTTP va <strong>en texto plano</strong>. Contraseñas, números de tarjeta, mensajes… cualquiera en la red intermedia (WiFi, ISP, router) puede leerlos.</p>
+      <p><strong>HTTPS</strong> es HTTP sobre <strong>TLS</strong> (Transport Layer Security), el estándar moderno (antes llamado SSL). TLS cifra los datos en tránsito: aunque un atacante los intercepte, solo verá una sopa de caracteres sin sentido. Además dos funciones extra:</p>
+      <ul>
+        <li><strong>Confidencialidad:</strong> solo tú y el servidor pueden leer el contenido.</li>
+        <li><strong>Integridad:</strong> los datos no se pueden alterar en el camino sin ser detectado.</li>
+        <li><strong>Autenticación:</strong> demuestra que estás hablando con el servidor correcto (gracias al certificado).</li>
+      </ul>
+
+      <h2>El concepto clave: criptografía asimétrica</h2>
+      <p>TLS usa <strong>criptografía asimétrica</strong>: dos llaves matemáticas relacionadas.</p>
+      <ul>
+        <li>La <strong>clave pública</strong>: se comparte con todo el mundo, se usa para <em>cifrar</em>.</li>
+        <li>La <strong>clave privada</strong>: solo el servidor la tiene, se usa para <em>descifrar</em> (y para firmar).</li>
+      </ul>
+      <p>Es como una caja con dos cerraduras: cualquiera puede poner un mensaje y cerrar con la cerradura pública, pero solo quien posee la llave privada puede abrirla. Así, una mano desconocida puede mandarte datos seguros sin necesidad de haberse puesto de acuerdo sobre una contraseña en secreto.</p>
+
+      <h2>El handshake TLS paso a paso</h2>
+      <p>Cuando tu navegador abre <code>https://amq7.xyz</code>, ocurre un <strong>handshake</strong> en varias fases:</p>
+      <ol>
+        <li><strong>Saludo:</strong> navegador y servidor se ponen de acuerdo en la versión de TLS y los algoritmos de cifrado (suite) que soportan.</li>
+        <li><strong>Certificado:</strong> el servidor envía su <strong>certificado digital</strong>, que incluye su clave pública y su identidad.</li>
+        <li><strong>Verificación:</strong> el navegador comprueba que el certificado fue emitido (firmado) por una <strong>Autoridad Certificadora (CA)</strong> de confianza, que el dominio coincide y que no está vencido. Los sistemas operativos y navegadores tienen preinstalada la lista de CA raíz.</li>
+        <li><strong>Clave de sesión:</strong> navegador y servidor acuerdan una <strong>clave simétrica</strong> temporal (más rápida), usando criptografía asimétrica para intercambiarla de forma segura.</li>
+        <li><strong>Conexión cifrada:</strong> a partir de ahí, toda la comunicación viaja cifrada con esa clave simétrica: rápido para el gran volumen de datos.</li>
+      </ol>
+      <p>Todo este proceso toma milisegundos y es transparente para el usuario final.</p>
+
+      <h2>¿Qué es un certificado SSL/TLS?</h2>
+      <p>Un certificado es un archivo digital que <strong>identifica</strong> a un sitio (y enlaza su identidad con su clave pública) y que está <strong>firmado por una CA</strong>. Tipos según su cobertura:</p>
+      <ul>
+        <li><strong>Domain Validation (DV):</strong> solo verifica que el dominio te pertenece. Es el estándar en la web hoy.</li>
+        <li><strong>Organization Validation (OV):</strong> verifica también datos de la organización.</li>
+        <li><strong>Extended Validation (EV):</strong> verificación más exhaustiva; solía mostrar el nombre de la empresa en la barra. Poco uso hoy.</li>
+      </ul>
+      <p>Existe la organización <strong>Let's Encrypt</strong> que emite certificados DV <strong>gratis</strong> y automáticamente (validez 90 días). Hoy casi todas las webs usan servicio gratis como Cloudflare o Let's Encrypt.</p>
+
+      <h2>¿Hasta qué punto importa HTTPS para SEO y seguridad?</h2>
+      <ul>
+        <li><strong>SEO:</strong> Google trata HTTPS como <strong>señal de clasificación</strong>. Desde 2024 se muestra <em>word</em> con candado; HTTP puro marca como "No seguro".</li>
+        <li><strong>Seguridad del usuario:</strong> en 2026 HTTPS es obligatorio para contraseñas, pagos y datos personales.</li>
+        <li><strong>Integridad del contenido:</strong> evita que un atacante inyecte anuncios o malware en las páginas que tu servidor envía.</li>
+        <li><strong>Esencial para APIs y PWAs:</strong> muchas APIs del navegador (geolocalización, service workers, notificaciones) solo funcionan en contextos seguros HTTPS.</li>
+      </ul>
+
+      <h2>Cómo activar HTTPS en tu sitio</h2>
+      <p>La buena noticia: en 2026 ya es <strong>trivial y gratuito</strong>. Si usas un hosting moderno o Cloudflare:</p>
+      <pre><code># Con Let's Encrypt + certbot (para un servidor propio)
+sudo apt install certbot
+sudo certbot --nginx -d mistdominio.com -d www.mistdominio.com</code></pre>
+      <p>En plataformas (Cloudflare Pages, Vercel, Netlify, GitHub Pages) HTTPS se habilita <strong>automáticamente</strong> al publicar, sin configuración. Solo compra el dominio y listo.</p>
+
+      <h2>Conclusión</h2>
+      <p>HTTPS no es una opción de lujo: es la línea base de la web moderna. Con criptografía asimétrica, certificados firmados por CAs y un handshake eficaz, garantiza que tus usuarios puedan confiar en tu sitio. Y activarlo con certificados gratis y hostings con TLS automático no tiene razón para no hacerlo.</p>
+
+      <h2>Video explicativo</h2>
+      <p>Si quieres ver el handshake en animación, aquí tienes un video recomendado:</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/hExRDVZHlag" title="Cómo funciona HTTPS y TLS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </article>
+
+  <div class="related-articles" id="related-articles">
+    <h3 class="related-articles__title">Artículos relacionados</h3>
+    <div class="related-articles__grid" id="related-grid"></div>
+  </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
+        <a href="https://linkedin.com/" target="_blank" title="LinkedIn">LinkedIn</a>
+        <a href="https://youtube.com/" target="_blank" title="YouTube">YouTube</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+        <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
+      </div>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>

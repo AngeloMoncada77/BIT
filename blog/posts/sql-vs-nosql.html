@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { 'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied' });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL vs NoSQL: cómo elegir tu base de datos en 2026 - DevCortex Blog</title>
+  <meta name="description" content="Comparativa entre bases de datos SQL y NoSQL: cuándo usar cada una, características, ejemplos reales (PostgreSQL, MongoDB) y consejos para elegir." />
+  <link rel="canonical" href="https://amq7.xyz/blog/posts/sql-vs-nosql.html" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <meta property="og:image" content="https://picsum.photos/seed/sql-vs-nosql/1200/630" />
+  <meta property="og:type" content="article" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="logo">DevCortex</a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="/" class="nav__link">Inicio</a></li>
+          <li><a href="/portfolio/" class="nav__link">Portafolio</a></li>
+          <li><a href="/blog/" class="nav__link nav__link--active">Blog</a></li>
+          <li><a href="/tools/" class="nav__link">Herramientas</a></li>
+          <li><a href="/about.html" class="nav__link">Sobre mí</a></li>
+          <li><a href="/contact.html" class="nav__link">Contacto</a></li>
+          <li><a href="/blog/feed.xml" class="nav__link" title="RSS Feed">📡</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container article-detail">
+    <a href="/blog/" class="back-link">← Volver al blog</a>
+    <article>
+      <p style="color:#64748b;margin-bottom:0.25rem;">Agosto 2026 · Programación</p>
+      <h1>SQL vs NoSQL: cuál base de datos elegir para tu proyecto</h1>
+
+      <p>Una de las primeras decisiones de arquitectura que enfrenta un desarrollador es qué base de datos usar. SQL y NoSQL no son enemigos: son herramientas con filosofías distintas, y cada una brilla en escenarios distintos. En esta guía entenderás las diferencias, verás ejemplos reales y aprenderás a elegir con criterio.</p>
+
+      <h2>¿Qué es una base de datos SQL?</h2>
+      <p>Las bases de datos <strong>SQL</strong> (Structured Query Language) son <strong>relacionales</strong>: organizan los datos en tablas con filas y columnas, y las relaciones entre tablas se basan en claves. Ejemplos: PostgreSQL, MySQL, SQL Server, SQLite.</p>
+      <p>Su lenguaje, SQL, es estándar desde los años 70 y está optimizado para consultas complejas con <code>JOIN</code>. El <strong>esquema es fijo</strong>: defines las columnas y tipos de antemano, y los datos deben cumplirlos. Esta estructura garantiza consistencia e integridad: si la tabla dice que un campo es un email, no podrá guardar un dato inválido si aplicas las restricciones.</p>
+
+      <h2>¿Qué es una base de datos NoSQL?</h2>
+      <p>Las bases de datos <strong>NoSQL</strong> ("Not Only SQL") agrupan a cualquier motor que no use el modelo relacional clásico. Los principales tipos son:</p>
+      <ul>
+        <li><strong>Documentos:</strong> MongoDB, CouchDB. Guardan datos en JSON/Bson. Flexibles y fáciles de modelar.</li>
+        <li><strong>Clave-valor:</strong> Redis, DynamoDB. Enormes velocidades, perfectas para caches y sesiones.</li>
+        <li><strong>Columnas:</strong> Cassandra, Bigtable. Diseñadas para escribir y leer a escala masiva.</li>
+        <li><strong>Grafos:</strong> Neo4j. Datos altamente conectados, como redes sociales o recomendaciones.</li>
+      </ul>
+      <p>El denominador común: <strong>esquema flexible</strong>, mejor escala horizontal y modelado que se adapta al idioma de tu aplicación.</p>
+
+      <h2>Diferencias clave cara a cara</h2>
+      <table>
+        <thead>
+          <tr><th>Característica</th><th>SQL</th><th>NoSQL</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Modelo de datos</td><td>Tablas, filas, claves</td><td>Documentos, clave-valor, grafos, columnas</td></tr>
+          <tr><td>Esquema</td><td>Fijo y estricto</td><td>Flexible, puede variar por documento</td></tr>
+          <tr><td>Escalabilidad</td><td>Vertical (mejor hardware)</td><td>Horizontal (más servidores)</td></tr>
+          <tr><td>Consultas</td><td>Potentes con JOIN y transacciones</td><td>Según motor; JOIN generalmente más limitado</td></tr>
+          <tr><td>Consistencia</td><td>ACID (fuerte)</td><td>Por lo general eventual/equilibrada</td></tr>
+          <tr><td>Mejor para</td><td>Datos financieros, pedidos, transacciones</td><td>Apps con datos variables, IoT, log, escala web</td></tr>
+        </tbody>
+      </table>
+
+      <h2>¿Cuándo usar SQL?</h2>
+      <ul>
+        <li>Tus datos tienen <strong>relaciones claras</strong>: usuario → pedidos → artículos.</li>
+        <li>Necesitas <strong>transacciones ACID</strong>: dinero, contabilidad, inventario donde un error parcial es inaceptable.</li>
+        <li>Requieres consultas complejas con <strong>JOIN</strong>, filtros y reportes.</li>
+        <li>Tu estructura de datos es conocida y no cambiará cada semana.</li>
+      </ul>
+      <p>Ejemplo clásico: <strong>PostgreSQL</strong> es el motor predilecto de startups para sistemas de e-commerce, SaaS y apps logData-driven porque combina madurez, funciones avanzadas (jsonb, full-text search) y comunidad enorme.</p>
+
+      <h2>¿Cuándo usar NoSQL?</h2>
+      <ul>
+        <li>Tus datos tienen <strong>esquema variable</strong>: cada documento puede omitir campos.</li>
+        <li>Necesitas <strong>escalar horizontalmente</strong>: millones de usuarios leyendo/escribiendo simultáneamente.</li>
+        <li>Tu app es <strong>orientada a documentos</strong>: perfil de usuario en JSON, contenido editorial, métricas.</li>
+        <li>Velocidad de lectura/escritura extrema: <strong>Redis</strong> para caché y sesiones.</li>
+      </ul>
+      <p>Ejemplo clásico: <strong>MongoDB</strong> fue elegido por apps con documentos como posts, comentarios y perfiles porque su esquema flexible acelera el desarrollo y su escala horizontal soporta contenido editorial variable.</p>
+
+      <h2>Un ejemplo concreto</h2>
+      <p>Imagina un blog con autores, artículos y comentarios. En SQL:</p>
+      <pre><code>CREATE TABLE autores (
+  id SERIAL PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  email TEXT UNIQUE
+);
+
+CREATE TABLE articulos (
+  id SERIAL PRIMARY KEY,
+  titulo TEXT NOT NULL,
+  cuerpo TEXT,
+  autor_id INT REFERENCES autores(id)
+);
+
+SELECT a.titulo, b.nombre
+FROM articulos a
+JOIN autores b ON a.autor_id = b.id;</code></pre>
+      <p>En MongoDB, el mismo concepto puede guardarse como documentos dentro de un array:</p>
+      <pre><code>{
+  "nombre": "María",
+  "email": "maria@dev.com",
+  "articulos": [
+    { "titulo": "SQL vs NoSQL", "cuerpo": "..." },
+    { "titulo": "Introducción a Docker", "cuerpo": "...", "público": true }
+  ]
+}</code></pre>
+      <p>Fíjate que el segundo artículo del documento tiene un campo <code>público</code> que el primero no tiene: el esquema es flexible en NoSQL.</p>
+
+      <h2>Puedes (y debes) usar ambas</h2>
+      <p>En la práctica, los sistemas reales son <strong>poliglota</strong>: usan <em>PostgreSQL</em> para el núcleo transaccional, <em>Redis</em> para caché y sesiones, y <em>MongoDB</em> o un motor de búsqueda como Elasticsearch para el contenido y la búsqueda. Elegir entre SQL y NoSQL no es una guerra: es elegir la herramienta adecuada para cada capa de tu sistema.</p>
+
+      <h2>Conclusión</h2>
+      <p>Empieza con SQL: es más fácil de razonar, maduro y cubre la mayoría de los proyectos. Muévete a NoSQL solo cuando tengas una razón concreta: esquema variable, escala horizontal o velocidad extrema. Y recuerda: PostgreSQL puede cubrir el 80% de tus necesidades durante mucho tiempo.</p>
+    </article>
+
+  <div class="related-articles" id="related-articles">
+    <h3 class="related-articles__title">Artículos relacionados</h3>
+    <div class="related-articles__grid" id="related-grid"></div>
+  </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <div class="footer__social">
+        <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
+        <a href="https://linkedin.com/" target="_blank" title="LinkedIn">LinkedIn</a>
+        <a href="https://youtube.com/" target="_blank" title="YouTube">YouTube</a>
+        <a href="/contact.html" title="Contacto">Contacto</a>
+        <a href="/privacy.html" title="Privacidad">Privacidad</a>
+        <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
+      </div>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
+    </div>
+  </footer>
+  <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
