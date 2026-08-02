@@ -1,4 +1,4 @@
-# Plan de Promoción - CódigoBinario
+# Plan de Promoción - DevCortex
 
 ## 1. FOROS (tráfico inmediato)
 
@@ -30,7 +30,7 @@ Publica los artículos como posts. El público latino responde bien a guías pr�
 
 ## 2. REDES SOCIALES
 
-### X/Twitter — @codigobinario (crearlo)
+### X/Twitter — @devcortex (crearlo)
 Publica **3 hilos por semana**:
 
 **Hilo 1: Errores de Git**

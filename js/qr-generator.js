@@ -39,7 +39,7 @@ function downloadQR() {
   if (!src) return;
 
   const link = document.createElement('a');
-  link.download = 'codigobinario-qr.png';
+  link.download = 'devcortex-qr.png';
   link.href = src;
   document.body.appendChild(link);
   link.click();

@@ -6,7 +6,7 @@
 ## DATOS DEL PROYECTO
 
 - Dominio: amq7.xyz
-- Marca: **CódigoBinario**
+- Marca: **DevCortex** (antes CódigoBinario/AMQ7)
 - Hosting: Netlify (mikel-platypus-bb3d70.netlify.app)
 - DNS: Cloudflare (nameservers: princess.ns.cloudflare.com / rodrigo.ns.cloudflare.com)
 - Proxy Cloudflare: Activado (orange cloud) con SSL/TLS en Full (strict)
@@ -23,23 +23,27 @@
 ```
 bit/
 ├── index.html                    ← Homepage con hero, stats animados, featured cards
-├── about.html                    ← Sobre CódigoBinario (bio, skills, filosofía)
+├── about.html                    ← Sobre DevCortex (bio, skills, filosofía)
 ├── contact.html                  ← Formulario de contacto + email directo
 ├── privacy.html                  ← Política de Privacidad (GDPR)
 ├── robots.txt                    ← SEO
-├── sitemap.xml                   ← SEO (23 URLs)
+├── sitemap.xml                   ← SEO (35 URLs)
+├── site.webmanifest               ← PWA manifest
 ├── google5b76da4bc65d00f4.html   ← Verificación Google Search Console
 ├── portfolio/
 │   └── index.html                ← 3 proyectos con demos funcionales
 ├── blog/
-│   ├── index.html                ← Lista de 14 artículos
+│   ├── index.html                ← Lista de 17 artículos + buscador
 │   └── posts/
-│       ├── css-grid-guia-completa.html ← [NUEVO] CSS Grid guía completa
-│       ├── python-desde-cero.html      ← [NUEVO] Python desde cero
-│       ├── api-rest-guia-completa.html ← [NUEVO] APIs REST guía completa
-│       ├── instalar-node-js.html       ← Guía instalación Node.js
-│       ├── mejores-hosting-gratis.html ← Comparativa hosting gratuito
-│       ├── errores-comunes-git.html    ← Solución errores Git
+│       ├── docker-principiantes.html    ← [NUEVO] Docker desde cero
+│       ├── typescript-desde-cero.html    ← [NUEVO] TypeScript desde cero
+│       ├── async-await-promesas.html     ← [NUEVO] Async/Await y promesas
+│       ├── css-grid-guia-completa.html   ← CSS Grid guía completa
+│       ├── python-desde-cero.html        ← Python desde cero
+│       ├── api-rest-guia-completa.html   ← APIs REST guía completa
+│       ├── instalar-node-js.html         ← Guía instalación Node.js
+│       ├── mejores-hosting-gratis.html   ← Comparativa hosting gratuito
+│       ├── errores-comunes-git.html      ← Solución errores Git
 │       ├── extensiones-vscode.html
 │       ├── guia-primer-sitio-web.html
 │       ├── como-funciona-internet.html
@@ -49,8 +53,10 @@ bit/
 │       ├── arquitectura-multiplayer.html
 │       └── anti-cheat.html
 ├── tools/
-│   ├── index.html                ← Landing de 8 herramientas
-│   ├── qr-generator.html         ← [NUEVO] Generador de códigos QR
+│   ├── index.html                ← Landing de 9 herramientas
+│   ├── qr-generator.html         ← Generador de códigos QR
+│   ├── json-formatter.html       ← JSON formatter/validador
+│   ├── snake.html                ← Snake game con top 10
 │   ├── password-generator.html   ← Generador de contraseñas seguras
 │   ├── flashcard.html            ← Generador de flashcards funcional
 │   ├── gradecalc.html            ← Calculadora de notas funcional
@@ -58,10 +64,11 @@ bit/
 │   ├── dashboard.html            ← Kanban task dashboard funcional
 │   └── markdown-editor.html      ← Editor Markdown en vivo funcional
 ├── css/
-│   └── style.css                 ← Estilos completos (responsive, dark theme, logo gradient)
+│   └── style.css                 ← Estilos completos (responsive, dark/light, banner, newsletter)
 └── js/
-    ├── script.js                 ← Menú hamburguesa + animación contadores
-    ├── qr-generator.js           ← [NUEVO] Lógica generador QR
+    ├── script.js                 ← Menú hamburguesa + animación contadores + más
+    ├── newsletter.js             ← Suscripción por correo
+    ├── qr-generator.js           ← Lógica generador QR
     ├── password-generator.js     ← Lógica generador contraseñas
     ├── flashcard.js              ← Lógica flashcards
     ├── gradecalc.js              ← Lógica calculadora notas
@@ -102,7 +109,15 @@ bit/
 
 ## HISTORIAL DE CAMBIOS
 
-- [x] Rebranding completo de AMQ7 a **CódigoBinario**
+- [x] Rebranding de CódigoBinario a **DevCortex** (todas las páginas, feed y docs)
+- [x] Favicon SVG propio, site.webmanifest y meta theme-color
+- [x] Formulario de contacto funcional (validación + envío por mailto)
+- [x] Banner de cookies compatible con tema claro/oscuro y GDPR real (analytics denegada por defecto)
+- [x] Newsletter con suscripción por correo en Home y Blog
+- [x] Buscador de blog con contador de resultados y estado "sin resultados"
+- [x] Modo claro corregido en todas las herramientas
+- [x] `_redirects`: URLs de artículos sin `.html` resueltas por rewrite (200)
+- [x] Rebranding completo de AMQ7 a **DevCortex**
 - [x] Logo con gradient sky→violet en todas las páginas
 - [x] Nuevo hero más profesional y orientado a contenido
 - [x] Hero con efecto visual de glow background
@@ -124,7 +139,7 @@ bit/
 ## PENDIENTE
 
 - [ ] Escribir más artículos (1 por semana recomendado)
-- [ ] Añadir más herramientas (JSON formatter)
+- [ ] Añadir más herramientas (idea: temporizador, base64, color picker)
 - [ ] Crear perfiles en X/Twitter o LinkedIn para promocionar
 - [ ] Solicitar Google AdSense cuando haya tráfico
 - [ ] Compartir artículos en foros (r/Programacion, Stack Overflow ES)

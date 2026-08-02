@@ -10,29 +10,33 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'granted'
+      'analytics_storage': 'denied'
     });
     gtag('js', new Date());
     gtag('config', 'G-KT5FVDZVXT');
   </script>
   <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog - CódigoBinario | Tutoriales y Artículos Técnicos</title>
+  <title>Blog - DevCortex | Tutoriales y Artículos Técnicos</title>
   <meta name="description" content="Tutoriales de programación, guías técnicas y artículos sobre desarrollo web, Node.js, Git, redes, gaming y ciberseguridad en español. 17 artículos y creciendo." />
-  <meta property="og:title" content="Blog Técnico - CódigoBinario" />
+  <meta property="og:title" content="Blog Técnico - DevCortex" />
   <meta property="og:description" content="Tutoriales de programación, guías técnicas y artículos sobre desarrollo web en español." />
   <meta property="og:image" content="https://picsum.photos/seed/cbblog/1200/630" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amq7.xyz/blog/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://amq7.xyz/blog/" />
-  <link rel="alternate" type="application/rss+xml" title="CódigoBinario Blog RSS" href="/blog/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="DevCortex Blog RSS" href="/blog/feed.xml" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
   <header class="header">
     <div class="container header__inner">
-      <a href="/" class="logo">CódigoBinario</a>
+      <a href="/" class="logo">DevCortex</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="/" class="nav__link">Inicio</a></li>
@@ -51,7 +55,7 @@
     </div>
   </header>
 
-  <main class="container page">
+  <main id="main" class="container page">
     <h1>Blog Técnico</h1>
     <p class="page__desc">Tutoriales, guías y artículos sobre programación, redes, gaming y tecnología en general. <strong style="color:#38bdf8;">17 artículos</strong> y sumando.</p>
 
@@ -60,6 +64,7 @@
     <div class="blog-search">
       <input type="text" id="blog-search" class="blog-search__input" placeholder="Buscar artículos..." aria-label="Buscar artículos" />
     </div>
+    <p id="blog-search-count" class="blog-search-count"></p>
 
     <div class="article-list" id="article-list">
       <article class="article-item">
@@ -221,8 +226,12 @@
     <div class="container">
       <h2 class="newsletter__title">¿Quieres más tutoriales como estos?</h2>
       <p class="newsletter__desc">Recibe cada nuevo artículo en tu correo. Contenido técnico en español, sin spam, sin rodeos.</p>
+      <form class="newsletter__form" data-newsletter novalidate>
+        <input type="email" class="newsletter__input" placeholder="tu@correo.com" aria-label="Tu correo electrónico" required />
+        <button type="submit" class="btn btn--primary">Suscribirme</button>
+        <p class="newsletter__status" role="status"></p>
+      </form>
       <div class="newsletter__actions">
-        <a href="/contact.html" class="btn btn--primary">Suscribirme al newsletter</a>
         <a href="/blog/feed.xml" class="btn btn--outline">📡 RSS Feed</a>
       </div>
     </div>
@@ -230,7 +239,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="footer__tagline">CódigoBinario — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
       <div class="footer__social">
         <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
         <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
@@ -240,18 +249,21 @@
         <a href="/privacy.html" title="Privacidad">Privacidad</a>
         <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
       </div>
-      <p class="footer__copy">&copy; 2026 CódigoBinario. Desarrollado con HTML, CSS y JavaScript puro.</p>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
     </div>
   </footer>
   <script src="/js/script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const searchInput = document.getElementById('blog-search');
+      const countEl = document.getElementById('blog-search-count');
       if (!searchInput) return;
       const articles = document.querySelectorAll('.article-item');
+      const totalArticles = articles.length;
 
       searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase().trim();
+        let visible = 0;
 
         articles.forEach(function(article) {
           const title = article.querySelector('h2')?.textContent?.toLowerCase() || '';
@@ -261,13 +273,28 @@
 
           if (query === '') {
             article.style.display = '';
+            visible++;
           } else {
             article.style.display = match ? '' : 'none';
+            if (match) visible++;
           }
         });
+
+        if (countEl) {
+          if (query === '') {
+            countEl.textContent = `${totalArticles} artículos`;
+          } else if (visible === 0) {
+            countEl.textContent = 'Sin resultados. Prueba con otra palabra (ej: Git, Node, hosting).';
+            countEl.classList.add('blog-search-count--none');
+          } else {
+            countEl.textContent = `${visible} resultado${visible !== 1 ? 's' : ''}`;
+            countEl.classList.remove('blog-search-count--none');
+          }
+        }
       });
     });
   </script>
+  <script src="/js/newsletter.js"></script>
   <script src="/js/cookie-consent.js"></script>
 </body>
 </html>

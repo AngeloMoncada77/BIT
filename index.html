@@ -10,34 +10,37 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'granted'
+      'analytics_storage': 'denied'
     });
     gtag('js', new Date());
     gtag('config', 'G-KT5FVDZVXT');
   </script>
   <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CódigoBinario - Tutoriales, Herramientas y Recursos Técnicos</title>
-  <meta name="description" content="CódigoBinario: tutoriales de programación, herramientas online gratuitas, artículos técnicos sobre desarrollo web, redes y gaming. 17 artículos y 9 herramientas. Aprende y construye." />
-  <meta name="author" content="CódigoBinario" />
+  <title>DevCortex - Tutoriales, Herramientas y Recursos Técnicos</title>
+  <meta name="description" content="DevCortex: tutoriales de programación, herramientas online gratuitas, artículos técnicos sobre desarrollo web, redes y gaming. 17 artículos y 9 herramientas. Aprende y construye." />
+  <meta name="author" content="DevCortex" />
   <meta name="google-site-verification" content="google5b76da4bc65d00f4" />
   <link rel="canonical" href="https://amq7.xyz/" />
-  <meta property="og:title" content="CódigoBinario - Tutoriales, Herramientas y Recursos Técnicos" />
+  <meta property="og:title" content="DevCortex - Tutoriales, Herramientas y Recursos Técnicos" />
   <meta property="og:description" content="Tutoriales de programación, herramientas online y artículos técnicos para developers y estudiantes." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amq7.xyz/" />
-  <meta property="og:image" content="https://picsum.photos/seed/codigobinario/1200/630" />
+  <meta property="og:image" content="https://picsum.photos/seed/devcortex/1200/630" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CódigoBinario - Tutoriales, Herramientas y Recursos Técnicos" />
+  <meta name="twitter:title" content="DevCortex - Tutoriales, Herramientas y Recursos Técnicos" />
   <meta name="twitter:description" content="Tutoriales de programación, herramientas online y artículos técnicos para developers y estudiantes." />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "CódigoBinario",
+  "name": "DevCortex",
   "url": "https://amq7.xyz",
   "description": "Tutoriales de programación, herramientas online gratuitas y artículos técnicos sobre desarrollo web, redes y gaming.",
   "author": {
@@ -49,10 +52,11 @@
 </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
 
   <header class="header">
     <div class="container header__inner">
-      <a href="/" class="logo">CódigoBinario</a>
+      <a href="/" class="logo">DevCortex</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="/" class="nav__link nav__link--active">Inicio</a></li>
@@ -71,7 +75,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero hero--enhanced">
       <div class="container">
         <h1 class="hero__title"><span class="typing-text">Aprende, construye y <span class="accent">comparte</span> tecnología</span></h1>
@@ -149,21 +153,21 @@
             <div class="latest-post-card__meta">
               <span class="latest-post-card__category">Programación</span>
             </div>
-            <h3><a href="/blog/posts/docker-principiantes">Docker para principiantes: Contenedores, imágenes y primeros pasos</a></h3>
+            <h3><a href="/blog/posts/docker-principiantes.html">Docker para principiantes: Contenedores, imágenes y primeros pasos</a></h3>
             <p>Guía completa de Docker: qué son los contenedores, Dockerfile, Docker Compose y cómo empezar desde cero.</p>
           </div>
           <div class="latest-post-card">
             <div class="latest-post-card__meta">
               <span class="latest-post-card__category">Programación</span>
             </div>
-            <h3><a href="/blog/posts/typescript-desde-cero">TypeScript desde cero: Tipos, interfaces y primeros pasos</a></h3>
+            <h3><a href="/blog/posts/typescript-desde-cero.html">TypeScript desde cero: Tipos, interfaces y primeros pasos</a></h3>
             <p>Aprende TypeScript desde cero: tipos básicos, interfaces, funciones tipadas y genéricos. El superset de JavaScript que todo dev necesita.</p>
           </div>
           <div class="latest-post-card">
             <div class="latest-post-card__meta">
               <span class="latest-post-card__category">Programación</span>
             </div>
-            <h3><a href="/blog/posts/async-await-promesas">Async/Await y Promesas en JavaScript: La guía definitiva</a></h3>
+            <h3><a href="/blog/posts/async-await-promesas.html">Async/Await y Promesas en JavaScript: La guía definitiva</a></h3>
             <p>Domina la programación asíncrona en JavaScript: promesas, async/await, fetch, Promise.all y manejo de errores.</p>
           </div>
         </div>
@@ -177,8 +181,13 @@
       <div class="container">
         <h2 class="newsletter__title">¿No te pierdas ningún artículo?</h2>
         <p class="newsletter__desc">Cada nuevo tutorial, guía o herramienta llega directo a tu correo. Sin spam, solo contenido útil para developers.</p>
+        <form class="newsletter__form" data-newsletter novalidate>
+          <input type="email" class="newsletter__input" placeholder="tu@correo.com" aria-label="Tu correo electrónico" required />
+          <button type="submit" class="btn btn--primary">Suscribirme</button>
+          <p class="newsletter__status" role="status"></p>
+        </form>
         <div class="newsletter__actions">
-          <a href="/contact.html" class="btn btn--primary">Suscribirme al newsletter</a>
+          <a href="/contact.html" class="btn btn--outline">Prefiero el formulario de contacto</a>
           <a href="/blog/feed.xml" class="btn btn--outline">📡 RSS Feed</a>
         </div>
       </div>
@@ -219,7 +228,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="footer__tagline">CódigoBinario — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
       <div class="footer__social">
         <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
         <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
@@ -229,11 +238,12 @@
         <a href="/privacy.html" title="Privacidad">Privacidad</a>
         <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
       </div>
-      <p class="footer__copy">&copy; 2026 CódigoBinario. Desarrollado con HTML, CSS y JavaScript puro.</p>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/newsletter.js"></script>
   <script src="/js/cookie-consent.js"></script>
 </body>
 </html>

@@ -10,17 +10,20 @@
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
-      'analytics_storage': 'granted'
+      'analytics_storage': 'denied'
     });
     gtag('js', new Date());
     gtag('config', 'G-KT5FVDZVXT');
   </script>
   <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contacto - CódigoBinario</title>
-  <meta name="description" content="Contacta con CódigoBinario para colaboraciones, sugerencias de artículos o preguntas técnicas." />
-  <meta property="og:title" content="Contacto - CódigoBinario" />
-  <meta property="og:description" content="Contacta con CódigoBinario para colaboraciones, sugerencias de artículos o preguntas técnicas." />
+  <title>Contacto - DevCortex</title>
+  <meta name="description" content="Contacta con DevCortex para colaboraciones, sugerencias de artículos o preguntas técnicas." />
+  <meta property="og:title" content="Contacto - DevCortex" />
+  <meta property="og:description" content="Contacta con DevCortex para colaboraciones, sugerencias de artículos o preguntas técnicas." />
   <meta property="og:image" content="https://picsum.photos/seed/cbcontact/1200/630" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amq7.xyz/contact.html" />
@@ -28,9 +31,10 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
   <header class="header">
     <div class="container header__inner">
-      <a href="/" class="logo">CódigoBinario</a>
+      <a href="/" class="logo">DevCortex</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="/" class="nav__link">Inicio</a></li>
@@ -49,40 +53,44 @@
     </div>
   </header>
 
-  <main class="container page">
+  <main id="main" class="container page">
     <h1>Contacto</h1>
     <p class="page__desc">¿Sugerencia para un artículo, encontraste un error o quieres colaborar? Escríbeme y te responderé lo antes posible.</p>
 
-    <form class="contact-form" id="contact-form">
-      <div class="form-group">
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="form-group" id="group-name">
         <label for="name">Nombre</label>
-        <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+        <input type="text" id="name" name="name" placeholder="Tu nombre" />
+        <span class="form-error" id="error-name"></span>
       </div>
-      <div class="form-group">
+      <div class="form-group" id="group-email">
         <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" />
+        <span class="form-error" id="error-email"></span>
       </div>
-      <div class="form-group">
+      <div class="form-group" id="group-subject">
         <label for="subject">Asunto</label>
         <input type="text" id="subject" name="subject" placeholder="¿Sobre qué quieres hablar?" />
+        <span class="form-error" id="error-subject"></span>
       </div>
-      <div class="form-group">
+      <div class="form-group" id="group-message">
         <label for="message">Mensaje</label>
-        <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <span class="form-error" id="error-message"></span>
       </div>
       <button type="submit" class="btn btn--primary">Enviar mensaje</button>
-      <p id="form-status" style="text-align:center;margin-top:1rem;color:#94a3b8;"></p>
+      <p id="form-status" class="form-status" role="status"></p>
     </form>
 
-    <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:#1e293b;border:1px solid #334155;border-radius:12px;">
-      <p style="color:#94a3b8;margin-bottom:0.5rem;">También puedes escribirme directamente a:</p>
-      <a href="mailto:mikel3132056411@gmail.com" style="font-size:1.1rem;color:#38bdf8;font-weight:600;">mikel3132056411@gmail.com</a>
+    <div class="contact-email-card">
+      <p>También puedes escribirme directamente a:</p>
+      <a href="mailto:mikel3132056411@gmail.com" class="contact-email-card__link">mikel3132056411@gmail.com</a>
     </div>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p class="footer__tagline">CódigoBinario — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
       <div class="footer__social">
         <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
         <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
@@ -92,17 +100,78 @@
         <a href="/privacy.html" title="Privacidad">Privacidad</a>
         <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
       </div>
-      <p class="footer__copy">&copy; 2026 CódigoBinario. Desarrollado con HTML, CSS y JavaScript puro.</p>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
     </div>
   </footer>
   <script src="/js/script.js"></script>
   <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const status = document.getElementById('form-status');
-      status.textContent = 'Gracias por tu mensaje. Te responderé pronto.';
-      this.reset();
-    });
+    (function() {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+
+      function setError(id, msg) {
+        var group = document.getElementById('group-' + id);
+        var el = document.getElementById('error-' + id);
+        el.textContent = msg;
+        group.classList.toggle('has-error', !!msg);
+      }
+
+      function validate() {
+        var ok = true;
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var subject = document.getElementById('subject').value.trim();
+        var message = document.getElementById('message').value.trim();
+
+        setError('name', name.length < 2 ? 'Escribe tu nombre.' : '');
+        ok = name.length >= 2 && ok;
+
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        setError('email', !emailOk ? 'Ingresa un correo válido (ej: nombre@dominio.com).' : '');
+        ok = emailOk && ok;
+
+        setError('subject', subject.length < 3 ? 'Escribe un asunto breve.' : '');
+        ok = subject.length >= 3 && ok;
+
+        setError('message', message.length < 10 ? 'Escribe un mensaje de al menos 10 caracteres.' : '');
+        ok = message.length >= 10 && ok;
+
+        return ok;
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        status.textContent = '';
+        status.className = 'form-status';
+        if (!validate()) {
+          status.textContent = 'Revisa los campos marcados en rojo.';
+          status.className = 'form-status form-status--error';
+          return;
+        }
+
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var subject = document.getElementById('subject').value.trim();
+        var message = document.getElementById('message').value.trim();
+
+        var body = 'Nombre: ' + name + '\nCorreo: ' + email + '\n\n' + message;
+        var mailto = 'mailto:mikel3132056411@gmail.com'
+          + '?subject=' + encodeURIComponent('[DevCortex] ' + subject)
+          + '&body=' + encodeURIComponent(body);
+
+        window.location.href = mailto;
+        status.textContent = 'Se abrió tu cliente de correo con el mensaje listo para enviar. Si no se abrió, escríbeme a mikel3132056411@gmail.com.';
+        status.className = 'form-status form-status--success';
+      });
+
+      ['name', 'email', 'subject', 'message'].forEach(function(id) {
+        document.getElementById(id).addEventListener('input', function() {
+          if (document.getElementById('group-' + id).classList.contains('has-error')) {
+            setError(id, '');
+          }
+        });
+      });
+    })();
   </script>
   <script src="/js/cookie-consent.js"></script>
 </body>

@@ -41,10 +41,12 @@ function generateFlashcards() {
 
 function showCard() {
   const card = flashcards[currentCard];
-  document.getElementById('question-text').textContent = card.question;
-  document.getElementById('flashcard-content').innerHTML = `
-    <p class="flashcard__question">${card.question}</p>
-  `;
+  const content = document.getElementById('flashcard-content');
+  content.innerHTML = '';
+  const p = document.createElement('p');
+  p.className = 'flashcard__question';
+  p.textContent = card.question;
+  content.appendChild(p);
   document.getElementById('card-counter').textContent = `${currentCard + 1} / ${flashcards.length}`;
   document.getElementById('card-hint').textContent = 'Haz clic en la tarjeta para ver la respuesta';
   isFlipped = false;
@@ -54,15 +56,13 @@ function flipCard() {
   if (!flashcards.length) return;
   const card = flashcards[currentCard];
   const content = document.getElementById('flashcard-content');
-  if (!isFlipped) {
-    content.innerHTML = `<p class="flashcard__answer">${card.answer}</p>`;
-    document.getElementById('card-hint').textContent = 'Haz clic para volver a la pregunta';
-    isFlipped = true;
-  } else {
-    content.innerHTML = `<p class="flashcard__question">${card.question}</p>`;
-    document.getElementById('card-hint').textContent = 'Haz clic en la tarjeta para ver la respuesta';
-    isFlipped = false;
-  }
+  content.innerHTML = '';
+  const p = document.createElement('p');
+  p.className = isFlipped ? 'flashcard__question' : 'flashcard__answer';
+  p.textContent = isFlipped ? card.question : card.answer;
+  content.appendChild(p);
+  document.getElementById('card-hint').textContent = isFlipped ? 'Haz clic en la tarjeta para ver la respuesta' : 'Haz clic para volver a la pregunta';
+  isFlipped = !isFlipped;
 }
 
 function nextCard() {

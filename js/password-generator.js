@@ -27,14 +27,16 @@ function generatePassword() {
   updateStrength();
 }
 
-function copyPassword() {
+function copyPassword(btn) {
   const input = document.getElementById('pwd-output');
   input.select();
-  navigator.clipboard.writeText(input.value);
-  const btn = event.target;
+  input.setSelectionRange(0, input.value.length);
+  btn = btn || event.target;
   const original = btn.textContent;
-  btn.textContent = 'Copiado!';
-  setTimeout(() => btn.textContent = original, 1500);
+  navigator.clipboard.writeText(input.value).then(function() {
+    btn.textContent = '¡Copiado!';
+    setTimeout(function() { btn.textContent = original; }, 1500);
+  });
 }
 
 function updateLength() {

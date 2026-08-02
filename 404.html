@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT5FVDZVXT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-KT5FVDZVXT');
+  </script>
   <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 - Página no encontrada | CódigoBinario</title>
-  <meta name="description" content="La página que buscas no existe. Vuelve al inicio o explora el blog y herramientas de CódigoBinario." />
+  <title>404 - Página no encontrada | DevCortex</title>
+  <meta name="description" content="La página que buscas no existe. Vuelve al inicio o explora el blog y herramientas de DevCortex." />
   <link rel="canonical" href="https://amq7.xyz/404.html" />
   <link rel="stylesheet" href="/css/style.css" />
   <style>
@@ -30,10 +47,10 @@
     .error-page__title {
       font-size: 1.8rem;
       margin-bottom: 0.75rem;
-      color: #e2e8f0;
+      color: var(--text-primary);
     }
     .error-page__text {
-      color: #94a3b8;
+      color: var(--text-secondary);
       font-size: 1.1rem;
       margin-bottom: 2rem;
       max-width: 500px;
@@ -47,9 +64,10 @@
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
   <header class="header">
     <div class="container header__inner">
-      <a href="/" class="logo">CódigoBinario</a>
+      <a href="/" class="logo">DevCortex</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="/" class="nav__link">Inicio</a></li>
@@ -68,7 +86,7 @@
     </div>
   </header>
 
-  <main class="error-page">
+  <main id="main" class="error-page">
     <div class="error-page__code">404</div>
     <h1 class="error-page__title">Página no encontrada</h1>
     <p class="error-page__text">La página que buscas no existe, fue movida o dejó de estar disponible. Revisa la URL o vuelve al inicio.</p>
@@ -80,7 +98,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="footer__tagline">CódigoBinario — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
+      <p class="footer__tagline">DevCortex — Tutoriales, herramientas y artículos técnicos para developers en español.</p>
       <div class="footer__social">
         <a href="https://github.com/AngeloMoncada77" target="_blank" title="GitHub">GitHub</a>
         <a href="https://twitter.com/" target="_blank" title="Twitter/X">Twitter</a>
@@ -90,9 +108,10 @@
         <a href="/privacy.html" title="Privacidad">Privacidad</a>
         <a href="/blog/feed.xml" title="RSS Feed">📡 RSS</a>
       </div>
-      <p class="footer__copy">&copy; 2026 CódigoBinario. Desarrollado con HTML, CSS y JavaScript puro.</p>
+      <p class="footer__copy">&copy; 2026 DevCortex. Desarrollado con HTML, CSS y JavaScript puro.</p>
     </div>
   </footer>
   <script src="/js/script.js"></script>
+  <script src="/js/cookie-consent.js"></script>
 </body>
 </html>

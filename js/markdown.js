@@ -2,6 +2,10 @@ const textarea = document.getElementById('markdown-input');
 const preview = document.getElementById('preview');
 let lastPos = 0;
 
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function parseMarkdown(text) {
   let html = '';
   const lines = text.split('\n');
@@ -14,7 +18,7 @@ function parseMarkdown(text) {
     if (line.trim().startsWith('```')) {
       if (inCodeBlock) {
         codeBuffer.push(line);
-        html += `<pre><code>${codeBuffer.slice(1, -1).join('\n')}</code></pre>\n`;
+        html += `<pre><code>${escapeHtml(codeBuffer.slice(1, -1).join('\n'))}</code></pre>\n`;
         codeBuffer = [];
         inCodeBlock = false;
         continue;
@@ -53,10 +57,9 @@ function parseMarkdown(text) {
   }
 
   if (inCodeBlock && codeBuffer.length > 1) {
-    html += `<pre><code>${codeBuffer.slice(1).join('\n')}</code></pre>\n`;
+    html += `<pre><code>${escapeHtml(codeBuffer.slice(1).join('\n'))}</code></pre>\n`;
   }
 
-  html = html.replace(/(<li>.*<\/li>\n)+/g, match => `<ul>${match}</ul>\n`);
   html = html.replace(/(<li>.*<\/li>\n)+/g, match => `<ul>${match}</ul>\n`);
 
   return html;
@@ -64,10 +67,13 @@ function parseMarkdown(text) {
 
 function parseInline(text) {
   return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/`(.+?)`/g, '<code>$1</code>')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank">$1</a>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
     .replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1">');
 }
 
@@ -112,7 +118,10 @@ function clearEditor() {
 
 textarea.addEventListener('input', renderPreview);
 textarea.addEventListener('scroll', () => {
-  preview.scrollTop = textarea.scrollTop * (preview.scrollHeight - preview.clientHeight) / (textarea.scrollHeight - textarea.clientHeight);
+  const maxT = textarea.scrollHeight - textarea.clientHeight;
+  const maxP = preview.scrollHeight - preview.clientHeight;
+  if (maxT <= 0 || maxP <= 0) return;
+  preview.scrollTop = textarea.scrollTop * maxP / maxT;
 });
 
 renderPreview();

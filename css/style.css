@@ -613,6 +613,16 @@ ul { list-style: none; }
 .blog-search__input::placeholder {
   color: var(--text-muted);
 }
+.blog-search-count {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+  min-height: 1.2em;
+}
+.blog-search-count--none {
+  color: #ef4444;
+}
 
 .code-wrapper {
   position: relative;
@@ -669,15 +679,6 @@ ul { list-style: none; }
   z-index: 99;
   opacity: 0.8;
 }
-.back-to-top:hover {
-  background: var(--accent);
-  color: #0f172a;
-  opacity: 1;
-}
-.back-to-top--visible {
-  display: flex;
-}
-
 .back-to-top:hover {
   background: var(--accent);
   color: #0f172a;
@@ -807,6 +808,7 @@ ul { list-style: none; }
   justify-content: center;
   gap: 1.5rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 .footer__social a {
   color: var(--text-muted);
@@ -817,6 +819,128 @@ ul { list-style: none; }
 .footer__copy {
   color: var(--text-muted);
   font-size: 0.8rem;
+}
+
+/* === Cookie Banner (themed) === */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+  z-index: 9999;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+.cookie-banner__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.cookie-banner__text p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  max-width: 640px;
+  line-height: 1.6;
+}
+.cookie-banner__text a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.cookie-banner .btn {
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+}
+.cookie-btn--outline {
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: transparent;
+}
+.cookie-btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* === Newsletter Form === */
+.newsletter__form {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 460px;
+  margin: 0 auto 1.25rem;
+}
+.newsletter__input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.75rem 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.newsletter__input:focus { outline: none; border-color: var(--accent); }
+.newsletter__input.is-invalid { border-color: #ef4444; }
+.newsletter__status {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  min-height: 1.2em;
+}
+.newsletter__status--success { color: #22c55e; }
+.newsletter__status--error { color: #ef4444; }
+
+/* === Contact Form (validación) === */
+.form-error {
+  display: block;
+  color: #ef4444;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+  min-height: 1.1em;
+  font-weight: 500;
+}
+.form-group.has-error input,
+.form-group.has-error textarea { border-color: #ef4444 !important; }
+.form-status {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  min-height: 1.3em;
+}
+.form-status--error { color: #ef4444; }
+.form-status--success { color: #22c55e; }
+.contact-email-card {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.contact-email-card p {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+.contact-email-card__link {
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* === Reading Progress Bar === */
@@ -904,6 +1028,55 @@ ul { list-style: none; }
 .light-mode .code-wrapper .copy-btn { background: var(--bg-tertiary); color: var(--text-secondary); }
 .light-mode .code-wrapper .copy-btn:hover { background: var(--accent); color: #0f172a; }
 .light-mode .about-avatar { border-color: var(--border); }
+
+/* === Accesibilidad: saltar al contenido === */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0 0 8px 0;
+  z-index: 300;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.skip-link:focus { left: 0; }
+
+/* === Tool pages: overrides en modo claro === */
+.light-mode .pwd-option,
+.light-mode .pwd-strength,
+.light-mode .scale-selector button,
+.light-mode .qr-input input,
+.light-mode .add-task-form,
+.light-mode .kanban-column,
+.light-mode .add-task-form input,
+.light-mode .kanban-task,
+.light-mode .editor-pane,
+.light-mode .preview-pane,
+.light-mode .preview-pane pre,
+.light-mode .snake-header,
+.light-mode .dpad button {
+  background: var(--bg-secondary);
+  border-color: var(--border);
+}
+.light-mode .pwd-option label,
+.light-mode .add-task-form input,
+.light-mode .qr-input input,
+.light-mode .editor-pane textarea,
+.light-mode .kanban-task__title,
+.light-mode .snake-header strong,
+.light-mode .dpad button,
+.light-mode .preview-pane h3 { color: var(--text-primary); }
+.light-mode .preview-pane code {
+  background: var(--code-bg);
+  color: #e11d48;
+}
+.light-mode .preview-pane pre code { color: var(--text-primary); }
+.light-mode .kanban-empty { color: var(--text-muted); }
+.light-mode .dpad button:active { background: var(--bg-tertiary); }
+.light-mode .json-output { background: var(--bg-primary); }
 
 @media (max-width: 768px) {
   .hero--enhanced .hero__title { font-size: 2.2rem; }
