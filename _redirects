@@ -1,24 +1,3 @@
 /blog/feed                /blog/feed.xml           301
 /feed                     /blog/feed.xml           301
 /rss                      /blog/feed.xml           301
-
-/blog/posts/5-proyectos-javascript     /blog/posts/5-proyectos-javascript.html     301
-/blog/posts/anti-cheat                 /blog/posts/anti-cheat.html                 301
-/blog/posts/api-rest-guia-completa     /blog/posts/api-rest-guia-completa.html     301
-/blog/posts/arquitectura-multiplayer   /blog/posts/arquitectura-multiplayer.html   301
-/blog/posts/async-await-promesas       /blog/posts/async-await-promesas.html       301
-/blog/posts/como-funciona-internet     /blog/posts/como-funciona-internet.html     301
-/blog/posts/css-grid-guia-completa     /blog/posts/css-grid-guia-completa.html     301
-/blog/posts/docker-principiantes       /blog/posts/docker-principiantes.html       301
-/blog/posts/errores-comunes-git        /blog/posts/errores-comunes-git.html        301
-/blog/posts/extensiones-vscode         /blog/posts/extensiones-vscode.html         301
-/blog/posts/guia-primer-sitio-web      /blog/posts/guia-primer-sitio-web.html      301
-/blog/posts/html-semantico             /blog/posts/html-semantico.html             301
-/blog/posts/instalar-node-js           /blog/posts/instalar-node-js.html           301
-/blog/posts/mejores-hosting-gratis     /blog/posts/mejores-hosting-gratis.html     301
-/blog/posts/nat-traversal              /blog/posts/nat-traversal.html              301
-/blog/posts/python-desde-cero          /blog/posts/python-desde-cero.html          301
-/blog/posts/typescript-desde-cero      /blog/posts/typescript-desde-cero.html      301
-/blog/posts/git-comandos-esenciales    /blog/posts/git-comandos-esenciales.html    301
-/blog/posts/sql-vs-nosql               /blog/posts/sql-vs-nosql.html               301
-/blog/posts/https-ssl-certificados     /blog/posts/https-ssl-certificados.html     301
